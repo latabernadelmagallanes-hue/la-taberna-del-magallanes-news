@@ -122,6 +122,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 
 .share-warning{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;padding:10px;font-size:11px;border-radius:6px;margin-bottom:10px;line-height:1.5}
 .share-url-box{background:#f3f4f6;border:1px solid #e8e8e8;border-radius:6px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;word-break:break-all;max-height:80px;overflow-y:auto;color:#2c2c2c;margin-top:6px}
+.no-scrollbar::-webkit-scrollbar{display:none}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+nav.overflow-x-auto{
+  -webkit-mask-image:linear-gradient(to right,#000 92%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 92%,transparent 100%);
+}
 </style>
 </head>
 <body class="bg-white text-ink min-h-screen flex flex-col pb-20">
@@ -154,8 +160,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 <h1 id="site-title" class="nyt-masthead px-2">La Taberna del Magallanes News</h1>
 <p class="nyt-subtitle mt-4">Periodismo Deportivo Independiente · Rigor Sabermétrico</p>
 </div>
-<nav class="border-t border-line py-3 -mx-6 px-6 relative overflow-x-auto">
-<ul class="flex justify-center gap-8 text-xs font-semibold uppercase tracking-wider whitespace-nowrap mx-auto text-stone">
+<nav class="border-t border-line py-3 -mx-6 px-6 relative overflow-x-auto no-scrollbar">
+<ul class="flex justify-start md:justify-center gap-6 md:gap-8 text-xs font-semibold uppercase tracking-wider whitespace-nowrap w-max md:w-auto md:mx-auto text-stone">
 <li><button onclick="filtArt('TODOS')" class="hover:text-ink transition py-1">Portada</button></li>
 <li><button onclick="filtArt('CRÓNICA')" class="hover:text-ink transition py-1">Crónicas</button></li>
 <li><button onclick="filtArt('EDITORIAL')" class="hover:text-ink transition py-1">Editorial</button></li>
