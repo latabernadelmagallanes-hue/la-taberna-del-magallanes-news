@@ -3,7 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Taberna del Magallanes News</title>
+
+<!-- ═══ SEO BASE ═══ -->
+<title>La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico</title>
+<meta name="description" content="Periodismo deportivo independiente con rigor sabermétrico. Crónicas, análisis, box scores y proyecciones del Magallanes en la LVBP.">
+<meta name="author" content="Lic. Luis Aponte">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" id="canonical-link" href="https://latabernadelmagallanes.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='60' font-weight='900' fill='%23a67c1a' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+
+<!-- ═══ PWA ═══ -->
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="La Taberna">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- ═══ PERFORMANCE ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://jwizuyoipoymqzvuirnb.supabase.co">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
 
 <!-- ═══ OPEN GRAPH / REDES SOCIALES ═══ -->
 <meta property="og:type" content="website">
@@ -14,10 +35,51 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="La Taberna del Magallanes News">
+<meta property="og:url" id="og-url" content="https://latabernadelmagallanes.com/">
+<meta property="og:locale" content="es_VE">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@lataberna">
 <meta name="twitter:title" content="La Taberna del Magallanes News">
 <meta name="twitter:description" content="Periodismo Deportivo Independiente · Rigor Sabermétrico">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&h=630&q=80">
+
+<!-- ═══ JSON-LD: Organización + Sitio Web ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NewsMediaOrganization",
+      "@id": "https://latabernadelmagallanes.com/#organization",
+      "name": "La Taberna del Magallanes News",
+      "url": "https://latabernadelmagallanes.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&h=60&q=80",
+        "width": 600,
+        "height": 60
+      },
+      "description": "Periodismo deportivo independiente con rigor sabermétrico.",
+      "foundingDate": "2026",
+      "founder": { "@type": "Person", "name": "Lic. Luis Aponte" },
+      "sameAs": ["https://whatsapp.com/channel/0029VbCW8QNBPzjZAmTgIS31"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://latabernadelmagallanes.com/#website",
+      "url": "https://latabernadelmagallanes.com/",
+      "name": "La Taberna del Magallanes News",
+      "publisher": { "@id": "https://latabernadelmagallanes.com/#organization" },
+      "inLanguage": "es-VE",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://latabernadelmagallanes.com/buscar?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -30,39 +92,19 @@ tailwind.config={theme:{extend:{colors:{ink:'#0a0a0a',graphite:'#2c2c2c',stone:'
 <style>
 *{box-sizing:border-box}
 html,body{max-width:100vw;overflow-x:hidden;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-
-body,div,p,span,h1,h2,h3,h4,h5,h6,a,button,label,td,th,li,blockquote,article,section,aside,main,header,footer,nav{
-overflow-wrap:break-word !important;
-word-break:break-word !important;
-word-wrap:break-word !important;
-}
-input,textarea,select{
-max-width:100% !important;
-min-width:0 !important;
-box-sizing:border-box !important;
-overflow-wrap:break-word !important;
-word-break:break-word !important;
-}
+body,div,p,span,h1,h2,h3,h4,h5,h6,a,button,label,td,th,li,blockquote,article,section,aside,main,header,footer,nav{overflow-wrap:break-word !important;word-break:break-word !important;word-wrap:break-word !important}
+input,textarea,select{max-width:100% !important;min-width:0 !important;box-sizing:border-box !important;overflow-wrap:break-word !important;word-break:break-word !important}
 textarea{resize:none !important}
 img,video,iframe{max-width:100%;height:auto}
 a[href],input[type="url"],input[type="email"],.url-text{word-break:break-all !important}
-#art-list>div,#vis-list>div,#mm-list>div,#pub-list>div,#sto-list>div,#rad-list>div,#chat-admin-list>div,#par-admin>div,#vip-list>div{
-overflow:hidden !important;
-min-width:0 !important;
-}
-#art-list>div>span,#vis-list>div>span,#mm-list>div>span,#pub-list>div>span,#sto-list>div>span,#art-list>div>strong,#vis-list>div>strong{
-min-width:0 !important;
-overflow:hidden !important;
-text-overflow:ellipsis !important;
-white-space:nowrap !important;
-}
+#art-list>div,#vis-list>div,#mm-list>div,#pub-list>div,#sto-list>div,#rad-list>div,#chat-admin-list>div,#par-admin>div,#vip-list>div{overflow:hidden !important;min-width:0 !important}
+#art-list>div>span,#vis-list>div>span,#mm-list>div>span,#pub-list>div>span,#sto-list>div>span,#art-list>div>strong,#vis-list>div>strong{min-width:0 !important;overflow:hidden !important;text-overflow:ellipsis !important;white-space:nowrap !important}
 .ql-editor{min-height:140px;font-size:14px;font-family:'Inter',sans-serif;overflow-wrap:break-word;word-break:break-word;max-width:100%}
 .ql-editor img{max-width:100% !important;height:auto !important}
 .ql-editor pre,.ql-editor code{white-space:pre-wrap;word-break:break-word}
 .cms-tab{background:transparent;color:#6b6b6b;border-bottom:2px solid transparent;transition:all .15s;cursor:pointer;padding:12px 16px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap}
 .cms-tab.active{color:#0a0a0a;border-bottom-color:#a67c1a}
 .cms-tab:hover:not(.active){color:#0a0a0a}
-
 .font-display{font-family:'Playfair Display',Georgia,serif}
 .nyt-masthead{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:900;line-height:.92;letter-spacing:-0.045em;text-transform:uppercase;color:#0a0a0a;overflow-wrap:break-word;word-break:break-word}
 .nyt-subtitle{font-family:'Playfair Display',Georgia,serif;font-size:clamp(.7rem,1.2vw,.9rem);font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:#2c2c2c}
@@ -107,27 +149,23 @@ white-space:nowrap !important;
 input[type=range]{-webkit-appearance:none;height:3px;background:#404040;border-radius:2px;outline:none}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;background:#a67c1a;border-radius:50%;cursor:pointer}
 .storage-warn{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;padding:8px 12px;font-size:11px;text-align:center}
-
 .carousel-dots{display:flex;gap:6px;justify-content:center;padding:8px 0}
 .carousel-dots .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s;cursor:pointer}
 .carousel-dots .dot.active{background:#a67c1a;width:24px;border-radius:3px}
 .carousel-progress{height:2px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
 .carousel-progress .bar{height:100%;background:#a67c1a;transition:width .1s linear;width:0%}
 .banner-paused{animation-play-state:paused !important}
-
 .story-circle{width:64px;height:64px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#a67c1a 0%,#8a6615 100%);cursor:pointer;transition:transform .2s}
 .story-circle:hover{transform:scale(1.08)}
 .story-circle img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid #fff}
 .story-item{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
-
 .share-warning{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;padding:10px;font-size:11px;border-radius:6px;margin-bottom:10px;line-height:1.5}
 .share-url-box{background:#f3f4f6;border:1px solid #e8e8e8;border-radius:6px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;word-break:break-all;max-height:80px;overflow-y:auto;color:#2c2c2c;margin-top:6px}
 .no-scrollbar::-webkit-scrollbar{display:none}
 .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
-nav.overflow-x-auto{
-  -webkit-mask-image:linear-gradient(to right,#000 92%,transparent 100%);
-  mask-image:linear-gradient(to right,#000 92%,transparent 100%);
-}
+nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transparent 100%);mask-image:linear-gradient(to right,#000 92%,transparent 100%)}
+.nav-count-badge{background:rgba(166,124,26,.15);color:#a67c1a;font-family:ui-monospace,monospace;font-size:9px;padding:1px 6px;border-radius:8px;font-weight:700;line-height:1.4;min-width:18px;text-align:center;display:inline-block;transition:all .2s}
+.nav-count-badge.zero{background:rgba(107,107,107,.12);color:#999}
 </style>
 </head>
 <body class="bg-white text-ink min-h-screen flex flex-col pb-20">
@@ -150,22 +188,24 @@ nav.overflow-x-auto{
 <div class="max-w-7xl mx-auto px-6">
 <div class="flex items-center justify-between py-4 text-xs border-b border-line">
 <p id="cur-date" class="t-caption"></p>
-<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 flex-wrap">
 <button onclick="openAbout()" class="t-caption hover:text-ink transition">Acerca</button>
 <button onclick="openRadioQueue()" class="t-caption hover:text-ink transition">📻 Radio</button>
+<button id="btn-install-pwa" onclick="installPWA()" class="hidden text-xs font-semibold text-gold border border-gold rounded px-3 py-1.5 hover:bg-gold hover:text-white transition">📲 Instalar</button>
 <button onclick="openVIPForm()" class="btn-gold text-xs py-1.5 px-4">⭐ VIP</button>
 </div>
 </div>
 <div class="py-12 text-center">
 <h1 id="site-title" class="nyt-masthead px-2">La Taberna del Magallanes News</h1>
 <p class="nyt-subtitle mt-4">Periodismo Deportivo Independiente · Rigor Sabermétrico</p>
+<p class="text-[10px] text-stone font-mono mt-3">📚 <span id="mast-count">0</span> notas publicadas · Actualizado hoy</p>
 </div>
 <nav class="border-t border-line py-3 -mx-6 px-6 relative overflow-x-auto no-scrollbar">
 <ul class="flex justify-start md:justify-center gap-6 md:gap-8 text-xs font-semibold uppercase tracking-wider whitespace-nowrap w-max md:w-auto md:mx-auto text-stone">
-<li><button onclick="filtArt('TODOS')" class="hover:text-ink transition py-1">Portada</button></li>
-<li><button onclick="filtArt('CRÓNICA')" class="hover:text-ink transition py-1">Crónicas</button></li>
-<li><button onclick="filtArt('EDITORIAL')" class="hover:text-ink transition py-1">Editorial</button></li>
-<li><button onclick="filtArt('NOTICIA')" class="hover:text-ink transition py-1">Noticias</button></li>
+<li><button onclick="filtArt('TODOS')" class="hover:text-ink transition py-1 flex items-center gap-1.5">Portada <span id="nav-cnt-todos" class="nav-count-badge zero">0</span></button></li>
+<li><button onclick="filtArt('CRÓNICA')" class="hover:text-ink transition py-1 flex items-center gap-1.5">Crónicas <span id="nav-cnt-cronica" class="nav-count-badge zero">0</span></button></li>
+<li><button onclick="filtArt('EDITORIAL')" class="hover:text-ink transition py-1 flex items-center gap-1.5">Editorial <span id="nav-cnt-editorial" class="nav-count-badge zero">0</span></button></li>
+<li><button onclick="filtArt('NOTICIA')" class="hover:text-ink transition py-1 flex items-center gap-1.5">Noticias <span id="nav-cnt-noticia" class="nav-count-badge zero">0</span></button></li>
 <li><button onclick="openVIPForm()" class="hover:text-gold transition py-1">⭐ Círculo VIP</button></li>
 <li class="relative">
 <button onclick="toggleDropdown()" class="hover:text-ink transition py-1">Más ▾</button>
@@ -182,9 +222,7 @@ nav.overflow-x-auto{
 </ul>
 </nav>
 </div>
-</header>
-
-<section id="stories-section" class="bg-paper border-b border-line py-4 px-4">
+</header><section id="stories-section" class="bg-paper border-b border-line py-4 px-4">
   <div class="max-w-7xl mx-auto flex items-center gap-4 overflow-x-auto py-1">
     <div class="shrink-0 pr-3 border-r border-line">
       <span class="block text-[10px] font-mono uppercase tracking-widest text-gold font-extrabold">Historias 24h</span>
@@ -215,7 +253,7 @@ nav.overflow-x-auto{
 <div class="sticky top-6">
 <p class="t-caption text-gold mb-3">La Pluma del Director</p>
 <div class="flex items-center gap-3 mb-6">
-<img id="dir-photo" src="" class="w-14 h-14 rounded-full object-cover border border-line shrink-0">
+<img id="dir-photo" src="" alt="Foto del director" class="w-14 h-14 rounded-full object-cover border border-line shrink-0">
 <div class="min-w-0"><h3 id="dir-name" class="font-display font-bold text-base truncate"></h3><p id="dir-role" class="text-xs text-stone"></p></div>
 </div>
 <h4 id="dir-coltitle" class="font-display text-xl font-bold text-ink leading-tight mb-3"></h4>
@@ -260,12 +298,15 @@ nav.overflow-x-auto{
 
 <section class="max-w-7xl mx-auto px-6 py-16">
 <div class="flex flex-col sm:flex-row justify-between gap-4 mb-8">
-<div><p class="t-caption text-gold mb-2">Hemeroteca</p><h2 class="t-display text-ink">Crónicas, Editoriales y Noticias</h2></div>
+<div>
+  <p class="t-caption text-gold mb-2">Hemeroteca · <span id="total-articles-count" class="font-mono font-bold">0</span> publicaciones</p>
+  <h2 class="t-display text-ink">Crónicas, Editoriales y Noticias</h2>
+</div>
 <div class="flex gap-2 flex-wrap items-start">
-<button onclick="filtArt('TODOS')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-ink text-white transition">Todas</button>
-<button onclick="filtArt('CRÓNICA')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-paper text-graphite hover:bg-line transition">Crónicas</button>
-<button onclick="filtArt('EDITORIAL')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-paper text-graphite hover:bg-line transition">Editorial</button>
-<button onclick="filtArt('NOTICIA')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-paper text-graphite hover:bg-line transition">Noticias</button>
+<button onclick="filtArt('TODOS')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-ink text-white transition">Todas · <span id="cnt-todos" class="font-mono">0</span></button>
+<button onclick="filtArt('CRÓNICA')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-paper text-graphite hover:bg-line transition">Crónicas · <span id="cnt-cronica" class="font-mono">0</span></button>
+<button onclick="filtArt('EDITORIAL')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-paper text-graphite hover:bg-line transition">Editorial · <span id="cnt-editorial" class="font-mono">0</span></button>
+<button onclick="filtArt('NOTICIA')" class="text-xs font-semibold px-3 py-1.5 rounded-full bg-paper text-graphite hover:bg-line transition">Noticias · <span id="cnt-noticia" class="font-mono">0</span></button>
 </div>
 </div>
 <div id="feed" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -469,7 +510,7 @@ nav.overflow-x-auto{
 <textarea id="art-lead" rows="2" placeholder="Bajada / Lead" class="w-full border border-line rounded-lg px-3 py-2 text-sm"></textarea>
 <div class="filedrop" onclick="document.getElementById('art-file').click()"><input type="file" id="art-file" accept="image/*" class="hidden" onchange="pickFile(this,'art')">📁 Subir imagen</div>
 <input type="url" id="art-img" placeholder="…o URL" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
-<div id="art-prev" class="filepreview hidden"><img id="art-prev-img" class="h-12 w-12 object-cover rounded"><span id="art-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('art')" class="text-red-600 font-bold">🗑️</button></div>
+<div id="art-prev" class="filepreview hidden"><img id="art-prev-img" alt="Previsualización" class="h-12 w-12 object-cover rounded"><span id="art-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('art')" class="text-red-600 font-bold">🗑️</button></div>
 <p id="art-st" class="text-[10px] text-stone"></p>
 <div class="bg-white rounded-lg border border-line"><div id="quill-editor"></div></div>
 <input type="text" id="art-saber" placeholder="Apunte sabermétrico" class="w-full border border-line rounded-lg px-3 py-2 text-sm font-mono">
@@ -486,7 +527,7 @@ nav.overflow-x-auto{
 </div>
 <div class="filedrop" onclick="document.getElementById('vis-file').click()"><input type="file" id="vis-file" accept="image/*" class="hidden" onchange="pickFile(this,'vis')">📁 Subir imagen</div>
 <input type="url" id="vis-img" placeholder="…o URL" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
-<div id="vis-prev" class="filepreview hidden"><img id="vis-prev-img" class="h-12 w-12 object-cover rounded"><span id="vis-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('vis')" class="text-red-600 font-bold">🗑️</button></div>
+<div id="vis-prev" class="filepreview hidden"><img id="vis-prev-img" alt="Previsualización" class="h-12 w-12 object-cover rounded"><span id="vis-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('vis')" class="text-red-600 font-bold">🗑️</button></div>
 <p id="vis-st" class="text-[10px] text-stone"></p>
 <textarea id="vis-caption" rows="2" placeholder="Pie de foto" class="w-full border border-line rounded-lg px-3 py-2 text-sm"></textarea>
 <button onclick="saveVis(event)" class="w-full btn-primary text-xs">Publicar Visual</button>
@@ -515,7 +556,7 @@ nav.overflow-x-auto{
 <input type="text" id="sto-title" placeholder="Título" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
 <div class="filedrop" onclick="document.getElementById('sto-file').click()"><input type="file" id="sto-file" accept="image/*" class="hidden" onchange="pickFile(this,'sto')">📁 Subir imagen</div>
 <input type="url" id="sto-img" placeholder="…o URL" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
-<div id="sto-prev" class="filepreview hidden"><img id="sto-prev-img" class="h-12 w-12 object-cover rounded-full"><span id="sto-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('sto')" class="text-red-600 font-bold">🗑️</button></div>
+<div id="sto-prev" class="filepreview hidden"><img id="sto-prev-img" alt="Previsualización" class="h-12 w-12 object-cover rounded-full"><span id="sto-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('sto')" class="text-red-600 font-bold">🗑️</button></div>
 <button onclick="saveSto(event)" class="w-full btn-primary text-xs">Guardar Story</button>
 </div>
 <div id="sto-list" class="space-y-1.5"></div>
@@ -527,7 +568,7 @@ nav.overflow-x-auto{
 <input type="url" id="dir-wa-inp" placeholder="URL WhatsApp" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
 <div class="filedrop" onclick="document.getElementById('dir-file').click()"><input type="file" id="dir-file" accept="image/*" class="hidden" onchange="pickFile(this,'dir')">📁 Subir foto</div>
 <input type="url" id="dir-photo-inp" placeholder="…o URL" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
-<div id="dir-prev" class="filepreview hidden"><img id="dir-prev-img" class="h-12 w-12 object-cover rounded-full"><span id="dir-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('dir')" class="text-red-600 font-bold">🗑️</button></div>
+<div id="dir-prev" class="filepreview hidden"><img id="dir-prev-img" alt="Previsualización" class="h-12 w-12 object-cover rounded-full"><span id="dir-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('dir')" class="text-red-600 font-bold">🗑️</button></div>
 <p id="dir-st" class="text-[10px] text-stone"></p>
 <input type="text" id="dir-coltitle-inp" placeholder="Título columna" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
 <textarea id="dir-colexcerpt-inp" rows="2" placeholder="Extracto columna" class="w-full border border-line rounded-lg px-3 py-2 text-sm"></textarea>
@@ -618,7 +659,7 @@ nav.overflow-x-auto{
 <input type="url" id="pub-link" placeholder="URL destino" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
 <div class="filedrop" onclick="document.getElementById('pub-file').click()"><input type="file" id="pub-file" accept="image/*" class="hidden" onchange="pickFile(this,'pub')">📁 Subir imagen</div>
 <input type="url" id="pub-img" placeholder="…o URL" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
-<div id="pub-prev" class="filepreview hidden"><img id="pub-prev-img" class="h-12 w-12 object-cover rounded"><span id="pub-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('pub')" class="text-red-600 font-bold">🗑️</button></div>
+<div id="pub-prev" class="filepreview hidden"><img id="pub-prev-img" alt="Previsualización" class="h-12 w-12 object-cover rounded"><span id="pub-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('pub')" class="text-red-600 font-bold">🗑️</button></div>
 <p id="pub-st" class="text-[10px] text-stone"></p>
 <div class="pt-3 border-t border-line">
 <label class="block text-xs font-semibold text-graphite mb-2">🎵 Jingle MP3 (Premium)</label>
@@ -656,8 +697,22 @@ nav.overflow-x-auto{
 <input type="url" id="set-wa" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
 <button onclick="saveSet()" class="w-full btn-primary text-xs">Guardar Ajustes</button>
 </div>
+<div class="bg-paper rounded-lg p-5 space-y-2">
+<p class="t-caption text-gold mb-1">SEO · Sitemaps</p>
+<p class="text-[10px] text-stone mb-2">Genera y descarga los archivos. Súbelos a la raíz de tu dominio y envíalos en Google Search Console.</p>
+<button onclick="exportSitemap()" class="w-full bg-purple-600 text-white font-semibold py-2 rounded-lg text-xs">🗺️ Descargar sitemap.xml</button>
+<button onclick="exportNewsSitemap()" class="w-full bg-purple-600 text-white font-semibold py-2 rounded-lg text-xs">📰 Descargar news-sitemap.xml (48h)</button>
+<button onclick="exportRobots()" class="w-full bg-purple-600 text-white font-semibold py-2 rounded-lg text-xs">🤖 Descargar robots.txt</button>
+</div>
+<div class="bg-paper rounded-lg p-5 space-y-2">
+<p class="t-caption text-gold mb-1">☁️ Backup en la nube</p>
+<p class="text-[10px] text-stone mb-2">Sube un respaldo del estado a Supabase Storage cada 5 minutos (solo Director).</p>
+<p class="text-[10px] text-stone font-mono mb-2">Último: <span id="last-backup-label">—</span></p>
+<button onclick="runBackup()" class="w-full bg-sky-600 text-white font-semibold py-2 rounded-lg text-xs">💾 Hacer backup ahora</button>
+<button onclick="restoreLatestBackup()" class="w-full bg-amber-600 text-white font-semibold py-2 rounded-lg text-xs">↩️ Restaurar último backup</button>
+</div>
 <div class="bg-paper rounded-lg p-5">
-<p class="t-caption text-gold mb-3">Backup</p>
+<p class="t-caption text-gold mb-3">Backup local</p>
 <div class="flex gap-2">
 <button onclick="exportState()" class="flex-1 bg-emerald-600 text-white font-semibold py-2 rounded-lg text-xs">⬇️ Exportar</button>
 <label class="flex-1 bg-blue-600 text-white font-semibold py-2 rounded-lg text-xs text-center cursor-pointer">⬆️ Importar<input type="file" accept=".json" class="hidden" onchange="importState(this)"></label>
@@ -680,7 +735,7 @@ nav.overflow-x-auto{
 <h1 id="rd-title" class="font-display text-2xl sm:text-4xl font-black text-ink leading-tight mb-4 break-words"></h1>
 <p id="rd-lead" class="font-display text-lg text-graphite italic mb-6 break-words"></p>
 <div class="text-xs text-stone border-y border-line py-3 mb-6"><strong id="rd-author" class="text-ink"></strong> · <span id="rd-date"></span> · <span id="rd-time"></span></div>
-<div class="img-overlay rounded-lg overflow-hidden mb-6"><img id="rd-img" src="" class="w-full max-h-96 object-cover"></div>
+<div class="img-overlay rounded-lg overflow-hidden mb-6"><img id="rd-img" src="" alt="Imagen del artículo" class="w-full max-h-96 object-cover"></div>
 <div id="rd-body" class="reader-body min-w-0"></div>
 <div class="my-8"><div id="rd-banner"></div></div>
 <div class="mt-8 pt-6 border-t border-line"><p class="t-caption mb-3">Compartir</p><div id="rd-share" class="flex flex-wrap gap-2"></div></div>
@@ -765,7 +820,7 @@ nav.overflow-x-auto{
 <div class="bg-white max-w-2xl w-full rounded-xl my-4">
 <div class="flex justify-between items-center px-6 py-3 border-b border-line"><h3 class="font-display text-xl font-bold">Acerca del Medio</h3><button onclick="document.getElementById('about-modal').classList.add('hidden')" class="text-stone hover:text-ink">✕</button></div>
 <div class="p-6 space-y-4">
-<div class="flex items-center gap-4 pb-4 border-b border-line"><img id="ab-photo" src="" class="w-16 h-16 rounded-full object-cover shrink-0"><div class="min-w-0"><p id="ab-name" class="font-display text-lg font-bold"></p><p id="ab-role" class="text-xs text-gold"></p></div></div>
+<div class="flex items-center gap-4 pb-4 border-b border-line"><img id="ab-photo" src="" alt="Foto del fundador" class="w-16 h-16 rounded-full object-cover shrink-0"><div class="min-w-0"><p id="ab-name" class="font-display text-lg font-bold"></p><p id="ab-role" class="text-xs text-gold"></p></div></div>
 <p class="text-sm text-graphite leading-relaxed"><strong class="text-ink">Fundación:</strong> La Taberna del Magallanes News fue fundada en 2026 por el Lic. Luis Aponte como gaceta digital independiente dedicada al periodismo deportivo con rigor sabermétrico.</p>
 <p class="text-sm text-graphite leading-relaxed"><strong class="text-ink">Misión:</strong> Periodismo deportivo independiente con rigor estadístico y mirada antropológica.</p>
 <p class="text-sm text-graphite leading-relaxed"><strong class="text-ink">Línea Editorial:</strong> Estadística verificable (wOBA, FIP, WAR). Rechazo al periodismo de consigna.</p>
@@ -824,16 +879,20 @@ const Storage = {
 };
 
 const CFG = {
-  STATE_KEY: 'TABERNA_V14',
+  STATE_KEY: 'TABERNA_V16',
   SB_URL: 'https://jwizuyoipoymqzvuirnb.supabase.co',
   SB_KEY: 'sb_publishable_I9s5l2TFbcLiCbc9oQG5Tg_xnB_Extw',
   BUCKET: 'media',
+  BACKUP_BUCKET: 'backups',
+  BACKUP_INTERVAL_MS: 5 * 60 * 1000,
   MAX_IMG: 5 * 1024 * 1024,
   MAX_MED: 25 * 1024 * 1024,
   WA: 'https://whatsapp.com/channel/0029VbCW8QNBPzjZAmTgIS31',
   AD_MS: 4000,
   HERO_MS: 6000,
-  CHAT_POLL_MS: 5000
+  CHAT_POLL_MS: 5000,
+  SITE_URL: 'https://latabernadelmagallanes.com',
+  RATE_LIMIT_MS: 15000
 };
 
 let sb = null;
@@ -950,10 +1009,13 @@ let chatNick = Storage.get('chat_nick') || '';
 let chatPollTimer = null;
 let sbOnline = false;
 let hashOpened = false;
+let _backupTimer = null;
+let _backupPending = false;
 
 function save() {
   try { Storage.set(CFG.STATE_KEY, JSON.stringify(state)); } catch(e) { console.warn('save:', e); }
   render();
+  scheduleBackup();
 }
 
 function toast(m) {
@@ -970,10 +1032,222 @@ function toast(m) {
   t._x = setTimeout(() => { t.style.display = 'none'; }, 3500);
 }
 
+/* ═══════════════════════════════════════════
+   BACKUP AUTOMÁTICO
+   ═══════════════════════════════════════════ */
+function scheduleBackup() {
+  if (_backupTimer) clearTimeout(_backupTimer);
+  _backupTimer = setTimeout(() => { runBackup(); }, CFG.BACKUP_INTERVAL_MS);
+}
+
+async function runBackup() {
+  if (!sb || !isAuthenticated()) return;
+  if (_backupPending) return;
+  _backupPending = true;
+  try {
+    const now = new Date();
+    const stamp = now.toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const path = `state_${stamp}.json`;
+    const payload = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const { error } = await sb.storage.from(CFG.BACKUP_BUCKET).upload(path, payload, {
+      cacheControl: '3600', contentType: 'application/json', upsert: false
+    });
+    if (error) { console.warn('Backup:', error.message); return; }
+    console.log('☁️ Backup:', path);
+    Storage.set('last_backup_at', now.toISOString());
+    updateBackupLabel();
+    await pruneOldBackups();
+  } catch(e) {
+    console.warn('Backup exception:', e.message);
+  } finally {
+    _backupPending = false;
+  }
+}
+
+async function pruneOldBackups() {
+  try {
+    const { data, error } = await sb.storage.from(CFG.BACKUP_BUCKET).list('', { limit: 100, sortBy: { column: 'created_at', order: 'desc' } });
+    if (error || !data || data.length <= 20) return;
+    const toDelete = data.slice(20).map(f => f.name);
+    if (toDelete.length) await sb.storage.from(CFG.BACKUP_BUCKET).remove(toDelete);
+  } catch(e) { console.warn('prune:', e.message); }
+}
+
+async function restoreLatestBackup() {
+  if (!sb || !isAuthenticated()) { toast('⚠️ Solo el Director puede restaurar'); return; }
+  if (!confirm('¿Restaurar el último backup de la nube? Esto sobrescribe el estado actual.')) return;
+  try {
+    const { data, error } = await sb.storage.from(CFG.BACKUP_BUCKET).list('', { limit: 1, sortBy: { column: 'created_at', order: 'desc' } });
+    if (error || !data || !data.length) { toast('❌ Sin backups disponibles'); return; }
+    const latest = data[0].name;
+    const { data: blob, error: e2 } = await sb.storage.from(CFG.BACKUP_BUCKET).download(latest);
+    if (e2 || !blob) { toast('❌ No se pudo descargar'); return; }
+    const text = await blob.text();
+    const parsed = JSON.parse(text);
+    state = parsed;
+    try { Storage.set(CFG.STATE_KEY, JSON.stringify(state)); } catch(e) {}
+    render();
+    toast('✅ Backup restaurado: ' + latest);
+  } catch(e) {
+    toast('❌ ' + e.message);
+  }
+}
+
+function updateBackupLabel() {
+  const el = document.getElementById('last-backup-label');
+  if (!el) return;
+  const iso = Storage.get('last_backup_at');
+  if (!iso) { el.textContent = '—'; return; }
+  try {
+    const d = new Date(iso);
+    el.textContent = d.toLocaleString('es-VE');
+  } catch(e) { el.textContent = '—'; }
+}
+
+/* ═══════════════════════════════════════════ */
 function render() {
   renderSet(); renderTick(); renderMast(); renderStories(); renderHero(); renderDir();
   renderBox(); renderFeed(); renderKPI(); renderVis(); renderMM();
   renderPar(); renderPrem(); renderStd(); renderVIPCount(); renderChat(); renderCMSLists();
+  renderCounts();
+}
+
+function renderCounts() {
+  const arts = state.articles || [];
+  const total = arts.length;
+  const byCat = {
+    CRÓNICA: arts.filter(a => a.category === 'CRÓNICA').length,
+    EDITORIAL: arts.filter(a => a.category === 'EDITORIAL').length,
+    NOTICIA: arts.filter(a => a.category === 'NOTICIA').length
+  };
+  const mast = document.getElementById('mast-count'); if (mast) mast.textContent = total;
+  const totArt = document.getElementById('total-articles-count'); if (totArt) totArt.textContent = total;
+  setBadge('nav-cnt-todos', total);
+  setBadge('nav-cnt-cronica', byCat.CRÓNICA);
+  setBadge('nav-cnt-editorial', byCat.EDITORIAL);
+  setBadge('nav-cnt-noticia', byCat.NOTICIA);
+  setText('cnt-todos', total);
+  setText('cnt-cronica', byCat.CRÓNICA);
+  setText('cnt-editorial', byCat.EDITORIAL);
+  setText('cnt-noticia', byCat.NOTICIA);
+}
+
+function setBadge(id, n) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = n;
+  el.classList.toggle('zero', n === 0);
+}
+function setText(id, n) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = n;
+}
+
+/* ═══════════════════════════════════════════
+   SEO DINÁMICO
+   ═══════════════════════════════════════════ */
+function updateSEOForArticle(a) {
+  if (!a) return;
+  const url = CFG.SITE_URL + '/#' + a.id;
+  document.title = `${a.title} · La Taberna del Magallanes News`;
+  setMetaName('description', a.lead || a.title);
+  setMetaProp('og:type', 'article');
+  setMetaProp('og:title', a.title);
+  setMetaProp('og:description', a.lead || a.title);
+  setMetaProp('og:image', a.image || PLACEHOLDER_IMG);
+  setMetaProp('og:url', url);
+  setMetaName('twitter:title', a.title);
+  setMetaName('twitter:description', a.lead || a.title);
+  setMetaName('twitter:image', a.image || PLACEHOLDER_IMG);
+  const canon = document.getElementById('canonical-link');
+  if (canon) canon.href = url;
+  const ogUrl = document.getElementById('og-url');
+  if (ogUrl) ogUrl.content = url;
+  injectArticleJSONLD(a, url);
+  updateHash(a.id);
+}
+
+function clearSEO() {
+  document.title = 'La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico';
+  setMetaName('description', 'Periodismo deportivo independiente con rigor sabermétrico. Crónicas, análisis, box scores y proyecciones del Magallanes en la LVBP.');
+  setMetaProp('og:type', 'website');
+  setMetaProp('og:title', 'La Taberna del Magallanes News');
+  setMetaProp('og:description', 'Periodismo Deportivo Independiente · Rigor Sabermétrico');
+  setMetaProp('og:url', CFG.SITE_URL + '/');
+  setMetaName('twitter:title', 'La Taberna del Magallanes News');
+  setMetaName('twitter:description', 'Periodismo Deportivo Independiente · Rigor Sabermétrico');
+  const canon = document.getElementById('canonical-link'); if (canon) canon.href = CFG.SITE_URL + '/';
+  const ogUrl = document.getElementById('og-url'); if (ogUrl) ogUrl.content = CFG.SITE_URL + '/';
+  const ld = document.getElementById('article-jsonld'); if (ld) ld.remove();
+  updateHash('');
+}
+
+function setMetaName(name, content) {
+  let el = document.querySelector(`meta[name="${name}"]`);
+  if (!el) { el = document.createElement('meta'); el.setAttribute('name', name); document.head.appendChild(el); }
+  el.setAttribute('content', content);
+}
+function setMetaProp(prop, content) {
+  let el = document.querySelector(`meta[property="${prop}"]`);
+  if (!el) { el = document.createElement('meta'); el.setAttribute('property', prop); document.head.appendChild(el); }
+  el.setAttribute('content', content);
+}
+
+function injectArticleJSONLD(a, url) {
+  const prev = document.getElementById('article-jsonld');
+  if (prev) prev.remove();
+  const dateISO = parseDateToISO(a.date);
+  const payload = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+    "headline": (a.title || '').slice(0, 110),
+    "image": [a.image || PLACEHOLDER_IMG],
+    "datePublished": dateISO,
+    "dateModified": dateISO,
+    "author": { "@type": "Person", "name": (a.author || 'Lic. Luis Aponte').replace(/^Por\s+/i, '') },
+    "publisher": {
+      "@type": "NewsMediaOrganization",
+      "name": "La Taberna del Magallanes News",
+      "logo": { "@type": "ImageObject", "url": PLACEHOLDER_IMG, "width": 600, "height": 60 }
+    },
+    "description": a.lead || '',
+    "articleSection": a.category || 'CRÓNICA',
+    "inLanguage": "es-VE"
+  };
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'article-jsonld';
+  script.textContent = JSON.stringify(payload);
+  document.head.appendChild(script);
+}
+
+function parseDateToISO(dateStr) {
+  if (!dateStr) return new Date().toISOString();
+  const meses = { ene:0, feb:1, mar:2, abr:3, may:4, jun:5, jul:6, ago:7, sep:8, oct:9, nov:10, dic:11, jan:0, apr:3, aug:7, dec:11 };
+  const m = String(dateStr).match(/(\d{1,2})\s+([A-Za-zÁÉÍÓÚáéíóú]{3,})\.?\s+(\d{4})/);
+  if (m) {
+    const d = parseInt(m[1], 10);
+    const mesKey = m[2].toLowerCase().slice(0, 3);
+    const mo = meses[mesKey] !== undefined ? meses[mesKey] : 0;
+    const y = parseInt(m[3], 10);
+    return new Date(Date.UTC(y, mo, d, 12, 0, 0)).toISOString();
+  }
+  const d2 = new Date(dateStr);
+  if (!isNaN(d2.getTime())) return d2.toISOString();
+  return new Date().toISOString();
+}
+
+function updateHash(id) {
+  if (!id) {
+    if (location.hash.startsWith('#art')) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    return;
+  }
+  if (location.hash !== '#' + id) {
+    history.replaceState(null, '', location.pathname + location.search + '#' + id);
+  }
 }
 
 function renderSet() {
@@ -996,15 +1270,10 @@ function renderMast() {
 function renderStories() {
   const box = document.getElementById('stories-bar-container');
   if (!box) return;
-  if (!state.stories.length) {
-    box.innerHTML = '<p class="text-xs text-stone">Sin historias hoy.</p>';
-    return;
-  }
+  if (!state.stories.length) { box.innerHTML = '<p class="text-xs text-stone">Sin historias hoy.</p>'; return; }
   box.innerHTML = state.stories.map(s => `
     <div class="story-item" onclick="toast('Historia: ${s.title}')">
-      <div class="story-circle">
-        <img src="${s.img}" alt="${s.title}" onerror="this.src='${PLACEHOLDER_IMG}'">
-      </div>
+      <div class="story-circle"><img src="${s.img}" alt="Historia: ${s.title}" onerror="this.src='${PLACEHOLDER_IMG}'"></div>
       <span class="text-[10px] font-bold text-ink max-w-[64px] truncate">${s.title}</span>
     </div>
   `).join('');
@@ -1016,7 +1285,7 @@ function renderHero() {
   if (!list.length) { box.innerHTML = '<p class="text-sm text-stone py-8">Sin artículos. Publique desde el CMS.</p>'; return; }
   if (curHero >= list.length) curHero = 0;
   const a = list[curHero];
-  box.innerHTML = `<article class="card-hover"><div class="img-overlay rounded-lg overflow-hidden mb-6 bg-paper"><img src="${a.image}" class="w-full h-[400px] object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><p class="t-caption text-gold mb-3">${a.category}</p><h1 class="t-hero text-ink mb-4">${a.title}</h1><p class="font-display text-lg text-graphite italic mb-6 leading-relaxed">${a.lead}</p><div class="flex items-center justify-between text-xs text-stone pb-6 border-b border-line"><span class="min-w-0 truncate"><strong class="text-ink">${a.author}</strong> · ${a.date}</span><div class="flex gap-2 shrink-0"><button onclick="share('article','${a.id}')" class="text-stone hover:text-ink">📲</button><button onclick="openReader('${a.id}')" class="font-semibold text-ink hover:text-gold transition">Leer análisis →</button></div></div></article>`;
+  box.innerHTML = `<article class="card-hover"><div class="img-overlay rounded-lg overflow-hidden mb-6 bg-paper"><img src="${a.image}" alt="${a.title}" class="w-full h-[400px] object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><p class="t-caption text-gold mb-3">${a.category}</p><h1 class="t-hero text-ink mb-4">${a.title}</h1><p class="font-display text-lg text-graphite italic mb-6 leading-relaxed">${a.lead}</p><div class="flex items-center justify-between text-xs text-stone pb-6 border-b border-line"><span class="min-w-0 truncate"><strong class="text-ink">${a.author}</strong> · ${a.date}</span><div class="flex gap-2 shrink-0"><button onclick="share('article','${a.id}')" class="text-stone hover:text-ink">📲</button><button onclick="openReader('${a.id}')" class="font-semibold text-ink hover:text-gold transition">Leer análisis →</button></div></div></article>`;
 }
 
 function renderDir() {
@@ -1045,9 +1314,9 @@ function renderFeed() {
   if (!list.length) { grid.innerHTML = '<p class="text-sm text-stone col-span-full">Sin publicaciones en esta sección.</p>'; return; }
   const featured = list[0];
   const rest = list.slice(1);
-  let html = `<article class="card-hover md:col-span-2"><div class="img-overlay rounded-lg overflow-hidden mb-4"><img src="${featured.image}" class="w-full h-80 object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><p class="t-caption text-gold mb-2">${featured.category}</p><h3 class="t-display text-ink mb-3 line2">${featured.title}</h3><p class="text-sm text-graphite line3 mb-4">${featured.lead}</p><div class="flex justify-between text-xs text-stone pt-3 border-t border-line"><span>${featured.author} · ${featured.date}</span><button onclick="openReader('${featured.id}')" class="font-semibold text-ink hover:text-gold">Leer →</button></div></article>`;
+  let html = `<article class="card-hover md:col-span-2"><div class="img-overlay rounded-lg overflow-hidden mb-4"><img src="${featured.image}" alt="${featured.title}" class="w-full h-80 object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><p class="t-caption text-gold mb-2">${featured.category}</p><h3 class="t-display text-ink mb-3 line2">${featured.title}</h3><p class="text-sm text-graphite line3 mb-4">${featured.lead}</p><div class="flex justify-between text-xs text-stone pt-3 border-t border-line"><span>${featured.author} · ${featured.date}</span><button onclick="openReader('${featured.id}')" class="font-semibold text-ink hover:text-gold">Leer →</button></div></article>`;
   rest.forEach(a => {
-    html += `<article class="card-hover"><div class="img-overlay rounded-lg overflow-hidden mb-3"><img src="${a.image}" class="w-full h-44 object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><p class="t-caption text-gold mb-2">${a.category}</p><h3 class="t-headline text-ink mb-2 line2">${a.title}</h3><p class="text-xs text-graphite line2 mb-3">${a.lead}</p><div class="flex justify-between text-[10px] text-stone pt-2 border-t border-line"><span>${a.date}</span><button onclick="openReader('${a.id}')" class="font-semibold text-ink hover:text-gold">Leer</button></div></article>`;
+    html += `<article class="card-hover"><div class="img-overlay rounded-lg overflow-hidden mb-3"><img src="${a.image}" alt="${a.title}" class="w-full h-44 object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><p class="t-caption text-gold mb-2">${a.category}</p><h3 class="t-headline text-ink mb-2 line2">${a.title}</h3><p class="text-xs text-graphite line2 mb-3">${a.lead}</p><div class="flex justify-between text-[10px] text-stone pt-2 border-t border-line"><span>${a.date}</span><button onclick="openReader('${a.id}')" class="font-semibold text-ink hover:text-gold">Leer</button></div></article>`;
   });
   grid.innerHTML = html;
 }
@@ -1060,7 +1329,7 @@ function renderVis() {
   const list = curFilterVis === 'TODOS' ? state.visuals : state.visuals.filter(v => v.category === curFilterVis);
   const g = document.getElementById('visuals');
   if (!list.length) { g.innerHTML = '<p class="text-sm text-stone col-span-full">Sin imágenes.</p>'; return; }
-  g.innerHTML = list.map(v => `<div class="card-hover bg-white border border-line rounded-lg overflow-hidden"><div class="img-overlay overflow-hidden"><img src="${v.img}" class="w-full h-52 object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><div class="p-4"><p class="t-caption text-gold mb-1">${v.category}</p><h4 class="t-headline text-ink mb-1">${v.title}</h4><p class="text-xs text-graphite italic">${v.caption}</p></div></div>`).join('');
+  g.innerHTML = list.map(v => `<div class="card-hover bg-white border border-line rounded-lg overflow-hidden"><div class="img-overlay overflow-hidden"><img src="${v.img}" alt="${v.title}" class="w-full h-52 object-cover img-hover" onerror="this.src='${PLACEHOLDER_IMG}'"></div><div class="p-4"><p class="t-caption text-gold mb-1">${v.category}</p><h4 class="t-headline text-ink mb-1">${v.title}</h4><p class="text-xs text-graphite italic">${v.caption}</p></div></div>`).join('');
 }
 
 function renderMM() {
@@ -1091,7 +1360,7 @@ function renderPrem() {
   if (dotsBox) {
     dotsBox.innerHTML = list.map((_, i) => `<div class="dot ${i === premIdx ? 'active' : ''}" onclick="setPremSlide(${i})"></div>`).join('');
   }
-  box.innerHTML = `<div class="md:w-1/2 h-40 md:h-auto bg-ink relative overflow-hidden">${b.media ? `<img src="${b.media}" class="w-full h-full object-cover opacity-90" onerror="this.src='${PLACEHOLDER_IMG}'">` : ''}</div><div class="md:w-1/2 p-6 flex flex-col justify-between gap-4 min-w-0"><div class="min-w-0"><p class="text-[10px] font-mono text-gold uppercase tracking-widest mb-2">${b.sponsor || ''}</p><a href="${b.link || '#'}" target="_blank" class="font-display text-xl md:text-2xl font-black text-white block leading-tight hover:text-gold transition break-words">${b.title || ''}</a><p class="text-xs text-stone mt-2 break-words">${b.desc || ''}</p></div><div class="flex justify-between items-center pt-3 border-t border-white/10"><div>${b.audio ? `<button onclick="playJingle('${b.audio}')" class="text-xs font-semibold text-gold hover:underline">🔊 Escuchar jingle</button>` : '<span></span>'}</div><div class="flex gap-1"><button onclick="prevAd('premium')" class="text-white/60 hover:text-gold text-sm px-1">◀</button><button onclick="nextAd('premium')" class="text-white/60 hover:text-gold text-sm px-1">▶</button></div></div></div>`;
+  box.innerHTML = `<div class="md:w-1/2 h-40 md:h-auto bg-ink relative overflow-hidden">${b.media ? `<img src="${b.media}" alt="${b.title || 'Banner'}" class="w-full h-full object-cover opacity-90" onerror="this.src='${PLACEHOLDER_IMG}'">` : ''}</div><div class="md:w-1/2 p-6 flex flex-col justify-between gap-4 min-w-0"><div class="min-w-0"><p class="text-[10px] font-mono text-gold uppercase tracking-widest mb-2">${b.sponsor || ''}</p><a href="${b.link || '#'}" target="_blank" class="font-display text-xl md:text-2xl font-black text-white block leading-tight hover:text-gold transition break-words">${b.title || ''}</a><p class="text-xs text-stone mt-2 break-words">${b.desc || ''}</p></div><div class="flex justify-between items-center pt-3 border-t border-white/10"><div>${b.audio ? `<button onclick="playJingle('${b.audio}')" class="text-xs font-semibold text-gold hover:underline">🔊 Escuchar jingle</button>` : '<span></span>'}</div><div class="flex gap-1"><button onclick="prevAd('premium')" class="text-white/60 hover:text-gold text-sm px-1">◀</button><button onclick="nextAd('premium')" class="text-white/60 hover:text-gold text-sm px-1">▶</button></div></div></div>`;
   animProgress('prem', list.length);
 }
 
@@ -1108,7 +1377,7 @@ function renderStd() {
   if (dotsBox) {
     dotsBox.innerHTML = list.map((_, i) => `<div class="dot ${i === stdIdx ? 'active' : ''}" onclick="setStdSlide(${i})"></div>`).join('');
   }
-  box.innerHTML = `<div class="md:w-1/3 h-32 md:h-auto bg-graphite relative overflow-hidden">${b.media ? `<img src="${b.media}" class="w-full h-full object-cover opacity-90" onerror="this.src='${PLACEHOLDER_IMG}'">` : ''}</div><div class="md:w-2/3 p-5 flex flex-col justify-between gap-3 min-w-0"><div class="min-w-0"><p class="text-[10px] font-mono text-gold uppercase tracking-widest mb-1">${b.sponsor || ''}</p><a href="${b.link || '#'}" target="_blank" class="font-display text-lg font-bold text-white block leading-tight hover:text-gold transition break-words">${b.title || ''}</a><p class="text-xs text-stone mt-1 break-words">${b.desc || ''}</p></div><div class="flex justify-between items-center pt-2 border-t border-white/10"><span class="text-[10px] text-stone uppercase">Patrocinado</span><div class="flex gap-1"><button onclick="prevAd('standard')" class="text-white/60 hover:text-gold text-sm px-1">◀</button><button onclick="nextAd('standard')" class="text-white/60 hover:text-gold text-sm px-1">▶</button></div></div></div>`;
+  box.innerHTML = `<div class="md:w-1/3 h-32 md:h-auto bg-graphite relative overflow-hidden">${b.media ? `<img src="${b.media}" alt="${b.title || 'Banner'}" class="w-full h-full object-cover opacity-90" onerror="this.src='${PLACEHOLDER_IMG}'">` : ''}</div><div class="md:w-2/3 p-5 flex flex-col justify-between gap-3 min-w-0"><div class="min-w-0"><p class="text-[10px] font-mono text-gold uppercase tracking-widest mb-1">${b.sponsor || ''}</p><a href="${b.link || '#'}" target="_blank" class="font-display text-lg font-bold text-white block leading-tight hover:text-gold transition break-words">${b.title || ''}</a><p class="text-xs text-stone mt-1 break-words">${b.desc || ''}</p></div><div class="flex justify-between items-center pt-2 border-t border-white/10"><span class="text-[10px] text-stone uppercase">Patrocinado</span><div class="flex gap-1"><button onclick="prevAd('standard')" class="text-white/60 hover:text-gold text-sm px-1">◀</button><button onclick="nextAd('standard')" class="text-white/60 hover:text-gold text-sm px-1">▶</button></div></div></div>`;
   animProgress('std', list.length);
 }
 
@@ -1193,6 +1462,7 @@ function sendChat() {
   const text = inp.value.trim();
   if (!text) return;
   if (!chatNick) { toast('⚠️ Primero pon un apodo'); return; }
+  if (!checkRateLimit('chat')) return;
   const msg = { nick: chatNick, text, time: new Date().toLocaleTimeString('es-VE', { hour: '2-digit', minute: '2-digit' }) };
   state.chat.messages.push(msg);
   if (state.chat.messages.length > 100) state.chat.messages = state.chat.messages.slice(-100);
@@ -1261,6 +1531,7 @@ function renderCMSLists() {
     const enabledCms = document.getElementById('chat-enabled-cms');
     if (enabledCms) enabledCms.checked = state.chat.enabled;
   }
+  updateBackupLabel();
 }
 
 async function fetchFromSupabase() {
@@ -1348,10 +1619,8 @@ async function resolveFile(target, urlId, stId, folder) {
   const urlFromInput = urlInput ? urlInput.value.trim() : '';
   if (urlFromInput) return urlFromInput;
   if (!pend[target]) return '';
-
   const st = document.getElementById(stId);
   if (st) st.textContent = '⏳ Subiendo...';
-
   const file = pend[target];
   if (sb) {
     try {
@@ -1386,24 +1655,19 @@ async function saveArt(e) {
     let img = '';
     try { img = await resolveFile('art', 'art-img', 'art-st', 'articles'); } catch(err) { console.warn('Imagen falló:', err.message); }
     if (!img) img = PLACEHOLDER_IMG;
-
     const body = quill ? quill.root.innerHTML.trim() : '';
     const cat = document.getElementById('art-cat').value;
     const author = document.getElementById('art-author').value.trim() || 'Lic. Luis Aponte';
     const lead = document.getElementById('art-lead').value.trim();
     const saber = document.getElementById('art-saber').value.trim();
-
     const art = { id: 'art-' + Date.now(), category: cat, author, title, lead, image: img, body, saberNote: saber, date: new Date().toLocaleDateString('es-VE'), featured: true };
-
     state.articles.unshift(art);
     save();
-
     if (sb && sbOnline) {
       const payload = cat === 'NOTICIA' ? { titulo: title, cuerpo: body, imagen: img, autor: author, destacado: true } : { titulo: title, bajada: lead, cuerpo: body, imagen: img, categoria: cat, autor: author, sabermetrica: saber, destacado: true };
       const table = cat === 'NOTICIA' ? 'noticias' : 'articulos';
       sb.from(table).insert([payload]).then(r => { if (r.error) console.warn('SB:', r.error.message); else toast('☁️ Guardado en nube'); }).catch(() => {});
     }
-
     document.getElementById('art-title').value = '';
     document.getElementById('art-lead').value = '';
     document.getElementById('art-img').value = '';
@@ -1613,9 +1877,7 @@ function openDirector() { document.getElementById('director-modal').classList.re
 function closeReader() {
   document.getElementById('reader-modal').classList.add('hidden');
   hashOpened = false;
-  if (location.hash.startsWith('#art')) {
-    history.replaceState(null, '', location.pathname + location.search);
-  }
+  clearSEO();
 }
 function closeLegal() { document.getElementById('legal-modal').classList.add('hidden'); }
 
@@ -1625,12 +1887,9 @@ async function doLogin(e) {
   const pwd = document.getElementById('login-inp').value;
   const err = document.getElementById('login-err');
   const btn = document.getElementById('login-btn');
-
   if (!sb) { err.textContent = 'Supabase no disponible'; err.classList.remove('hidden'); return; }
-
   err.classList.add('hidden');
   btn.textContent = '⏳ Verificando...'; btn.disabled = true;
-
   try {
     const { data, error } = await sb.auth.signInWithPassword({ email, password: pwd });
     if (error) {
@@ -1678,6 +1937,7 @@ function openCMS() {
   tab('art');
   setTimeout(initQuill, 100);
   loadDirForm(); loadRosForm(); loadSetForm(); loadLeg('privacidad'); loadVipForm();
+  updateBackupLabel();
 }
 
 function tab(name) {
@@ -1766,10 +2026,12 @@ function openReader(id) {
   const words = (a.body || '').replace(/<[^>]+>/g, '').split(/\s+/).length;
   document.getElementById('rd-time').textContent = `${Math.max(1, Math.ceil(words / 200))} min lectura`;
   document.getElementById('rd-img').src = a.image;
+  document.getElementById('rd-img').alt = a.title;
   document.getElementById('rd-img').onerror = function() { this.src = PLACEHOLDER_IMG; };
   document.getElementById('rd-body').innerHTML = a.body || '';
   renderReaderShare(a); renderReaderBanner(); renderReaderComments();
   document.getElementById('reader-modal').classList.remove('hidden');
+  updateSEOForArticle(a);
 }
 
 function renderReaderBanner() {
@@ -1806,11 +2068,48 @@ function renderReaderComments() {
   document.getElementById('rd-comments').innerHTML = comments.length ? comments.map(c => `<div class="bg-paper p-3 rounded-lg border-l-2 border-gold"><p class="text-xs font-semibold text-ink">${c.author}</p><p class="text-sm text-graphite mt-1 break-words">${c.text}</p></div>`).join('') : '<p class="text-xs text-stone">Sin comentarios aún.</p>';
 }
 
+/* ═══════════════════════════════════════════
+   RATE LIMIT + VALIDACIONES
+   ═══════════════════════════════════════════ */
+function checkRateLimit(kind) {
+  const key = 'rl_' + kind;
+  const last = parseInt(Storage.get(key) || '0', 10);
+  const now = Date.now();
+  const wait = CFG.RATE_LIMIT_MS - (now - last);
+  if (wait > 0) {
+    const secs = Math.ceil(wait / 1000);
+    toast(`⏳ Espera ${secs}s antes de volver a publicar`);
+    return false;
+  }
+  Storage.set(key, String(now));
+  return true;
+}
+
+function submitParedon(e) {
+  e.preventDefault();
+  if (!checkRateLimit('paredon')) return;
+  const author = document.getElementById('par-author').value.trim();
+  const topic = document.getElementById('par-topic').value;
+  const text = document.getElementById('par-text').value.trim();
+  if (text.length < 5) { toast('⚠️ Comentario demasiado corto'); return; }
+  if (text.length > 500) { toast('⚠️ Máximo 500 caracteres'); return; }
+  const urlCount = (text.match(/https?:\/\//g) || []).length;
+  if (urlCount > 2) { toast('⚠️ Demasiados enlaces'); return; }
+  state.paredon.unshift({ id: 'par-' + Date.now(), author, topic, text, date: 'Ahora' });
+  save();
+  e.target.reset();
+  toast('💬 Publicado');
+}
+
 function submitComment(e) {
   e.preventDefault();
+  if (!checkRateLimit('comment')) return;
   const author = document.getElementById('com-author').value.trim();
   const text = document.getElementById('com-text').value.trim();
   if (!curArtId || !author || !text) return;
+  if (text.length < 3) { toast('⚠️ Comentario demasiado corto'); return; }
+  if (text.length > 400) { toast('⚠️ Máximo 400 caracteres'); return; }
+  if ((text.match(/https?:\/\//g) || []).length > 1) { toast('⚠️ Sin enlaces permitidos aquí'); return; }
   if (!state.comments[curArtId]) state.comments[curArtId] = [];
   state.comments[curArtId].push({ author, text, date: new Date().toISOString() });
   save();
@@ -1834,23 +2133,18 @@ function share(type, id) {
     lead = state.game.highlight + ' · ' + state.game.venue; hash = '#boxscore';
   }
   document.getElementById('share-title').textContent = title;
-
   const baseUrl = location.origin + location.pathname + location.search;
   const url = baseUrl + hash;
   const isFile = location.protocol === 'file:';
-
   const warning = document.getElementById('share-warning');
   if (warning) warning.classList.toggle('hidden', !isFile);
-
   const urlPreview = document.getElementById('share-url-preview');
   const urlText = document.getElementById('share-url-text');
   if (urlPreview && urlText) { urlPreview.classList.remove('hidden'); urlText.textContent = url; }
-
   const urlEnc = encodeURIComponent(url);
   const fullText = `${title}\n\n${lead}\n\n${url}`;
   const fullTextEnc = encodeURIComponent(fullText);
   const titleEnc = encodeURIComponent(title);
-
   const btns = [
     { n: '📘 Facebook', u: `https://www.facebook.com/sharer/sharer.php?u=${urlEnc}`, color: 'bg-blue-600' },
     { n: '🐦 X', u: `https://twitter.com/intent/tweet?text=${fullTextEnc}`, color: 'bg-black' },
@@ -1859,10 +2153,9 @@ function share(type, id) {
     { n: '💼 LinkedIn', u: `https://www.linkedin.com/sharing/share-offsite/?url=${urlEnc}`, color: 'bg-blue-700' },
     { n: '📧 Email', u: `mailto:?subject=${titleEnc}&body=${fullTextEnc}`, color: 'bg-stone' }
   ];
-
   let html = '';
   if (image) {
-    html += `<div class="col-span-2 mb-3 p-3 bg-paper rounded-lg border border-line"><img src="${image}" class="w-full h-32 object-cover rounded mb-2" onerror="this.src='${PLACEHOLDER_IMG}'"><p class="font-bold text-sm text-ink line2">${title}</p><p class="text-xs text-graphite mt-1 line2">${lead}</p></div>`;
+    html += `<div class="col-span-2 mb-3 p-3 bg-paper rounded-lg border border-line"><img src="${image}" alt="Vista previa" class="w-full h-32 object-cover rounded mb-2" onerror="this.src='${PLACEHOLDER_IMG}'"><p class="font-bold text-sm text-ink line2">${title}</p><p class="text-xs text-graphite mt-1 line2">${lead}</p></div>`;
   }
   html += btns.map(b => `<a href="${b.u}" target="_blank" class="text-xs font-semibold text-white ${b.color} hover:opacity-90 px-3 py-2 rounded-lg text-center transition">${b.n}</a>`).join('');
   html += `<button onclick="copyShareText('${fullText.replace(/'/g, "\\'").replace(/\n/g, '\\n')}')" class="text-xs font-semibold text-graphite hover:text-gold px-3 py-2 rounded-lg border border-line hover:border-gold col-span-2">📋 Copiar mensaje completo</button>`;
@@ -1885,17 +2178,8 @@ function fallbackCopy(text) {
   try { document.execCommand('copy'); toast('📋 Copiado'); } catch(e) { toast('⚠️ No se pudo copiar'); }
   document.body.removeChild(ta);
 }
-
 function nativeShare() {
   if (navigator.share) navigator.share({ title: document.getElementById('share-title').textContent, url: location.href }).catch(() => {});
-}
-
-function submitParedon(e) {
-  e.preventDefault();
-  state.paredon.unshift({ id: 'par-' + Date.now(), author: document.getElementById('par-author').value, topic: document.getElementById('par-topic').value, text: document.getElementById('par-text').value, date: 'Ahora' });
-  save();
-  e.target.reset();
-  toast('💬 Publicado');
 }
 
 function openVIPForm(plan) {
@@ -2057,6 +2341,76 @@ function openRadioQueue() {
   document.getElementById('radio-queue').classList.remove('hidden');
 }
 
+/* ═══════════════════════════════════════════
+   SITEMAPS + ROBOTS
+   ═══════════════════════════════════════════ */
+function exportSitemap() {
+  const now = new Date().toISOString().split('T')[0];
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  xml += `  <url>\n    <loc>${CFG.SITE_URL}/</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+  state.articles.forEach(a => {
+    const d = parseDateToISO(a.date).split('T')[0];
+    xml += `  <url>\n    <loc>${CFG.SITE_URL}/#${a.id}</loc>\n    <lastmod>${d}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+  });
+  xml += '</urlset>';
+  downloadFile('sitemap.xml', xml, 'application/xml');
+  toast('🗺️ sitemap.xml descargado');
+}
+
+function exportNewsSitemap() {
+  const now = Date.now();
+  const CUTOFF = 48 * 60 * 60 * 1000;
+  const recent = state.articles.filter(a => {
+    const t = new Date(parseDateToISO(a.date)).getTime();
+    return (now - t) <= CUTOFF;
+  });
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">\n';
+  recent.forEach(a => {
+    const dateISO = parseDateToISO(a.date);
+    xml += '  <url>\n';
+    xml += `    <loc>${CFG.SITE_URL}/#${a.id}</loc>\n`;
+    xml += '    <news:news>\n';
+    xml += '      <news:publication>\n';
+    xml += '        <news:name>La Taberna del Magallanes News</news:name>\n';
+    xml += '        <news:language>es</news:language>\n';
+    xml += '      </news:publication>\n';
+    xml += `      <news:publication_date>${dateISO}</news:publication_date>\n`;
+    xml += `      <news:title>${escapeXml(a.title)}</news:title>\n`;
+    xml += '    </news:news>\n';
+    xml += '  </url>\n';
+  });
+  xml += '</urlset>';
+  if (!recent.length) toast('📰 No hay notas en las últimas 48h (sitemap vacío generado)');
+  downloadFile('news-sitemap.xml', xml, 'application/xml');
+  toast(`📰 news-sitemap.xml (${recent.length} notas)`);
+}
+
+function exportRobots() {
+  let txt = 'User-agent: *\n';
+  txt += 'Allow: /\n';
+  txt += 'Disallow: /cms\n';
+  txt += 'Disallow: /admin\n\n';
+  txt += `Sitemap: ${CFG.SITE_URL}/sitemap.xml\n`;
+  txt += `Sitemap: ${CFG.SITE_URL}/news-sitemap.xml\n`;
+  downloadFile('robots.txt', txt, 'text/plain');
+  toast('🤖 robots.txt descargado');
+}
+
+function downloadFile(name, content, mime) {
+  const blob = new Blob([content], { type: mime });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+function escapeXml(s) {
+  return String(s).replace(/[<>&'"]/g, c => ({ '<':'&lt;', '>':'&gt;', '&':'&amp;', "'":'&apos;', '"':'&quot;' }[c]));
+}
+
 function exportState() {
   const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
@@ -2078,7 +2432,6 @@ function importState(input) {
 
 function nextHero() { curHero++; renderHero(); }
 function prevHero() { curHero = Math.max(0, curHero - 1); renderHero(); }
-
 function filtArt(c) { curFilter = c; renderFeed(); scrollToSection('feed'); }
 function filtVis(c) { curFilterVis = c; renderVis(); scrollToSection('visual'); }
 
@@ -2143,8 +2496,46 @@ window.addEventListener('keydown', e => {
   }
 });
 
+/* ═══════════════════════════════════════════
+   PWA · Service Worker + Instalación
+   ═══════════════════════════════════════════ */
+let _deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  _deferredPrompt = e;
+  const btn = document.getElementById('btn-install-pwa');
+  if (btn) btn.classList.remove('hidden');
+});
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('btn-install-pwa');
+  if (btn) btn.classList.add('hidden');
+  _deferredPrompt = null;
+  toast('✅ App instalada');
+});
+
+async function installPWA() {
+  if (!_deferredPrompt) {
+    toast('📲 Usa el menú del navegador → "Instalar app" o "Añadir a pantalla de inicio"');
+    return;
+  }
+  _deferredPrompt.prompt();
+  const { outcome } = await _deferredPrompt.userChoice;
+  if (outcome === 'accepted') toast('🎉 Instalando...');
+  _deferredPrompt = null;
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      console.log('✅ SW registrado:', reg.scope);
+    }).catch(err => console.warn('SW error:', err.message));
+  });
+}
+
 window.addEventListener('DOMContentLoaded', async () => {
-  console.log('✅ Taberna Premium V14 cargada con OG');
+  console.log('✅ Taberna Premium V16 · PWA + Backup + RateLimit');
   if (!Storage.available) {
     const w = document.getElementById('storage-warn');
     if (w) w.classList.remove('hidden');
@@ -2158,6 +2549,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   fetchFromSupabase();
   checkCookies();
   updateVipPlan();
+  updateBackupLabel();
+  setTimeout(() => { if (isAuthenticated()) runBackup(); }, 30000);
 });
 </script>
 </body>
