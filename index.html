@@ -1537,20 +1537,31 @@ function renderCMSLists() {
 async function fetchFromSupabase() {
   if (!sb) { console.log('ℹ️ Supabase no inicializado — modo local'); return; }
   try {
-    const { data: arts, error: e1 } = await sb.from('articulos').select('*').order('fecha', { ascending: false });
-    const { data: nots, error: e2 } = await sb.from('noticias').select('*').order('fecha', { ascending: false });
-    const { data: rts, error: e3 } = await sb.from('radio_tracks').select('*').eq('activo', true);
-    if (e1) { console.warn('articulos:', e1.message); }
-    if (e2) { console.warn('noticias:', e2.message); }
-    if (e3) { console.warn('radio_tracks:', e3.message); }
-    const fromArts = (arts || []).map(r => ({ id: 'art-' + r.id, category: r.categoria || 'CRÓNICA', title: r.titulo, lead: r.bajada || '', body: r.cuerpo || '', image: r.imagen || PLACEHOLDER_IMG, author: r.autor || 'Lic. Luis Aponte', date: r.fecha ? new Date(r.fecha).toLocaleDateString('es-VE') : 'Reciente', saberNote: r.sabermetrica || '', featured: r.destacado === true }));
-    const fromNots = (nots || []).map(r => ({ id: 'not-' + r.id, category: 'NOTICIA', title: r.titulo, lead: '', body: r.cuerpo || '', image: r.imagen || PLACEHOLDER_IMG, author: r.autor || 'Lic. Luis Aponte', date: r.fecha ? new Date(r.fecha).toLocaleDateString('es-VE') : 'Reciente', saberNote: '', featured: r.destacado === true }));
-    const todas = [...fromArts, ...fromNots];
-    if (todas.length > 0 && !e1 && !e2) {
-      state.articles = todas;
+    const { data: nots, error: e2 } = await sb.from('news').select('*').order('fecha', { ascending: false });
+    const { data: rts, error: e3 } = await sb.from('tracks').select('*').eq('activo', true);
+    
+    if (e2) { console.warn('news:', e2.message); }
+    if (e3) { console.warn('tracks:', e3.message); }
+    
+    const fromNots = (nots || []).map(r => ({ 
+      id: 'not-' + r.id, 
+      category: r.categoria || 'NOTICIA', 
+      title: r.titulo, 
+      lead: r.bajada || '', 
+      body: r.cuerpo || '', 
+      image: r.imagen || PLACEHOLDER_IMG, 
+      author: r.autor || 'Lic. Luis Aponte', 
+      date: r.fecha ? new Date(r.fecha).toLocaleDateString('es-VE') : 'Reciente', 
+      saberNote: '', 
+      featured: r.destacado === true 
+    }));
+    
+    if ((nots || []).length > 0 && !e2) {
+      state.articles = fromNots;
       sbOnline = true;
-      console.log('✅ Supabase cargado (' + todas.length + ' artículos)');
+      console.log('✅ Supabase cargado (' + fromNots.length + ' artículos)');
     }
+    
     if (rts && rts.length > 0 && !e3) {
       state.radioTracks = rts.map(r => ({ id: 'rt-' + r.id, categoria: r.categoria, nombre: r.nombre, url: r.url, orden: r.orden || 0, duracion: r.duracion || '', activo: r.activo !== false, dbId: r.id }));
     }
@@ -1560,24 +1571,6 @@ async function fetchFromSupabase() {
     console.warn('Supabase offline, usando local:', e.message);
     sbOnline = false;
   }
-}
-
-async function uploadSB(file, folder) {
-  if (!sb) throw new Error('Supabase no disponible');
-  const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
-  const path = `${folder}/${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
-  const { error } = await sb.storage.from(CFG.BUCKET).upload(path, file, { cacheControl: '3600', contentType: file.type, upsert: false });
-  if (error) throw error;
-  return sb.storage.from(CFG.BUCKET).getPublicUrl(path).data.publicUrl;
-}
-
-function f2b64(f) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload = () => res(r.result);
-    r.onerror = rej;
-    r.readAsDataURL(f);
-  });
 }
 
 async function pickFile(input, target) {
@@ -1663,10 +1656,21 @@ async function saveArt(e) {
     const art = { id: 'art-' + Date.now(), category: cat, author, title, lead, image: img, body, saberNote: saber, date: new Date().toLocaleDateString('es-VE'), featured: true };
     state.articles.unshift(art);
     save();
-    if (sb && sbOnline) {
-      const payload = cat === 'NOTICIA' ? { titulo: title, cuerpo: body, imagen: img, autor: author, destacado: true } : { titulo: title, bajada: lead, cuerpo: body, imagen: img, categoria: cat, autor: author, sabermetrica: saber, destacado: true };
-      const table = cat === 'NOTICIA' ? 'noticias' : 'articulos';
-      sb.from(table).insert([payload]).then(r => { if (r.error) console.warn('SB:', r.error.message); else toast('☁️ Guardado en nube'); }).catch(() => {});
+       if (sb && sbOnline) {
+      const payload = { 
+        titulo: title, 
+        bajada: lead, 
+        cuerpo: body, 
+        imagen: img, 
+        categoria: cat,
+        autor: author, 
+        fecha: new Date().toISOString(),
+        destacado: true 
+      };
+      sb.from('news').insert([payload]).then(r => { 
+        if (r.error) console.warn('SB:', r.error.message); 
+        else toast('☁️ Guardado en nube'); 
+      }).catch(() => {});
     }
     document.getElementById('art-title').value = '';
     document.getElementById('art-lead').value = '';
@@ -1847,7 +1851,29 @@ function saveLeg() {
   save(); toast('✅ Documento guardado');
 }
 
-function delArt(id) { if (!confirm('¿Eliminar?')) return; state.articles = state.articles.filter(a => a.id !== id); save(); toast('🗑️'); }
+async function delArt(id) {
+  if (!confirm('¿Eliminar esta nota definitivamente?')) return;
+  
+  if (sb && sbOnline) {
+    try {
+      if (id.startsWith('not-')) {
+        const dbId = id.slice(4); 
+        const { error } = await sb.from('news').delete().eq('id', dbId);
+        if (error) {
+          console.error('Error al borrar en Supabase:', error.message);
+          toast('❌ Error al borrar en la nube');
+          return; 
+        }
+      }
+    } catch(e) { 
+      console.warn('SB delete:', e.message); 
+    }
+  }
+  
+  state.articles = state.articles.filter(a => a.id !== id);
+  save();
+  toast('🗑️ Eliminado');
+}
 function delVis(id) { if (!confirm('¿Eliminar?')) return; state.visuals = state.visuals.filter(v => v.id !== id); save(); toast('🗑️'); }
 function delMM(id) { if (!confirm('¿Eliminar?')) return; state.multimedia = state.multimedia.filter(m => m.id !== id); save(); toast('🗑️'); }
 function delPub(id) { if (!confirm('¿Eliminar?')) return; state.banners = state.banners.filter(b => b.id !== id); save(); toast('🗑️'); }
