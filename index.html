@@ -2120,6 +2120,24 @@ async function doLogin(e) {
   }
 }
 
+    console.log('[LOGIN] ¡Éxito! Rol:', cmsData.role);
+    currentUser = data.user;
+    currentRole = cmsData.role;
+
+    closeAuth();
+    openCMS();
+    toast('✅ Bienvenido, ' + (currentRole === 'master' ? 'Director' : 'Redacción'));
+
+  } catch (ex) {
+    console.error('[LOGIN] Excepción:', ex);
+    errEl.textContent = 'Error inesperado: ' + ex.message;
+    errEl.classList.remove('hidden');
+  } finally {
+    btn.textContent = 'Entrar';
+    btn.disabled = false;
+  }
+}
+
 async function logoutCMS() {
   if (!confirm('¿Cerrar sesión del CMS?')) return;
   if (sb) await sb.auth.signOut();
