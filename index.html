@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- ═══ SEO BASE ═══ -->
 <title>La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico</title>
 <meta name="description" content="Periodismo deportivo independiente con rigor sabermétrico. Crónicas, análisis, box scores y proyecciones del Magallanes en la LVBP.">
 <meta name="author" content="Lic. Luis Aponte">
@@ -12,21 +10,15 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" id="canonical-link" href="https://latabernadelmagallanes.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='60' font-weight='900' fill='%23a67c1a' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
-
-<!-- ═══ PWA ═══ -->
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="La Taberna">
 <meta name="mobile-web-app-capable" content="yes">
-
-<!-- ═══ PERFORMANCE ═══ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://jwizuyoipoymqzvuirnb.supabase.co">
 <link rel="dns-prefetch" href="https://images.unsplash.com">
-
-<!-- ═══ OPEN GRAPH / REDES SOCIALES ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="La Taberna del Magallanes News">
 <meta property="og:title" content="La Taberna del Magallanes News">
@@ -42,8 +34,6 @@
 <meta name="twitter:title" content="La Taberna del Magallanes News">
 <meta name="twitter:description" content="Periodismo Deportivo Independiente · Rigor Sabermétrico">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&h=630&q=80">
-
-<!-- ═══ JSON-LD: Organización + Sitio Web ═══ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,7 +70,6 @@
   ]
 }
 </script>
-
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -222,7 +211,8 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 </ul>
 </nav>
 </div>
-</header><section id="stories-section" class="bg-paper border-b border-line py-4 px-4">
+</header>
+<section id="stories-section" class="bg-paper border-b border-line py-4 px-4">
   <div class="max-w-7xl mx-auto flex items-center gap-4 overflow-x-auto py-1">
     <div class="shrink-0 pr-3 border-r border-line">
       <span class="block text-[10px] font-mono uppercase tracking-widest text-gold font-extrabold">Historias 24h</span>
@@ -242,9 +232,7 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 </div>
 <a href="#boxscore" class="text-gold hover:underline font-semibold">Box Score →</a>
 </div>
-</div>
-
-<main class="flex-1">
+</div><main class="flex-1">
 
 <section class="max-w-7xl mx-auto px-6 py-16">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -1032,9 +1020,6 @@ function toast(m) {
   t._x = setTimeout(() => { t.style.display = 'none'; }, 3500);
 }
 
-/* ═══════════════════════════════════════════
-   BACKUP AUTOMÁTICO
-   ═══════════════════════════════════════════ */
 function scheduleBackup() {
   if (_backupTimer) clearTimeout(_backupTimer);
   _backupTimer = setTimeout(() => { runBackup(); }, CFG.BACKUP_INTERVAL_MS);
@@ -1104,7 +1089,6 @@ function updateBackupLabel() {
   } catch(e) { el.textContent = '—'; }
 }
 
-/* ═══════════════════════════════════════════ */
 function render() {
   renderSet(); renderTick(); renderMast(); renderStories(); renderHero(); renderDir();
   renderBox(); renderFeed(); renderKPI(); renderVis(); renderMM();
@@ -1143,9 +1127,6 @@ function setText(id, n) {
   if (el) el.textContent = n;
 }
 
-/* ═══════════════════════════════════════════
-   SEO DINÁMICO
-   ═══════════════════════════════════════════ */
 function updateSEOForArticle(a) {
   if (!a) return;
   const url = CFG.SITE_URL + '/#' + a.id;
@@ -1545,6 +1526,7 @@ async function fetchFromSupabase() {
     
     const fromNots = (nots || []).map(r => ({ 
       id: 'not-' + r.id, 
+      dbId: r.id, // ID REAL de la base de datos
       category: r.categoria || 'NOTICIA', 
       title: r.titulo, 
       lead: r.bajada || '', 
@@ -1556,7 +1538,7 @@ async function fetchFromSupabase() {
       featured: r.destacado === true 
     }));
     
-    if ((nots || []).length > 0 && !e2) {
+    if (!e2) {
       state.articles = fromNots;
       sbOnline = true;
       console.log('✅ Supabase cargado (' + fromNots.length + ' artículos)');
@@ -1571,6 +1553,26 @@ async function fetchFromSupabase() {
     console.warn('Supabase offline, usando local:', e.message);
     sbOnline = false;
   }
+}
+
+async function uploadSB(file, folder) {
+  if (!sb) throw new Error('Supabase no disponible');
+  const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
+  const path = `${folder}/${Date.now()}_${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const { data, error } = await sb.storage.from(CFG.BUCKET).upload(path, file, { cacheControl: '3600', contentType: file.type, upsert: false });
+  if (error) { console.error('❌ uploadSB:', error.message); throw new Error(error.message); }
+  const { data: urlData } = sb.storage.from(CFG.BUCKET).getPublicUrl(path);
+  if (!urlData || !urlData.publicUrl) throw new Error('URL pública vacía');
+  return urlData.publicUrl;
+}
+
+function f2b64(f) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result);
+    r.onerror = rej;
+    r.readAsDataURL(f);
+  });
 }
 
 async function pickFile(input, target) {
@@ -1621,7 +1623,8 @@ async function resolveFile(target, urlId, stId, folder) {
       if (st) st.textContent = '✅ Subido a nube';
       return url;
     } catch(err) {
-      console.warn('Upload SB falló:', err.message);
+      console.warn('⚠️ Upload SB falló:', err.message);
+      if (st) st.textContent = '⚠️ Nube falló — usando base64';
     }
   }
   if (file.size < 2 * 1024 * 1024) {
@@ -1653,10 +1656,12 @@ async function saveArt(e) {
     const author = document.getElementById('art-author').value.trim() || 'Lic. Luis Aponte';
     const lead = document.getElementById('art-lead').value.trim();
     const saber = document.getElementById('art-saber').value.trim();
-    const art = { id: 'art-' + Date.now(), category: cat, author, title, lead, image: img, body, saberNote: saber, date: new Date().toLocaleDateString('es-VE'), featured: true };
+    
+    const art = { id: 'art-' + Date.now(), dbId: null, category: cat, author, title, lead, image: img, body, saberNote: saber, date: new Date().toLocaleDateString('es-VE'), featured: true };
     state.articles.unshift(art);
     save();
-       if (sb && sbOnline) {
+    
+    if (sb && sbOnline) {
       const payload = { 
         titulo: title, 
         bajada: lead, 
@@ -1667,11 +1672,22 @@ async function saveArt(e) {
         fecha: new Date().toISOString(),
         destacado: true 
       };
-      sb.from('news').insert([payload]).then(r => { 
-        if (r.error) console.warn('SB:', r.error.message); 
-        else toast('☁️ Guardado en nube'); 
-      }).catch(() => {});
+      console.log('📤 Enviando a news:', payload);
+      try {
+        const { data, error } = await sb.from('news').insert([payload]).select();
+        if (error) {
+          console.error('❌ Insert falló:', error.message, error.details);
+          toast('⚠️ No se guardó en nube: ' + error.message);
+        } else if (data && data.length > 0) {
+          art.dbId = data[0].id;
+          console.log('✅ Guardado en news con ID:', art.dbId);
+          toast('☁️ Guardado en nube');
+        }
+      } catch(err) { console.error('❌ Excepción:', err); toast('❌ Error al guardar'); }
+    } else {
+      console.warn('⚠️ Supabase offline — solo local');
     }
+    
     document.getElementById('art-title').value = '';
     document.getElementById('art-lead').value = '';
     document.getElementById('art-img').value = '';
@@ -1852,27 +1868,32 @@ function saveLeg() {
 }
 
 async function delArt(id) {
-  if (!confirm('¿Eliminar esta nota definitivamente?')) return;
+  const articulo = state.articles.find(a => a.id === id);
+  if (!articulo) { toast('❌ Nota no encontrada en la lista'); return; }
   
-  if (sb && sbOnline) {
+  if (!confirm(`¿Eliminar esta nota definitivamente?\n\n"${articulo.title}"`)) return;
+  
+  if (sb && sbOnline && articulo.dbId) {
     try {
-      if (id.startsWith('not-')) {
-        const dbId = id.slice(4); 
-        const { error } = await sb.from('news').delete().eq('id', dbId);
-        if (error) {
-          console.error('Error al borrar en Supabase:', error.message);
-          toast('❌ Error al borrar en la nube');
-          return; 
-        }
+      console.log('🗑️ Intentando borrar nota con ID:', articulo.dbId);
+      const { data, error } = await sb.from('news').delete().eq('id', articulo.dbId).select();
+      
+      if (error) {
+        console.error('❌ Error de Supabase:', error.message);
+        toast('❌ No se pudo borrar en la nube: ' + error.message);
+        return; 
       }
-    } catch(e) { 
-      console.warn('SB delete:', e.message); 
+      console.log('✅ Borrado de Supabase confirmado:', data);
+    } catch(e) {
+      console.error('❌ Excepción al borrar:', e);
+      toast('❌ Error de conexión al borrar');
+      return; 
     }
   }
   
   state.articles = state.articles.filter(a => a.id !== id);
   save();
-  toast('🗑️ Eliminado');
+  toast('🗑️ Nota eliminada');
 }
 function delVis(id) { if (!confirm('¿Eliminar?')) return; state.visuals = state.visuals.filter(v => v.id !== id); save(); toast('🗑️'); }
 function delMM(id) { if (!confirm('¿Eliminar?')) return; state.multimedia = state.multimedia.filter(m => m.id !== id); save(); toast('🗑️'); }
@@ -2094,9 +2115,6 @@ function renderReaderComments() {
   document.getElementById('rd-comments').innerHTML = comments.length ? comments.map(c => `<div class="bg-paper p-3 rounded-lg border-l-2 border-gold"><p class="text-xs font-semibold text-ink">${c.author}</p><p class="text-sm text-graphite mt-1 break-words">${c.text}</p></div>`).join('') : '<p class="text-xs text-stone">Sin comentarios aún.</p>';
 }
 
-/* ═══════════════════════════════════════════
-   RATE LIMIT + VALIDACIONES
-   ═══════════════════════════════════════════ */
 function checkRateLimit(kind) {
   const key = 'rl_' + kind;
   const last = parseInt(Storage.get(key) || '0', 10);
@@ -2367,9 +2385,6 @@ function openRadioQueue() {
   document.getElementById('radio-queue').classList.remove('hidden');
 }
 
-/* ═══════════════════════════════════════════
-   SITEMAPS + ROBOTS
-   ═══════════════════════════════════════════ */
 function exportSitemap() {
   const now = new Date().toISOString().split('T')[0];
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -2522,9 +2537,6 @@ window.addEventListener('keydown', e => {
   }
 });
 
-/* ═══════════════════════════════════════════
-   PWA · Service Worker + Instalación
-   ═══════════════════════════════════════════ */
 let _deferredPrompt = null;
 
 window.addEventListener('beforeinstallprompt', (e) => {
