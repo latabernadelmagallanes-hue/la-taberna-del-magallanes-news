@@ -232,7 +232,9 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 </div>
 <a href="#boxscore" class="text-gold hover:underline font-semibold">Box Score →</a>
 </div>
-</div><main class="flex-1">
+</div>
+
+<main class="flex-1">
 
 <section class="max-w-7xl mx-auto px-6 py-16">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -857,7 +859,9 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 <div class="flex justify-between items-center px-6 py-4 border-b border-line"><h3 class="font-display text-xl font-bold">📻 Radio La Taberna</h3><button onclick="document.getElementById('radio-queue').classList.add('hidden')" class="text-stone hover:text-ink">✕</button></div>
 <div id="queue-list" class="p-4 overflow-y-auto flex-1 space-y-4"></div>
 </div>
-</div><script>
+</div>
+
+<script>
 const Storage = {
   mem: {},
   available: (() => { try { const t = '__test__'; localStorage.setItem(t, '1'); localStorage.removeItem(t); return true; } catch(e) { return false; } })(),
@@ -1520,17 +1524,20 @@ async function fetchFromSupabase() {
   try {
     let nots = [];
     const res1 = await sb.from('news').select('*');
-    if (res1.error) {
-      console.warn('news:', res1.error.message);
-    } else {
-      nots = res1.data || [];
-    }
+    if (res1.error) console.warn('news:', res1.error.message);
+    else nots = res1.data || [];
     
     let rts = [];
     try {
-      const res2 = await sb.from('tracks').select('*');
+      const res2 = await sb.from('radio_tracks').select('*').eq('activo', true);
       if (!res2.error) rts = res2.data || [];
-    } catch(e) { console.warn('tracks: tabla no disponible'); }
+    } catch(e) {}
+    
+    let mm = [];
+    try {
+      const res3 = await sb.from('multimedia').select('*');
+      if (!res3.error) mm = res3.data || [];
+    } catch(e) {}
     
     const fromNots = nots.map(r => ({ 
       id: 'not-' + r.id, 
@@ -1538,7 +1545,7 @@ async function fetchFromSupabase() {
       category: r.categoria || 'NOTICIA', 
       title: r.titulo || 'Sin título', 
       lead: r.bajada || '', 
-      body: r.cuerpo || '', 
+      body: r.cuerpo || r.contenido || '', 
       image: r.imagen || PLACEHOLDER_IMG, 
       author: r.autor || 'Lic. Luis Aponte', 
       date: r.fecha ? new Date(r.fecha).toLocaleDateString('es-VE') : (r.created_at ? new Date(r.created_at).toLocaleDateString('es-VE') : 'Reciente'),
@@ -1553,12 +1560,11 @@ async function fetchFromSupabase() {
     });
     
     state.articles = fromNots;
-    sbOnline = true;
-    console.log('✅ Supabase cargado (' + fromNots.length + ' artículos)');
+    if (rts.length > 0) state.radioTracks = rts.map(r => ({ id: 'rt-' + r.id, categoria: r.categoria, nombre: r.nombre, url: r.url, orden: r.orden || 0, duracion: r.duracion || '', activo: r.activo !== false, dbId: r.id }));
+    if (mm.length > 0) state.multimedia = mm.map(m => ({ id: 'mm-' + m.id, type: m.tipo, title: m.titulo, url: m.url, desc: m.descripcion, dbId: m.id }));
     
-    if (rts.length > 0) {
-      state.radioTracks = rts.map(r => ({ id: 'rt-' + r.id, categoria: r.categoria, nombre: r.nombre, url: r.url, orden: r.orden || 0, duracion: r.duracion || '', activo: r.activo !== false, dbId: r.id }));
-    }
+    sbOnline = true;
+    console.log('✅ Supabase cargado (' + fromNots.length + ' notas, ' + rts.length + ' audios)');
     render();
     tryOpenFromHash();
   } catch(e) {
@@ -1566,6 +1572,7 @@ async function fetchFromSupabase() {
     sbOnline = false;
   }
 }
+
 async function uploadSB(file, folder) {
   if (!sb) throw new Error('Supabase no disponible');
   const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
@@ -1660,8 +1667,9 @@ async function saveArt(e) {
     const title = document.getElementById('art-title').value.trim();
     if (!title) { toast('⚠️ Escribe un título'); return; }
     let img = '';
-    try { img = await resolveFile('art', 'art-img', 'art-st', 'articles'); } catch(err) { console.warn('Imagen falló:', err.message); }
+    try { img = await resolveFile('art', 'art-img', 'art-st', 'articles'); } catch(err) {}
     if (!img) img = PLACEHOLDER_IMG;
+    
     const body = quill ? quill.root.innerHTML.trim() : '';
     const cat = document.getElementById('art-cat').value;
     const author = document.getElementById('art-author').value.trim() || 'Lic. Luis Aponte';
@@ -1683,20 +1691,16 @@ async function saveArt(e) {
         fecha: new Date().toISOString(),
         destacado: true 
       };
-      console.log('📤 Enviando a news:', payload);
       try {
         const { data, error } = await sb.from('news').insert([payload]).select();
-        if (error) {
-          console.error('❌ Insert falló:', error.message, error.details);
-          toast('⚠️ No se guardó en nube: ' + error.message);
+        if (error) { 
+          console.error('❌ Error:', error.message); 
+          toast('⚠️ Error en nube: ' + error.message); 
         } else if (data && data.length > 0) {
           art.dbId = data[0].id;
-          console.log('✅ Guardado en news con ID:', art.dbId);
           toast('☁️ Guardado en nube');
         }
-      } catch(err) { console.error('❌ Excepción:', err); toast('❌ Error al guardar'); }
-    } else {
-      console.warn('⚠️ Supabase offline — solo local');
+      } catch(err) { console.error(err); }
     }
     
     document.getElementById('art-title').value = '';
@@ -1709,7 +1713,7 @@ async function saveArt(e) {
     clearF('art');
     toast('✅ Artículo publicado');
     closeCMS();
-  } catch(err) { toast('❌ ' + err.message); console.error(err); }
+  } catch(err) { toast('❌ ' + err.message); }
   finally { btn.textContent = 'Publicar Artículo'; btn.disabled = false; }
 }
 
@@ -1743,9 +1747,18 @@ async function saveMM(e) {
     if (!url) { toast('⚠️ Suba archivo o pegue URL'); return; }
     const tipo = document.getElementById('mm-type').value;
     const desc = document.getElementById('mm-desc').value;
-    state.multimedia.unshift({ id: 'mm-' + Date.now(), type: tipo, title: titulo, url, desc });
+    
+    const newMM = { id: 'mm-' + Date.now(), type: tipo, title: titulo, url, desc, dbId: null };
+    state.multimedia.unshift(newMM);
     save();
-    if (sb && sbOnline) sb.from('multimedia').insert([{ tipo, titulo, url, descripcion: desc }]).then(r => { if (r.error) console.warn(r.error.message); }).catch(() => {});
+    
+    if (sb && sbOnline) {
+      try {
+        const { data, error } = await sb.from('multimedia').insert([{ tipo, titulo, url, descripcion: desc }]).select();
+        if (!error && data && data.length > 0) newMM.dbId = data[0].id;
+      } catch(e) {}
+    }
+    
     document.getElementById('mm-title').value = '';
     document.getElementById('mm-url').value = '';
     document.getElementById('mm-desc').value = '';
@@ -1814,9 +1827,18 @@ async function saveRadioTrack(e) {
     const cat = document.getElementById('rad-cat-inp').value;
     const duracion = document.getElementById('rad-dur-inp').value;
     const orden = +document.getElementById('rad-order-inp').value || 0;
-    state.radioTracks.push({ id: 'rt-' + Date.now(), categoria: cat, nombre, url, orden, duracion, activo: true });
+    
+    const newTrack = { id: 'rt-' + Date.now(), categoria: cat, nombre, url, orden, duracion, activo: true, dbId: null };
+    state.radioTracks.push(newTrack);
     save();
-    if (sb && sbOnline) sb.from('radio_tracks').insert([{ categoria: cat, nombre, url, orden, duracion, activo: true }]).then(r => { if (r.error) console.warn(r.error.message); }).catch(() => {});
+    
+    if (sb && sbOnline) {
+      try {
+        const { data, error } = await sb.from('radio_tracks').insert([{ categoria: cat, nombre, url, orden, duracion, activo: true }]).select();
+        if (!error && data && data.length > 0) newTrack.dbId = data[0].id;
+      } catch(e) {}
+    }
+    
     document.getElementById('rad-name-inp').value = '';
     document.getElementById('rad-url-inp').value = '';
     document.getElementById('rad-dur-inp').value = '';
@@ -1880,23 +1902,19 @@ function saveLeg() {
 
 async function delArt(id) {
   const articulo = state.articles.find(a => a.id === id);
-  if (!articulo) { toast('❌ Nota no encontrada en la lista'); return; }
+  if (!articulo) return;
   
   if (!confirm(`¿Eliminar esta nota definitivamente?\n\n"${articulo.title}"`)) return;
   
   if (sb && sbOnline && articulo.dbId) {
     try {
-      console.log('🗑️ Intentando borrar nota con ID:', articulo.dbId);
-      const { data, error } = await sb.from('news').delete().eq('id', articulo.dbId).select();
-      
+      const { error } = await sb.from('news').delete().eq('id', articulo.dbId);
       if (error) {
         console.error('❌ Error de Supabase:', error.message);
-        toast('❌ No se pudo borrar en la nube: ' + error.message);
+        toast('❌ No se pudo borrar: ' + error.message);
         return; 
       }
-      console.log('✅ Borrado de Supabase confirmado:', data);
     } catch(e) {
-      console.error('❌ Excepción al borrar:', e);
       toast('❌ Error de conexión al borrar');
       return; 
     }
@@ -1907,14 +1925,19 @@ async function delArt(id) {
   toast('🗑️ Nota eliminada');
 }
 function delVis(id) { if (!confirm('¿Eliminar?')) return; state.visuals = state.visuals.filter(v => v.id !== id); save(); toast('🗑️'); }
-function delMM(id) { if (!confirm('¿Eliminar?')) return; state.multimedia = state.multimedia.filter(m => m.id !== id); save(); toast('🗑️'); }
+async function delMM(id) {
+  if (!confirm('¿Eliminar?')) return;
+  const m = state.multimedia.find(x => x.id === id);
+  if (sb && m && m.dbId && sbOnline) { try { await sb.from('multimedia').delete().eq('id', m.dbId); } catch(e) {} }
+  state.multimedia = state.multimedia.filter(x => x.id !== id); save(); toast('🗑️');
+}
 function delPub(id) { if (!confirm('¿Eliminar?')) return; state.banners = state.banners.filter(b => b.id !== id); save(); toast('🗑️'); }
 function delSto(id) { if (!confirm('¿Eliminar?')) return; state.stories = state.stories.filter(s => s.id !== id); save(); toast('🗑️'); }
 function delPar(id) { if (!confirm('¿Eliminar?')) return; state.paredon = state.paredon.filter(p => p.id !== id); save(); toast('🗑️'); }
 async function delRadioTrack(id) {
   if (!confirm('¿Eliminar track?')) return;
   const t = state.radioTracks.find(x => x.id === id);
-  if (sb && t && t.dbId && sbOnline) { try { await sb.from('radio_tracks').delete().eq('id', t.dbId); } catch(e) { console.warn(e); } }
+  if (sb && t && t.dbId && sbOnline) { try { await sb.from('radio_tracks').delete().eq('id', t.dbId); } catch(e) {} }
   state.radioTracks = state.radioTracks.filter(x => x.id !== id);
   save(); toast('🗑️');
 }
