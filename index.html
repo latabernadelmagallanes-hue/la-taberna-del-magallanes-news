@@ -92,8 +92,7 @@ tailwind.config={theme:{extend:{colors:{ink:'#0a0a0a',graphite:'#2c2c2c',stone:'
 <style>
 *{box-sizing:border-box}
 html,body{max-width:100vw;overflow-x:hidden;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-body,div,p,span,h1,h2,h3,h4,h5,h6,a,button,label,li,blockquote,article,section,aside,main,header,footer,nav{overflow-wrap:break-word;word-break:break-word}
-td,th{white-space:nowrap}
+body,div,p,span,h1,h2,h3,h4,h5,h6,a,button,label,td,th,li,blockquote,article,section,aside,main,header,footer,nav{overflow-wrap:break-word !important;word-break:break-word !important;word-wrap:break-word !important}
 input,textarea,select{max-width:100% !important;min-width:0 !important;box-sizing:border-box !important;overflow-wrap:break-word !important;word-break:break-word !important}
 textarea{resize:none !important}
 img,video,iframe{max-width:100%;height:auto}
@@ -134,8 +133,6 @@ a[href],input[type="url"],input[type="email"],.url-text{word-break:break-all !im
 .reader-body img{max-width:100%;height:auto;border-radius:8px;margin:1rem 0}
 .reader-body a{word-break:break-all}
 .reader-body.dark{background:#0a0a0a;color:#e5e5e5;padding:2rem;border-radius:8px}
-.reader-body.dark h1,.reader-body.dark h2,.reader-body.dark h3,.reader-body.dark strong{color:#fafafa}
-.reader-body.dark blockquote{border-left-color:#a67c1a;color:#d4d4d4}
 .radio-bar{position:fixed;bottom:0;left:0;right:0;z-index:40;background:#0a0a0a;color:#fff;border-top:2px solid #a67c1a;box-shadow:0 -4px 24px rgba(0,0,0,.3);transform:translateY(100%);transition:transform .3s}
 .radio-bar.visible{transform:translateY(0)}
 .vip-tier{border:1.5px solid #e8e8e8;border-radius:12px;padding:24px;transition:all .2s;background:#fff}
@@ -156,7 +153,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;heigh
 .carousel-dots .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s;cursor:pointer}
 .carousel-dots .dot.active{background:#a67c1a;width:24px;border-radius:3px}
 .carousel-progress{height:2px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
-.carousel-progress .bar{height:100%;background:#a67c1a;width:0%}
+.carousel-progress .bar{height:100%;background:#a67c1a;transition:width .1s linear;width:0%}
 .banner-paused{animation-play-state:paused !important}
 .story-circle{width:64px;height:64px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#a67c1a 0%,#8a6615 100%);cursor:pointer;transition:transform .2s}
 .story-circle:hover{transform:scale(1.08)}
@@ -225,9 +222,7 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 </ul>
 </nav>
 </div>
-</header>
-
-<section id="stories-section" class="bg-paper border-b border-line py-4 px-4">
+</header><section id="stories-section" class="bg-paper border-b border-line py-4 px-4">
   <div class="max-w-7xl mx-auto flex items-center gap-4 overflow-x-auto py-1">
     <div class="shrink-0 pr-3 border-r border-line">
       <span class="block text-[10px] font-mono uppercase tracking-widest text-gold font-extrabold">Historias 24h</span>
@@ -562,7 +557,6 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 <div class="filedrop" onclick="document.getElementById('sto-file').click()"><input type="file" id="sto-file" accept="image/*" class="hidden" onchange="pickFile(this,'sto')">📁 Subir imagen</div>
 <input type="url" id="sto-img" placeholder="…o URL" class="w-full border border-line rounded-lg px-3 py-2 text-sm">
 <div id="sto-prev" class="filepreview hidden"><img id="sto-prev-img" alt="Previsualización" class="h-12 w-12 object-cover rounded-full"><span id="sto-prev-name" class="flex-1 text-xs truncate"></span><button type="button" onclick="clearF('sto')" class="text-red-600 font-bold">🗑️</button></div>
-<p id="sto-st" class="text-[10px] text-stone"></p>
 <button onclick="saveSto(event)" class="w-full btn-primary text-xs">Guardar Story</button>
 </div>
 <div id="sto-list" class="space-y-1.5"></div>
@@ -742,7 +736,6 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 <p id="rd-lead" class="font-display text-lg text-graphite italic mb-6 break-words"></p>
 <div class="text-xs text-stone border-y border-line py-3 mb-6"><strong id="rd-author" class="text-ink"></strong> · <span id="rd-date"></span> · <span id="rd-time"></span></div>
 <div class="img-overlay rounded-lg overflow-hidden mb-6"><img id="rd-img" src="" alt="Imagen del artículo" class="w-full max-h-96 object-cover"></div>
-<div id="rd-saber-box" class="hidden mb-6 p-3 bg-paper border-l-4 border-gold rounded text-xs font-mono text-ink"></div>
 <div id="rd-body" class="reader-body min-w-0"></div>
 <div class="my-8"><div id="rd-banner"></div></div>
 <div class="mt-8 pt-6 border-t border-line"><p class="t-caption mb-3">Compartir</p><div id="rd-share" class="flex flex-wrap gap-2"></div></div>
@@ -864,7 +857,7 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 <button onclick="radioShuffle()" id="rb-shuffle" class="text-white hover:text-gold px-1.5 text-sm">🔀</button>
 <button onclick="radioRepeat()" id="rb-repeat" class="text-white hover:text-gold px-1.5 text-sm">🔁</button>
 <button onclick="openRadioQueue()" class="text-white hover:text-gold px-1.5 text-sm">📋</button>
-<input id="rb-volume" type="range" min="0" max="100" value="70" oninput="radioVolume(this.value)" class="w-16">
+<input id="rb-volume" type="range" min="0" max="100" value="70" class="w-16">
 </div>
 <button onclick="closeRadioBar()" class="text-white hover:text-gold px-1.5 text-sm shrink-0">✕</button>
 </div>
@@ -876,9 +869,7 @@ nav.overflow-x-auto{-webkit-mask-image:linear-gradient(to right,#000 92%,transpa
 <div class="flex justify-between items-center px-6 py-4 border-b border-line"><h3 class="font-display text-xl font-bold">📻 Radio La Taberna</h3><button onclick="document.getElementById('radio-queue').classList.add('hidden')" class="text-stone hover:text-ink">✕</button></div>
 <div id="queue-list" class="p-4 overflow-y-auto flex-1 space-y-4"></div>
 </div>
-</div>
-<!-- ═══ INICIO DE LA PARTE 2 — PEGAR JUSTO DEBAJO DE LA PARTE 1 ═══ -->
-<script>
+</div><script>
 const Storage = {
   mem: {},
   available: (() => { try { const t = '__test__'; localStorage.setItem(t, '1'); localStorage.removeItem(t); return true; } catch(e) { return false; } })(),
@@ -1020,77 +1011,10 @@ let sbOnline = false;
 let hashOpened = false;
 let _backupTimer = null;
 let _backupPending = false;
-let _liveSyncTimer = null;
-
-/* ═══════════════════════════════════════════
-   UTILIDADES DE ARCHIVOS (SUBIDA Y BASE64)
-   ═══════════════════════════════════════════ */
-function f2b64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = err => reject(err);
-    reader.readAsDataURL(file);
-  });
-}
-
-async function uploadSB(file, folder = 'general') {
-  if (!sb) throw new Error('Supabase no inicializado');
-  const ext = (file.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g, '');
-  const cleanName = file.name.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 40);
-  const path = `${folder}/${Date.now()}_${cleanName}.${ext}`;
-  const { error } = await sb.storage.from(CFG.BUCKET).upload(path, file, {
-    cacheControl: '3600',
-    upsert: true,
-    contentType: file.type || 'application/octet-stream'
-  });
-  if (error) throw error;
-  const { data } = sb.storage.from(CFG.BUCKET).getPublicUrl(path);
-  if (!data || !data.publicUrl) throw new Error('No se pudo obtener la URL pública');
-  return data.publicUrl;
-}
-
-/* ═══════════════════════════════════════════
-   SINCRONIZACIÓN EN VIVO (BOX SCORE + ESTADO)
-   ═══════════════════════════════════════════ */
-function syncLiveStateToCloud() {
-  if (!sb) return;
-  if (_liveSyncTimer) clearTimeout(_liveSyncTimer);
-  _liveSyncTimer = setTimeout(async () => {
-    try {
-      const livePayload = {
-        updatedAt: new Date().toISOString(),
-        settings: state.settings,
-        director: state.director,
-        ticker: state.ticker,
-        game: state.game,
-        sabermetrics: state.sabermetrics,
-        stories: state.stories,
-        banners: state.banners,
-        visuals: state.visuals,
-        multimedia: state.multimedia,
-        paredon: state.paredon,
-        comments: state.comments,
-        chat: state.chat,
-        vip: state.vip,
-        legal: state.legal
-      };
-      const blob = new Blob([JSON.stringify(livePayload)], { type: 'application/json' });
-      await sb.storage.from(CFG.BUCKET).upload('config/live_state.json', blob, {
-        cacheControl: '0',
-        contentType: 'application/json',
-        upsert: true
-      });
-    } catch (e) {
-      console.warn('Sync live_state:', e.message);
-    }
-  }, 600);
-}
 
 function save() {
   try { Storage.set(CFG.STATE_KEY, JSON.stringify(state)); } catch(e) { console.warn('save:', e); }
   render();
-  syncLiveStateToCloud();
   scheduleBackup();
 }
 
@@ -1316,7 +1240,7 @@ function parseDateToISO(dateStr) {
 
 function updateHash(id) {
   if (!id) {
-    if (location.hash.startsWith('#art') || location.hash.startsWith('#not')) {
+    if (location.hash.startsWith('#art')) {
       history.replaceState(null, '', location.pathname + location.search);
     }
     return;
@@ -1411,21 +1335,7 @@ function renderVis() {
 function renderMM() {
   const g = document.getElementById('multimedia');
   if (!state.multimedia.length) { g.innerHTML = '<p class="text-sm text-stone col-span-full">Sin multimedia.</p>'; return; }
-  g.innerHTML = state.multimedia.map(m => {
-    const url = m.url || '';
-    const isVideoFile = /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url) || url.startsWith('data:video/');
-    const isAudioFile = /\.(mp3|wav|ogg|m4a|aac)(\?.*)?$/i.test(url) || url.startsWith('data:audio/');
-    const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-    let mediaEmbed = '';
-    if (ytMatch) {
-      mediaEmbed = `<div class="aspect-video w-full rounded-lg overflow-hidden mb-3 bg-ink"><iframe src="https://www.youtube.com/embed/${ytMatch[1]}" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
-    } else if (isVideoFile || (m.type === 'VIDEO' && url.includes('/storage/v1/object/public/'))) {
-      mediaEmbed = `<video src="${url}" controls preload="metadata" class="w-full rounded-lg mb-3 max-h-64 bg-ink"></video>`;
-    } else if (isAudioFile || (m.type === 'PODCAST' && url.includes('/storage/v1/object/public/'))) {
-      mediaEmbed = `<audio src="${url}" controls preload="metadata" class="w-full mb-3"></audio>`;
-    }
-    return `<div class="card-hover bg-paper border border-line rounded-lg p-5 flex flex-col justify-between"><div class="min-w-0"><p class="t-caption text-gold mb-2">${m.type}</p><h4 class="t-headline text-ink mb-2 line2">${m.title}</h4>${mediaEmbed}<p class="text-xs text-graphite mb-4 line3">${m.desc || ''}</p></div><a href="${url}" target="_blank" rel="noopener" class="inline-block text-xs font-semibold text-ink hover:text-gold transition">▶ Abrir enlace directo →</a></div>`;
-  }).join('');
+  g.innerHTML = state.multimedia.map(m => `<div class="card-hover bg-paper border border-line rounded-lg p-5"><p class="t-caption text-gold mb-2">${m.type}</p><h4 class="t-headline text-ink mb-2 line2">${m.title}</h4><p class="text-xs text-graphite mb-4 line3">${m.desc}</p><a href="${m.url}" target="_blank" class="inline-block text-xs font-semibold text-ink hover:text-gold transition">▶ Reproducir →</a></div>`).join('');
 }
 
 function renderPar() {
@@ -1477,7 +1387,7 @@ function animProgress(prefix, total) {
   bar.style.transition = 'none';
   bar.style.width = '0%';
   setTimeout(() => {
-    bar.style.transition = 'width ' + (CFG.AD_MS - 100) + 'ms linear';
+    bar.style.transition = 'width ' + CFG.AD_MS + 'ms linear';
     bar.style.width = '100%';
   }, 30);
 }
@@ -1533,7 +1443,7 @@ function renderChatMessages() {
 }
 
 function escapeHTML(s) {
-  return String(s).replace(/[&<>"']/g, c => ({ '&':'&', '<':'<', '>':'>', '"':'"', "'":''' }[c]));
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 }
 
 function setChatNick() {
@@ -1625,29 +1535,13 @@ function renderCMSLists() {
 }
 
 async function fetchFromSupabase() {
-   if (!sb) { console.log('Supabase no inicializado - modo local'); return; }
+  if (!sb) { console.log('ℹ️ Supabase no inicializado — modo local'); return; }
   try {
-    try {
-      const { data: liveUrlData } = sb.storage.from(CFG.BUCKET).getPublicUrl('config/live_state.json');
-      if (liveUrlData && liveUrlData.publicUrl) {
-        const res = await fetch(liveUrlData.publicUrl + '?t=' + Date.now(), { cache: 'no-store' });
-        if (res.ok) {
-          const cloudState = await res.json();
-          ['settings','director','ticker','game','sabermetrics','stories','banners','visuals','multimedia','paredon','comments','chat','vip','legal'].forEach(k => {
-            if (cloudState[k] !== undefined) state[k] = cloudState[k];
-          });
-          sbOnline = true;
-        }
-      }
-    } catch (eLive) { console.warn('live_state:', eLive.message); }
-
     const { data: nots, error: e2 } = await sb.from('news').select('*').order('fecha', { ascending: false });
     const { data: rts, error: e3 } = await sb.from('tracks').select('*').eq('activo', true);
-    const { data: mms, error: e4 } = await sb.from('multimedia').select('*').order('id', { ascending: false });
     
     if (e2) { console.warn('news:', e2.message); }
     if (e3) { console.warn('tracks:', e3.message); }
-    if (e4) { console.warn('multimedia:', e4.message); }
     
     const fromNots = (nots || []).map(r => ({ 
       id: 'not-' + r.id, 
@@ -1658,25 +1552,19 @@ async function fetchFromSupabase() {
       image: r.imagen || PLACEHOLDER_IMG, 
       author: r.autor || 'Lic. Luis Aponte', 
       date: r.fecha ? new Date(r.fecha).toLocaleDateString('es-VE') : 'Reciente', 
-      saberNote: r.saber_note || '', 
+      saberNote: '', 
       featured: r.destacado === true 
     }));
     
-    if (!e2 && nots) {
+    if ((nots || []).length > 0 && !e2) {
+      state.articles = fromNots;
       sbOnline = true;
-      if (fromNots.length > 0) {
-        state.articles = fromNots;
-        console.log('✅ Supabase cargado (' + fromNots.length + ' artículos)');
-      }
+      console.log('✅ Supabase cargado (' + fromNots.length + ' artículos)');
     }
     
     if (rts && rts.length > 0 && !e3) {
       state.radioTracks = rts.map(r => ({ id: 'rt-' + r.id, categoria: r.categoria, nombre: r.nombre, url: r.url, orden: r.orden || 0, duracion: r.duracion || '', activo: r.activo !== false, dbId: r.id }));
     }
-    if (mms && mms.length > 0 && !e4) {
-      state.multimedia = mms.map(r => ({ id: 'mm-' + r.id, type: r.tipo || 'VIDEO', title: r.titulo, url: r.url, desc: r.descripcion || '', dbId: r.id }));
-    }
-    try { Storage.set(CFG.STATE_KEY, JSON.stringify(state)); } catch(e) {}
     render();
     tryOpenFromHash();
   } catch(e) {
@@ -1768,7 +1656,7 @@ async function saveArt(e) {
     const art = { id: 'art-' + Date.now(), category: cat, author, title, lead, image: img, body, saberNote: saber, date: new Date().toLocaleDateString('es-VE'), featured: true };
     state.articles.unshift(art);
     save();
-    if (sb) {
+       if (sb && sbOnline) {
       const payload = { 
         titulo: title, 
         bajada: lead, 
@@ -1779,16 +1667,10 @@ async function saveArt(e) {
         fecha: new Date().toISOString(),
         destacado: true 
       };
-      const { data: insData, error: insErr } = await sb.from('news').insert([payload]).select();
-      if (insErr) {
-        console.warn('SB:', insErr.message);
-      } else {
-        if (insData && insData[0]) {
-          art.id = 'not-' + insData[0].id;
-          save();
-        }
-        toast('☁️ Guardado en nube');
-      }
+      sb.from('news').insert([payload]).then(r => { 
+        if (r.error) console.warn('SB:', r.error.message); 
+        else toast('☁️ Guardado en nube'); 
+      }).catch(() => {});
     }
     document.getElementById('art-title').value = '';
     document.getElementById('art-lead').value = '';
@@ -1834,15 +1716,9 @@ async function saveMM(e) {
     if (!url) { toast('⚠️ Suba archivo o pegue URL'); return; }
     const tipo = document.getElementById('mm-type').value;
     const desc = document.getElementById('mm-desc').value;
-    const newMM = { id: 'mm-' + Date.now(), type: tipo, title: titulo, url, desc };
-    state.multimedia.unshift(newMM);
+    state.multimedia.unshift({ id: 'mm-' + Date.now(), type: tipo, title: titulo, url, desc });
     save();
-    if (sb) {
-      sb.from('multimedia').insert([{ tipo, titulo, url, descripcion: desc }]).select().then(r => {
-        if (r.error) console.warn(r.error.message);
-        else if (r.data && r.data[0]) { newMM.dbId = r.data[0].id; save(); }
-      }).catch(() => {});
-    }
+    if (sb && sbOnline) sb.from('multimedia').insert([{ tipo, titulo, url, descripcion: desc }]).then(r => { if (r.error) console.warn(r.error.message); }).catch(() => {});
     document.getElementById('mm-title').value = '';
     document.getElementById('mm-url').value = '';
     document.getElementById('mm-desc').value = '';
@@ -1866,18 +1742,8 @@ async function saveDir(e) {
 
 function saveRos(e) {
   e.preventDefault();
-  const parseInnings = (str) => {
-    const arr = str.split(',').map(s => {
-      const v = s.trim();
-      if (v === '' || v === '-' || v.toUpperCase() === 'X') return v || '-';
-      const num = parseInt(v, 10);
-      return isNaN(num) ? v : num;
-    });
-    while (arr.length < 9) arr.push('-');
-    return arr.slice(0, 9);
-  };
-  const t1inn = parseInnings(document.getElementById('ros-t1inn').value);
-  const t2inn = parseInnings(document.getElementById('ros-t2inn').value);
+  const t1inn = document.getElementById('ros-t1inn').value.split(',').map(n => parseInt(n.trim()) || 0);
+  const t2inn = document.getElementById('ros-t2inn').value.split(',').map(n => parseInt(n.trim()) || 0);
   const g = {
     status: document.getElementById('ros-status').value, venue: document.getElementById('ros-venue').value,
     ticker: document.getElementById('ros-ticker').value, highlight: document.getElementById('ros-highlight').value,
@@ -1889,7 +1755,7 @@ function saveRos(e) {
   };
   state.game = g;
   state.ticker = { status: g.status, score: g.ticker, highlight: g.highlight };
-  save(); toast('⚾ Pizarra actualizada en vivo'); closeCMS();
+  save(); toast('✅ Roster guardado'); closeCMS();
 }
 
 function saveKPI() {
@@ -1921,15 +1787,9 @@ async function saveRadioTrack(e) {
     const cat = document.getElementById('rad-cat-inp').value;
     const duracion = document.getElementById('rad-dur-inp').value;
     const orden = +document.getElementById('rad-order-inp').value || 0;
-    const newTrack = { id: 'rt-' + Date.now(), categoria: cat, nombre, url, orden, duracion, activo: true };
-    state.radioTracks.push(newTrack);
+    state.radioTracks.push({ id: 'rt-' + Date.now(), categoria: cat, nombre, url, orden, duracion, activo: true });
     save();
-    if (sb) {
-      sb.from('tracks').insert([{ categoria: cat, nombre, url, orden, duracion, activo: true }]).select().then(r => {
-        if (r.error) console.warn(r.error.message);
-        else if (r.data && r.data[0]) { newTrack.dbId = r.data[0].id; save(); }
-      }).catch(() => {});
-    }
+    if (sb && sbOnline) sb.from('radio_tracks').insert([{ categoria: cat, nombre, url, orden, duracion, activo: true }]).then(r => { if (r.error) console.warn(r.error.message); }).catch(() => {});
     document.getElementById('rad-name-inp').value = '';
     document.getElementById('rad-url-inp').value = '';
     document.getElementById('rad-dur-inp').value = '';
@@ -1993,36 +1853,36 @@ function saveLeg() {
 
 async function delArt(id) {
   if (!confirm('¿Eliminar esta nota definitivamente?')) return;
-  if (sb && id.startsWith('not-')) {
+  
+  if (sb && sbOnline) {
     try {
-      const dbId = id.slice(4); 
-      const { error } = await sb.from('news').delete().eq('id', dbId);
-      if (error) {
-        console.error('Error al borrar en Supabase:', error.message);
-        toast('❌ Error al borrar en la nube');
-        return; 
+      if (id.startsWith('not-')) {
+        const dbId = id.slice(4); 
+        const { error } = await sb.from('news').delete().eq('id', dbId);
+        if (error) {
+          console.error('Error al borrar en Supabase:', error.message);
+          toast('❌ Error al borrar en la nube');
+          return; 
+        }
       }
-    } catch(e) { console.warn('SB delete:', e.message); }
+    } catch(e) { 
+      console.warn('SB delete:', e.message); 
+    }
   }
+  
   state.articles = state.articles.filter(a => a.id !== id);
   save();
   toast('🗑️ Eliminado');
 }
 function delVis(id) { if (!confirm('¿Eliminar?')) return; state.visuals = state.visuals.filter(v => v.id !== id); save(); toast('🗑️'); }
-async function delMM(id) {
-  if (!confirm('¿Eliminar?')) return;
-  const m = state.multimedia.find(x => x.id === id);
-  if (sb && m && m.dbId) { try { await sb.from('multimedia').delete().eq('id', m.dbId); } catch(e) { console.warn(e); } }
-  state.multimedia = state.multimedia.filter(m => m.id !== id);
-  save(); toast('🗑️');
-}
+function delMM(id) { if (!confirm('¿Eliminar?')) return; state.multimedia = state.multimedia.filter(m => m.id !== id); save(); toast('🗑️'); }
 function delPub(id) { if (!confirm('¿Eliminar?')) return; state.banners = state.banners.filter(b => b.id !== id); save(); toast('🗑️'); }
 function delSto(id) { if (!confirm('¿Eliminar?')) return; state.stories = state.stories.filter(s => s.id !== id); save(); toast('🗑️'); }
 function delPar(id) { if (!confirm('¿Eliminar?')) return; state.paredon = state.paredon.filter(p => p.id !== id); save(); toast('🗑️'); }
 async function delRadioTrack(id) {
   if (!confirm('¿Eliminar track?')) return;
   const t = state.radioTracks.find(x => x.id === id);
-  if (sb && t && t.dbId) { try { await sb.from('tracks').delete().eq('id', t.dbId); } catch(e) { console.warn(e); } }
+  if (sb && t && t.dbId && sbOnline) { try { await sb.from('radio_tracks').delete().eq('id', t.dbId); } catch(e) { console.warn(e); } }
   state.radioTracks = state.radioTracks.filter(x => x.id !== id);
   save(); toast('🗑️');
 }
@@ -2049,74 +1909,37 @@ function closeLegal() { document.getElementById('legal-modal').classList.add('hi
 
 async function doLogin(e) {
   e.preventDefault();
-
-  const emailEl = document.getElementById('login-email');
-  const pwdEl   = document.getElementById('login-inp');
-  const errEl   = document.getElementById('login-err');
-  const btn     = document.getElementById('login-btn');
-
-  if (!emailEl || !pwdEl || !errEl || !btn) {
-    alert('Error de UI: Faltan elementos en el HTML.');
-    return;
-  }
-
-  const email = emailEl.value.trim();
-  const pwd   = pwdEl.value;
-
-  if (!email || !pwd) {
-    errEl.textContent = 'Ingresa email y contraseña';
-    errEl.classList.remove('hidden');
-    return;
-  }
-
-  if (!sb) {
-    errEl.textContent = 'Supabase no cargó. Revisa la Parte 1 de tu HTML.';
-    errEl.classList.remove('hidden');
-    console.error('[LOGIN] sb es null');
-    return;
-  }
-
-  errEl.classList.add('hidden');
-  btn.textContent = 'Verificando...';
-  btn.disabled = true;
-
+  const email = document.getElementById('login-email').value.trim();
+  const pwd = document.getElementById('login-inp').value;
+  const err = document.getElementById('login-err');
+  const btn = document.getElementById('login-btn');
+  if (!sb) { err.textContent = 'Supabase no disponible'; err.classList.remove('hidden'); return; }
+  err.classList.add('hidden');
+  btn.textContent = '⏳ Verificando...'; btn.disabled = true;
   try {
-    console.log('[LOGIN] Iniciando sesión...');
     const { data, error } = await sb.auth.signInWithPassword({ email, password: pwd });
-
     if (error) {
-      console.warn('[LOGIN] Error:', error.message);
-      errEl.textContent = error.message === 'Invalid login credentials' ? 'Email o contraseña incorrectos' : error.message;
-      errEl.classList.remove('hidden');
+      err.textContent = error.message === 'Invalid login credentials' ? 'Email o contraseña incorrectos' : error.message;
+      err.classList.remove('hidden');
       return;
     }
-
-    console.log('[LOGIN] Auth OK. Buscando rol...');
     const { data: cmsData, error: cmsErr } = await sb.from('cms_users').select('role').eq('id', data.user.id).single();
-
-    if (cmsErr || !cmsData || !cmsData.role) {
-      console.warn('[LOGIN] Error de rol:', cmsErr);
+    if (cmsErr || !cmsData) {
       await sb.auth.signOut();
-      errEl.textContent = 'Tu usuario no tiene rol asignado en la base de datos.';
-      errEl.classList.remove('hidden');
+      err.textContent = 'Usuario no autorizado para el CMS';
+      err.classList.remove('hidden');
       return;
     }
-
-    console.log('[LOGIN] ¡Éxito! Rol:', cmsData.role);
     currentUser = data.user;
     currentRole = cmsData.role;
-
     closeAuth();
     openCMS();
     toast('✅ Bienvenido, ' + (currentRole === 'master' ? 'Director' : 'Redacción'));
-
-  } catch (ex) {
-    console.error('[LOGIN] Excepción:', ex);
-    errEl.textContent = 'Error inesperado: ' + ex.message;
-    errEl.classList.remove('hidden');
+  } catch(ex) {
+    err.textContent = 'Error: ' + ex.message;
+    err.classList.remove('hidden');
   } finally {
-    btn.textContent = 'Entrar';
-    btn.disabled = false;
+    btn.textContent = 'Entrar'; btn.disabled = false;
   }
 }
 
@@ -2128,21 +1951,19 @@ async function logoutCMS() {
   toast('👋 Sesión cerrada');
 }
 
-async function openCMS() {
-  try { await checkAuth(); } catch(e) {}
-
+function openCMS() {
   if (!isAuthenticated()) {
     document.getElementById('auth-modal').classList.remove('hidden');
     return;
   }
-
   closeAuth();
   document.getElementById('cms-modal').classList.remove('hidden');
   const badge = document.getElementById('cms-user-badge');
   if (badge) badge.textContent = '👤 ' + (currentRole === 'master' ? 'Director' : 'Redacción') + ' · ' + (currentUser?.email || '');
   tab('art');
   setTimeout(initQuill, 100);
-  loadDirForm(); loadRosForm(); loadSetForm(); loadLeg('privacidad'); loadVipForm(); updateBackupLabel();
+  loadDirForm(); loadRosForm(); loadSetForm(); loadLeg('privacidad'); loadVipForm();
+  updateBackupLabel();
 }
 
 function tab(name) {
@@ -2233,11 +2054,6 @@ function openReader(id) {
   document.getElementById('rd-img').src = a.image;
   document.getElementById('rd-img').alt = a.title;
   document.getElementById('rd-img').onerror = function() { this.src = PLACEHOLDER_IMG; };
-  const sbBox = document.getElementById('rd-saber-box');
-  if (sbBox) {
-    sbBox.textContent = a.saberNote ? '📊 Apunte Sabermétrico: ' + a.saberNote : '';
-    sbBox.classList.toggle('hidden', !a.saberNote);
-  }
   document.getElementById('rd-body').innerHTML = a.body || '';
   renderReaderShare(a); renderReaderBanner(); renderReaderComments();
   document.getElementById('reader-modal').classList.remove('hidden');
@@ -2528,7 +2344,7 @@ function radioPrev() {
 }
 function radioShuffle() { radioShuffleMode = !radioShuffleMode; document.getElementById('rb-shuffle').style.color = radioShuffleMode ? '#a67c1a' : ''; toast(radioShuffleMode ? '🔀 ON' : '🔀 OFF'); }
 function radioRepeat() { radioRepeatMode = !radioRepeatMode; document.getElementById('rb-repeat').style.color = radioRepeatMode ? '#a67c1a' : ''; toast(radioRepeatMode ? '🔁 ON' : '🔁 OFF'); }
-function radioVolume(v) { if (radioAudio) radioAudio.volume = v / 100; }
+function radioVolume(v) { radioAudio.volume = v / 100; }
 function fmtTime(s) { const m = Math.floor(s / 60), sec = Math.floor(s % 60); return `${m}:${sec < 10 ? '0' : ''}${sec}`; }
 function closeRadioBar() { radioAudio.pause(); document.getElementById('radio-bar').classList.remove('visible'); document.getElementById('rb-play-btn').textContent = '▶'; }
 
@@ -2618,7 +2434,7 @@ function downloadFile(name, content, mime) {
 }
 
 function escapeXml(s) {
-  return String(s).replace(/[<>&'"]/g, c => ({ '<':'<', '>':'>', '&':'&', "'":''', '"':'"' }[c]));
+  return String(s).replace(/[<>&'"]/g, c => ({ '<':'&lt;', '>':'&gt;', '&':'&amp;', "'":'&apos;', '"':'&quot;' }[c]));
 }
 
 function exportState() {
@@ -2657,14 +2473,14 @@ function scrollToSection(id) {
 function tryOpenFromHash() {
   if (hashOpened) return;
   const hash = decodeURIComponent(location.hash.replace('#', ''));
-  if (!hash || (!hash.startsWith('art') && !hash.startsWith('not'))) return;
+  if (!hash || !hash.startsWith('art')) return;
   const article = state.articles.find(x => x.id === hash);
   if (article) { hashOpened = true; openReader(hash); }
 }
 
 window.addEventListener('hashchange', () => {
   const hash = location.hash.replace('#', '');
-  if (hash.startsWith('art') || hash.startsWith('not')) { hashOpened = false; tryOpenFromHash(); }
+  if (hash.startsWith('art')) { hashOpened = false; tryOpenFromHash(); }
 });
 
 function nextAd(t) {
@@ -2736,8 +2552,18 @@ async function installPWA() {
   _deferredPrompt = null;
 }
 
+/*
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      console.log('✅ SW registrado:', reg.scope);
+    }).catch(err => console.warn('SW error:', err.message));
+  });
+}
+*/
+
 window.addEventListener('DOMContentLoaded', async () => {
-  console.log('✅ Taberna Premium V16 · PWA + Backup + RateLimit + CloudSync');
+  console.log('✅ Taberna Premium V16 · PWA + Backup + RateLimit');
   if (!Storage.available) {
     const w = document.getElementById('storage-warn');
     if (w) w.classList.remove('hidden');
