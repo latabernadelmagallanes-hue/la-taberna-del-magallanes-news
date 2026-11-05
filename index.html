@@ -1625,7 +1625,7 @@ function renderCMSLists() {
 }
 
 async function fetchFromSupabase() {
-  if (!sb) { console.log('ℹ️ Supabase no inicializado — modo local'); return; }
+   if (!sb) { console.log('Supabase no inicializado - modo local'); return; }
   try {
     try {
       const { data: liveUrlData } = sb.storage.from(CFG.BUCKET).getPublicUrl('config/live_state.json');
