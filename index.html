@@ -2056,7 +2056,7 @@ async function doLogin(e) {
   const btn     = document.getElementById('login-btn');
 
   if (!emailEl || !pwdEl || !errEl || !btn) {
-    alert('Error de UI: Faltan elementos del modal en tu HTML.');
+    alert('Error de UI: Faltan elementos en el HTML.');
     return;
   }
 
@@ -2077,7 +2077,7 @@ async function doLogin(e) {
   }
 
   errEl.classList.add('hidden');
-  btn.textContent = '⏳ Verificando...';
+  btn.textContent = 'Verificando...';
   btn.disabled = true;
 
   try {
@@ -2120,24 +2120,6 @@ async function doLogin(e) {
   }
 }
 
-    console.log('[LOGIN] ¡Éxito! Rol:', cmsData.role);
-    currentUser = data.user;
-    currentRole = cmsData.role;
-
-    closeAuth();
-    openCMS();
-    toast('✅ Bienvenido, ' + (currentRole === 'master' ? 'Director' : 'Redacción'));
-
-  } catch (ex) {
-    console.error('[LOGIN] Excepción:', ex);
-    errEl.textContent = 'Error inesperado: ' + ex.message;
-    errEl.classList.remove('hidden');
-  } finally {
-    btn.textContent = 'Entrar';
-    btn.disabled = false;
-  }
-}
-
 async function logoutCMS() {
   if (!confirm('¿Cerrar sesión del CMS?')) return;
   if (sb) await sb.auth.signOut();
@@ -2146,19 +2128,21 @@ async function logoutCMS() {
   toast('👋 Sesión cerrada');
 }
 
-function openCMS() {
+async function openCMS() {
+  try { await checkAuth(); } catch(e) {}
+
   if (!isAuthenticated()) {
     document.getElementById('auth-modal').classList.remove('hidden');
     return;
   }
+
   closeAuth();
   document.getElementById('cms-modal').classList.remove('hidden');
   const badge = document.getElementById('cms-user-badge');
   if (badge) badge.textContent = '👤 ' + (currentRole === 'master' ? 'Director' : 'Redacción') + ' · ' + (currentUser?.email || '');
   tab('art');
   setTimeout(initQuill, 100);
-  loadDirForm(); loadRosForm(); loadSetForm(); loadLeg('privacidad'); loadVipForm();
-  updateBackupLabel();
+  loadDirForm(); loadRosForm(); loadSetForm(); loadLeg('privacidad'); loadVipForm(); updateBackupLabel();
 }
 
 function tab(name) {
