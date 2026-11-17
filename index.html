@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico</title>
 <meta name="description" content="Periodismo deportivo independiente con rigor sabermétrico sobre los Navegantes del Magallanes y la LVBP.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://la-taberna-del-magallanes-news-ve.netlify.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="La Taberna del Magallanes News">
 <meta property="og:title" content="La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico">
@@ -14,6 +16,19 @@
 <meta name="twitter:title" content="La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico">
 <meta name="twitter:description" content="Periodismo deportivo independiente con rigor sabermétrico sobre los Navegantes del Magallanes y la LVBP.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='%23fbbf24' font-weight='bold' font-family='Georgia'%3ET%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  "name": "La Taberna del Magallanes News",
+  "url": "https://la-taberna-del-magallanes-news-ve.netlify.app/",
+  "description": "Periodismo deportivo independiente con rigor sabermétrico sobre los Navegantes del Magallanes y la LVBP.",
+  "founder": {
+    "@type": "Person",
+    "name": "Lic. Luis Aponte"
+  }
+}
+</script>
 <!-- Google Analytics 4 (Consent Mode v2 antes de config) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FWGCQPZNML"></script>
 <script>
@@ -33,9 +48,11 @@
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;word-wrap:break-word;}
+html{scroll-behavior:smooth;}
 body{font-family:Georgia,serif;background:#fff;color:#000;line-height:1.6;}
 img,video,audio{max-width:100%;height:auto;display:block;}
 iframe{max-width:100%;display:block;border:none;}
+section[id]{scroll-margin-top:90px;}
 .masthead{background:#000;color:#fff;border-bottom:3px solid #fbbf24;position:sticky;top:0;z-index:50;padding:1rem 1.5rem;}
 .masthead-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .logo-icon{width:44px;height:44px;background:#fbbf24;color:#000;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.75rem;}
@@ -99,14 +116,14 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .story-card:hover{transform:translateY(-2px);border-color:#000;}
 .dropdown{position:relative;display:inline-block;}
 .dropdown-content{display:none;position:absolute;right:0;top:100%;background:#fff;min-width:220px;border:1px solid #e5e5e5;border-top:3px solid #fbbf24;box-shadow:0 8px 16px rgba(0,0,0,0.15);z-index:100;padding:0.5rem 0;}
-.dropdown:hover .dropdown-content,.dropdown.open .dropdown-content{display:block;}
+.dropdown.open .dropdown-content{display:block;}
 .dropdown-content a{display:block;padding:0.6rem 1rem;color:#000;text-decoration:none;font-size:0.8rem;}
 .dropdown-content a:hover{background:#000;color:#fbbf24;}
-.banners-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-@media(max-width:768px){.banners-grid{grid-template-columns:1fr;}}
-.car-wrap{position:relative;overflow:hidden;border-radius:0.5rem;height:320px;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
-.car-wrap.prem{border:3px solid #fbbf24;background:linear-gradient(135deg,#fbbf24,#f59e0b);}
-.car-wrap.std{border:3px solid #000;background:#f7f7f5;}
+.car-wrap{position:relative;overflow:hidden;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+.car-wrap.prem{height:300px;border:3px solid #fbbf24;background:linear-gradient(135deg,#fbbf24,#f59e0b);}
+.car-wrap.std{height:240px;max-width:960px;margin:0 auto;border:2px solid #000;background:#f7f7f5;}
+.jingle-btn.playing{background:#000;color:#fbbf24;border-color:#fbbf24;}
+@media(max-width:600px){.car-wrap.prem{height:220px;}.car-wrap.std{height:190px;}}
 .car-track{display:flex;height:100%;transition:transform 0.6s;}
 .car-slide{min-width:100%;height:100%;position:relative;cursor:pointer;}
 .car-slide img{width:100%;height:100%;object-fit:cover;}
@@ -177,13 +194,15 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .pay-method.selected{border-color:#fbbf24;background:#fffbeb;}
 .vip-group{background:#25d366;color:#fff;padding:1.5rem;text-align:center;border-radius:4px;margin-top:1rem;}
 .vip-group a{display:inline-block;background:#fff;color:#25d366;padding:0.75rem 1.5rem;font-weight:700;text-decoration:none;text-transform:uppercase;margin-top:0.5rem;}
-.wa-float{position:fixed;bottom:20px;right:20px;z-index:1000;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;text-decoration:none;box-shadow:0 4px 12px rgba(37,211,101,0.4);animation:floatPulse 2s infinite;}
+.wa-float{position:fixed;bottom:76px;right:20px;z-index:1000;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.85rem;text-decoration:none;box-shadow:0 4px 12px rgba(37,211,101,0.4);animation:floatPulse 2s infinite;}
 @keyframes floatPulse{0%,100%{box-shadow:0 4px 12px rgba(37,211,101,0.4);}50%{box-shadow:0 4px 20px rgba(37,211,101,0.8);}}
 .wa-float:hover{transform:scale(1.1);}
-.sb-status{position:fixed;bottom:90px;right:20px;z-index:999;padding:0.5rem 1rem;border-radius:20px;font-size:0.75rem;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,0.2);}
+.sb-status{position:fixed;bottom:146px;right:20px;z-index:999;padding:0.45rem 0.9rem;border-radius:20px;font-size:0.75rem;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:opacity 0.4s ease,transform 0.4s ease;}
+.sb-status.hidden{opacity:0;pointer-events:none;transform:translateY(8px);}
 .sb-status.ok{background:#16a34a;color:#fff;}
 .sb-status.err{background:#b91c1c;color:#fff;}
 .sb-status.loading{background:#f59e0b;color:#000;}
+#mediaList video{width:100%;max-width:420px;max-height:72vh;margin:0.75rem auto 0;border-radius:8px;background:#000;object-fit:contain;}
 .rad-track-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:#fff;border:1px solid #e5e5e5;margin-bottom:0.5rem;border-radius:4px;transition:all 0.2s;}
 .rad-track-item:hover{border-color:#fbbf24;background:#fffbeb;}
 .rad-track-item.playing{border-color:#fbbf24;background:#fffbeb;box-shadow:0 0 0 2px rgba(251,191,36,0.3);}
@@ -204,7 +223,7 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .rad-upload-progress{background:#f7f7f5;border:1px solid #e5e5e5;padding:0.75rem;margin-top:0.75rem;border-radius:4px;font-size:0.85rem;}
 .rad-upload-progress .bar{height:6px;background:#e5e5e5;border-radius:3px;overflow:hidden;margin-top:0.5rem;}
 .rad-upload-progress .bar-fill{height:100%;background:#fbbf24;transition:width 0.3s;}
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:#000;color:#fff;padding:1.25rem 1.5rem;border-top:4px solid #fbbf24;box-shadow:0 -4px 20px rgba(0,0,0,0.3);transform:translateY(100%);transition:transform 0.4s ease;}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:#000;color:#fff;padding:1.25rem 180px 1.25rem 1.5rem;border-top:4px solid #fbbf24;box-shadow:0 -4px 20px rgba(0,0,0,0.3);transform:translateY(100%);transition:transform 0.4s ease;}
 .cookie-banner.show{transform:translateY(0);}
 .cookie-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
 .cookie-text{flex:1;min-width:260px;font-size:0.85rem;line-height:1.5;}
@@ -226,9 +245,10 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .radio-bar-btn{background:#fbbf24;color:#000;border:none;padding:0.35rem 0.65rem;font-size:0.75rem;font-weight:700;cursor:pointer;border-radius:4px;flex-shrink:0;}
 .radio-bar-btn.dark{background:#262626;color:#fff;border:1px solid #525252;}
 body.has-radio-bar{padding-bottom:60px;}
-body.has-radio-bar .wa-float{bottom:74px;}
-body.has-radio-bar .sb-status{bottom:144px;}
-@media(max-width:600px){.radio-bar{padding:0.5rem 4.5rem 0.5rem 0.75rem;gap:0.4rem;}.radio-bar-btn{padding:0.3rem 0.5rem;font-size:0.7rem;}.car-wrap{height:240px;}.wa-float{width:50px;height:50px;font-size:1.5rem;bottom:15px;right:15px;}.rad-track-item{padding:0.5rem;gap:0.5rem;}.rad-track-num{width:28px;height:28px;font-size:0.8rem;}.rad-track-play{width:32px;height:32px;}.cookie-inner{flex-direction:column;align-items:stretch;text-align:center;}.cookie-actions{justify-content:center;}}
+body.has-radio-bar .wa-float{bottom:136px;}
+body.has-radio-bar .sb-status{bottom:206px;}
+@media(max-width:768px){.cookie-banner{padding:1.25rem 1.25rem 4rem 1.25rem;}}
+@media(max-width:600px){.radio-bar{padding:0.5rem 4.5rem 0.5rem 0.75rem;gap:0.4rem;}.radio-bar-btn{padding:0.3rem 0.5rem;font-size:0.7rem;}.wa-float{width:50px;height:50px;font-size:1.5rem;bottom:72px;right:15px;}.rad-track-item{padding:0.5rem;gap:0.5rem;}.rad-track-num{width:28px;height:28px;font-size:0.8rem;}.rad-track-play{width:32px;height:32px;}.cookie-inner{flex-direction:column;align-items:stretch;text-align:center;}.cookie-actions{justify-content:center;}}
 </style>
 </head>
 <body>
@@ -252,16 +272,15 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="dropdown" id="moreDropdown">
 <button onclick="toggleDropdown(event)" class="nav-btn">Más ▾</button>
 <div class="dropdown-content" onclick="closeDropdown()">
-<a href="#director">✒️ Director</a>
-<a href="#boxscore">⚾ Box Score</a>
-<a href="#media">🎙️ Multimedia</a>
-<a href="#visual">📸 Fotorreportajes</a>
-<a href="#chat">💬 Chat</a>
-<a href="#paredon">🔥 Paredón</a>
+<a href="#director" onclick="closeDropdown()">✒️ Director</a>
+<a href="#boxscore" onclick="closeDropdown()">⚾ Box Score</a>
+<a href="#media" onclick="closeDropdown()">🎙️ Multimedia</a>
+<a href="#visual" onclick="closeDropdown()">📸 Fotorreportajes</a>
+<a href="#chat" onclick="closeDropdown()">💬 Chat</a>
+<a href="#paredon" onclick="closeDropdown()">🔥 Paredón</a>
 <a href="https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R" class="wa-channel-link" target="_blank" rel="noopener" style="background:#25d366;color:#fff;font-weight:700;">📱 Canal WhatsApp</a>
 </div>
 </div>
-<button onclick="openCMS()" class="cms-btn">CMS</button>
 </nav>
 </div>
 </header>
@@ -277,24 +296,9 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <p>Recibe noticias, análisis sabermétricos y contenido exclusivo</p>
 <a href="https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R" class="btn-wa-lg wa-channel-link" target="_blank" rel="noopener">📲 UNIRME AL CANAL</a>
 </div>
-<section id="envivo" class="section" style="display:none;">
-<h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:0.5rem;">📡 En Vivo <span class="live-dot"></span></h2>
-<div id="liveContainer"></div>
-</section>
-<section class="section">
-<h2 class="section-title">Historias 24h <span class="live-dot"></span></h2>
-<div id="storiesContainer" style="display:flex;gap:0.75rem;overflow-x:auto;padding:1rem 0;"></div>
-</section>
-<section id="director" class="section">
-<h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">✒️ La Pluma del Director</h2>
-<div id="directorColumn" style="margin-top:1rem;"></div>
-</section>
-<section class="section" style="padding-top:0;">
-<div class="section-label">Espacios Publicitarios</div>
-<h2 class="section-title" style="margin-bottom:1.5rem;">Patrocinadores · Rotan cada 4 seg</h2>
-<div class="banners-grid">
-<div>
-<div class="car-wrap prem">
+<section id="patrocinador-premium" class="section" style="padding:1.75rem 1.5rem;">
+<div class="section-label" style="margin-bottom:0.75rem;">Aliado Principal</div>
+<div class="car-wrap prem" onmouseenter="pauseCar('prem')" onmouseleave="resumeCar('prem')">
 <div class="badge prem">★ PREMIUM</div>
 <div class="counter" id="premCounter">0/15</div>
 <button class="car-nav prev" onclick="carPrev('prem')">‹</button>
@@ -302,9 +306,33 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="car-track" id="premTrack"></div>
 <div class="dots" id="premDots"></div>
 </div>
+</section>
+<section id="envivo" class="section" style="display:none;">
+<h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:0.5rem;">📡 En Vivo <span class="live-dot"></span></h2>
+<div id="liveContainer"></div>
+</section>
+<section id="historias" class="section">
+<h2 class="section-title">Historias 24h <span class="live-dot"></span></h2>
+<div id="storiesContainer" style="display:flex;gap:0.75rem;overflow-x:auto;padding:1rem 0;"></div>
+</section>
+<section id="director" class="section">
+<h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">✒️ La Pluma del Director</h2>
+<div id="directorColumn" style="margin-top:1rem;"></div>
+</section>
+
+<section id="hemeroteca" class="section">
+<h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">📰 Hemeroteca · <span id="hemerotecaCount">0</span></h2>
+<div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:1px solid #e5e5e5;">
+<button onclick="filterArticles('all',this)" class="tab-btn active" data-filter="all">Todas · <span id="countAll">0</span></button>
+<button onclick="filterArticles('cronica',this)" class="tab-btn" data-filter="cronica" id="btnFilterCronica">Crónicas · <span id="countCronica">0</span></button>
+<button onclick="filterArticles('editorial',this)" class="tab-btn" data-filter="editorial" id="btnFilterEditorial">Editorial · <span id="countEditorial">0</span></button>
+<button onclick="filterArticles('noticia',this)" class="tab-btn" data-filter="noticia" id="btnFilterNoticia">Noticias · <span id="countNoticia">0</span></button>
 </div>
-<div>
-<div class="car-wrap std">
+<div id="articlesList"></div>
+</section>
+<section id="patrocinador-standard" class="section" style="padding:1.75rem 1.5rem;">
+<div class="section-label" style="margin-bottom:0.75rem;">Patrocinadores</div>
+<div class="car-wrap std" onmouseenter="pauseCar('std')" onmouseleave="resumeCar('std')">
 <div class="badge std">📢 STANDARD</div>
 <div class="counter" id="stdCounter">0/15</div>
 <button class="car-nav prev" onclick="carPrev('std')">‹</button>
@@ -312,18 +340,6 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="car-track" id="stdTrack"></div>
 <div class="dots" id="stdDots"></div>
 </div>
-</div>
-</div>
-</section>
-<section id="hemeroteca" class="section">
-<h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">📰 Hemeroteca · <span id="hemerotecaCount">0</span></h2>
-<div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:1px solid #e5e5e5;">
-<button onclick="filterArticles('all',this)" class="tab-btn active" data-filter="all">Todas · <span id="countAll">0</span></button>
-<button onclick="filterArticles('cronica',this)" class="tab-btn" data-filter="cronica">Crónicas · <span id="countCronica">0</span></button>
-<button onclick="filterArticles('editorial',this)" class="tab-btn" data-filter="editorial">Editorial · <span id="countEditorial">0</span></button>
-<button onclick="filterArticles('noticia',this)" class="tab-btn" data-filter="noticia">Noticias · <span id="countNoticia">0</span></button>
-</div>
-<div id="articlesList"></div>
 </section>
 <section id="boxscore" class="section">
 <h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">📊 Pizarra en Vivo <span class="live-dot"></span></h2>
@@ -392,7 +408,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <a href="https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R" class="btn-wa-lg wa-channel-link" target="_blank" rel="noopener">📲 ÚNETE AL CANAL</a>
 </div>
 <div style="margin-top:1rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
-<button onclick="openCMS()" class="btn-outline" style="color:#fff;border-color:#fff;">CMS</button>
+<button onclick="openCMS()" class="btn-outline" style="color:#a3a3a3;border-color:#525252;font-size:0.7rem;">CMS</button>
 <button onclick="showCookieBanner()" class="btn-outline" style="color:#fff;border-color:#fff;padding:0.6rem 1.25rem;">🍪 Cookies</button>
 <button onclick="openModal('privacyModal')" style="background:none;border:none;color:#fbbf24;text-decoration:underline;font-size:0.85rem;padding:0.6rem 0.5rem;cursor:pointer;">🔒 Política de Privacidad y Cookies</button>
 </div>
@@ -562,6 +578,8 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div style="font-size:0.85rem;color:#404040;"><strong>Subir jingle</strong></div>
 </div>
 <div id="banJinglePrev" class="preview-box" style="display:none;"></div>
+<label>🔗 O URL del jingle MP3</label>
+<input type="text" id="banJingleUrl" placeholder="https://...">
 </div>
 <button onclick="uploadBanner()" class="btn-black" style="width:100%;margin-top:1rem;">📤 Subir Banner</button>
 <div id="banStatus" style="margin-top:1rem;"></div>
@@ -918,6 +936,7 @@ const SITE_URL = 'https://la-taberna-del-magallanes-news-ve.netlify.app';
 const DEFAULT_PAGE_TITLE = 'La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico';
 let WA_CHANNEL = 'https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R';
 let sb = null;
+let sbStatusTimer = null;
 
 let siteTexts = {
   ticker: '⚾ ÚLTIMA HORA: Magallanes remonta en la novena · 📊 wOBA sube a .412 · 🏆 Navegantes lideran LVBP · 📲 Síguenos en WhatsApp · ✅ Conectado a Supabase',
@@ -956,7 +975,15 @@ async function initSupabase() {
 
 function updateSbStatus(msg, type) {
   var el = document.getElementById('sbStatus');
-  if (el) { el.textContent = msg; el.className = 'sb-status ' + type; }
+  if (!el) return;
+  if (sbStatusTimer) { clearTimeout(sbStatusTimer); sbStatusTimer = null; }
+  el.textContent = msg;
+  el.className = 'sb-status ' + type;
+  if (type === 'ok') {
+    sbStatusTimer = setTimeout(function() {
+      el.classList.add('hidden');
+    }, 2500);
+  }
 }
 
 async function testConnection() {
@@ -1022,6 +1049,7 @@ let carIdx = { prem: 0, std: 0 };
 let reads = {};
 let tmpFiles = {};
 let currentJingleUrl = '';
+let pendingUploads = 0;
 
 const EMOJIS = ['😀','😂','🤣','😍','🥰','😎','🤔','😮','😢','😡','👍','👎','👏','🙌','🔥','💯','⚾','🏆','🎯','💪','❤️','🧡','💛','💚','💙','🇻🇪','🎉','🎊','✨','⭐','🌟','💫','🏅','🥇','🎖️','👀','💭','📊','📈','📉'];
 const REACTS = ['👍','❤️','😂','😮','😢','🔥','⚾','🏆'];
@@ -1185,6 +1213,7 @@ async function handleFile(input, areaId, prevId) {
   const area = document.getElementById(areaId);
   const prev = document.getElementById(prevId);
   if (!sb) { alert('⚠️ Supabase no conectado'); return; }
+  pendingUploads++;
   area.querySelector('div:last-child').innerHTML = '<strong>⏳ Subiendo a Supabase...</strong>';
   try {
     const fileName = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
@@ -1203,6 +1232,8 @@ async function handleFile(input, areaId, prevId) {
   } catch (e) {
     console.error('Error subiendo:', e);
     area.querySelector('div:last-child').innerHTML = '<strong>❌ Error: ' + esc(e.message) + '</strong>';
+  } finally {
+    pendingUploads = Math.max(0, pendingUploads - 1);
   }
 }
 
@@ -1507,6 +1538,12 @@ function renderArticles() {
   document.getElementById('countCronica').textContent = counts.cronica;
   document.getElementById('countEditorial').textContent = counts.editorial;
   document.getElementById('countNoticia').textContent = counts.noticia;
+  var btnCronica = document.getElementById('btnFilterCronica');
+  var btnEditorial = document.getElementById('btnFilterEditorial');
+  var btnNoticia = document.getElementById('btnFilterNoticia');
+  if (btnCronica) btnCronica.style.display = counts.cronica > 0 ? 'inline-block' : 'none';
+  if (btnEditorial) btnEditorial.style.display = counts.editorial > 0 ? 'inline-block' : 'none';
+  if (btnNoticia) btnNoticia.style.display = counts.noticia > 0 ? 'inline-block' : 'none';
   document.getElementById('totalReads').textContent = getTotalReads().toLocaleString();
   if (articles.length === 0) {
     document.getElementById('articlesList').innerHTML = '<p style="color:#737373;text-align:center;padding:2rem;">No hay artículos</p>';
@@ -1589,6 +1626,10 @@ function openFullArticle(id) {
 
 function handleDeepLink() {
   var params = new URLSearchParams(window.location.search);
+  if (params.get('cms') === '1' || window.location.hash === '#cms') {
+    openCMS();
+    return;
+  }
   var artParam = params.get('article');
   var hashMatch = window.location.hash.match(/^#article-(\d+)$/);
   var targetId = artParam ? parseInt(artParam, 10) : (hashMatch ? parseInt(hashMatch[1], 10) : null);
@@ -1788,6 +1829,7 @@ function switchBan(type, btn) {
 
 async function uploadBanner() {
   if (!sb) { alert('⚠️ Supabase no conectado'); return; }
+  if (pendingUploads > 0) { alert('⏳ Espera a que termine de subir el archivo a Supabase antes de guardar.'); return; }
   var title = document.getElementById('banTitle').value.trim();
   var text = document.getElementById('banText').value.trim();
   var link = document.getElementById('banLink').value.trim();
@@ -1804,7 +1846,8 @@ async function uploadBanner() {
     finalImg = demoImg(title.substring(0, 20), c[0], c[1]);
   }
   var jingle = null;
-  if (curBanType === 'prem' && tmpFiles.banJingle) jingle = tmpFiles.banJingle.url;
+  var jingleUrlIn = document.getElementById('banJingleUrl') ? document.getElementById('banJingleUrl').value.trim() : '';
+  if (curBanType === 'prem') jingle = tmpFiles.banJingle ? tmpFiles.banJingle.url : (jingleUrlIn || null);
   document.getElementById('banStatus').innerHTML = '<div class="info">⏳ Subiendo a Supabase...</div>';
   try {
     var res = await sb.from('banners').insert({
@@ -1819,6 +1862,7 @@ async function uploadBanner() {
     document.getElementById('banText').value = '';
     document.getElementById('banLink').value = '';
     document.getElementById('banImgUrl').value = '';
+    if (document.getElementById('banJingleUrl')) document.getElementById('banJingleUrl').value = '';
     clearFile('banImgArea', 'banImgPrev', 'banImg');
     clearFile('banJingleArea', 'banJinglePrev', 'banJingle');
     await loadAllFromSupabase();
@@ -1848,17 +1892,54 @@ async function delBan(id) {
   renderBanList();
 }
 
-function playBannerJingle(e, url) {
+function resetJingleButtons() {
+  document.querySelectorAll('.jingle-btn').forEach(function(b) {
+    b.classList.remove('playing');
+    b.textContent = '🔊 Jingle';
+  });
+}
+
+function pauseCar(type) {
+  if (carInt[type]) { clearInterval(carInt[type]); carInt[type] = null; }
+}
+
+function resumeCar(type) {
+  var audio = document.getElementById('jingleAudio');
+  if (type === 'prem' && audio && !audio.paused) return;
+  resetCar(type);
+}
+
+function playBannerJingle(e, url, btn) {
   e.stopPropagation();
   var audio = document.getElementById('jingleAudio');
   if (!audio || !url) return;
   if (currentJingleUrl === url && !audio.paused) {
     audio.pause();
+    resetJingleButtons();
+    resumeCar('prem');
     return;
   }
+  var radioP = document.getElementById('radioPlayer');
+  if (radioP && !radioP.paused) radioP.pause();
+  resetJingleButtons();
   currentJingleUrl = url;
   audio.src = url;
-  audio.play().catch(function(err) { console.warn('Error jingle:', err); });
+  pauseCar('prem');
+  if (btn) { btn.classList.add('playing'); btn.textContent = '⏳ Cargando...'; }
+  audio.onended = function() { resetJingleButtons(); resumeCar('prem'); };
+  audio.onerror = function() {
+    if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Audio no disponible'; }
+    setTimeout(resetJingleButtons, 2500);
+    resumeCar('prem');
+  };
+  audio.play().then(function() {
+    if (btn) { btn.classList.add('playing'); btn.textContent = '⏸ Pausar'; }
+  }).catch(function(err) {
+    console.warn('Error jingle:', err);
+    if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Toca de nuevo'; }
+    setTimeout(resetJingleButtons, 2500);
+    resumeCar('prem');
+  });
 }
 
 function renderCars() { renderCar('prem'); renderCar('std'); startCars(); }
@@ -1871,13 +1952,13 @@ function renderCar(type) {
   counter.textContent = list.length + '/15';
   if (list.length === 0) {
     var icon = type === 'prem' ? '★' : '📢';
-    track.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#737373;text-align:center;padding:2rem;"><div style="font-size:3rem;margin-bottom:1rem;opacity:0.5;">' + icon + '</div><div>Espacio ' + (type === 'prem' ? 'Premium' : 'Standard') + '<br><small>CMS → Banners</small></div></div>';
+    track.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#737373;text-align:center;padding:2rem;"><div style="font-size:3rem;margin-bottom:1rem;opacity:0.5;">' + icon + '</div><div>Espacio ' + (type === 'prem' ? 'Premium' : 'Standard') + '<br><small>Disponible para patrocinio</small></div></div>';
     dots.innerHTML = '';
     return;
   }
   track.innerHTML = list.map(function(b) {
     var jingleBtn = (type === 'prem' && b.jingle_url)
-      ? '<button type="button" class="jingle-btn" onclick="playBannerJingle(event,\'' + esc(b.jingle_url) + '\')">🔊 Jingle</button>'
+      ? '<button type="button" class="jingle-btn" onclick="playBannerJingle(event,\'' + esc(b.jingle_url) + '\',this)">🔊 Jingle</button>'
       : '';
     return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(b.link || '') + '"><img src="' + esc(b.image_url) + '"><div class="slide-content"><h4>' + esc(b.title) + '</h4>' + (b.text ? '<p>' + esc(b.text) + '</p>' : '') + '</div>' + jingleBtn + '</div>';
   }).join('');
@@ -2173,7 +2254,7 @@ function renderMedia() {
     if (m.embed_html) player = '<div style="margin-top:0.5rem;">' + cleanHTML(m.embed_html, true) + '</div>';
     else if (m.url) {
       if (m.media_type === 'audio') player = '<audio controls style="width:100%;margin-top:0.5rem;"><source src="' + esc(m.url) + '"></audio>';
-      else player = '<video controls style="width:100%;margin-top:0.5rem;"><source src="' + esc(m.url) + '"></video>';
+      else player = '<video controls playsinline preload="metadata"><source src="' + esc(m.url) + '"></video>';
     } else player = '<p style="font-size:0.8rem;color:#737373;font-style:italic;margin-top:0.5rem;">Sin archivo</p>';
     var shareBar = '<div class="share-bar" style="margin:0.75rem 0 0 0;padding:0.75rem;">' +
       '<span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#404040;margin-right:0.5rem;">📲 Compartir:</span>' +
@@ -2895,6 +2976,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
+    closeDropdown();
     document.querySelectorAll('.modal.active').forEach(function(m) {
       closeModal(m.id);
     });
