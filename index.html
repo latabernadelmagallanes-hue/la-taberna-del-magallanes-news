@@ -418,7 +418,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-box">
 <div class="modal-head">
 <div class="modal-title">🔒 Acceso CMS</div>
-<button onclick="closeModal('authModal')" class="close-x">&times;</button>
+<button onclick="closeModal('authModal')" class="close-x">×</button>
 </div>
 <div class="modal-body">
 <div id="connectionInfo"></div>
@@ -440,7 +440,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-title">CMS · Gestión</div>
 <div style="display:flex;gap:0.5rem;">
 <button onclick="logout()" class="btn-outline">Salir</button>
-<button onclick="closeModal('cmsModal')" class="close-x">&times;</button>
+<button onclick="closeModal('cmsModal')" class="close-x">×</button>
 </div>
 </div>
 <div style="padding:0 1.5rem;border-bottom:1px solid #e5e5e5;overflow-x:auto;">
@@ -580,7 +580,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div id="cmsVisList"></div>
 </div>
 <div id="tabMedia" class="tab-content">
-<div class="info">🎙️ <strong>Multimedia:</strong> aquí van SOLO audio (podcasts) y video. Para videos de YouTube usa el campo "HTML incrustado" con el código &lt;iframe&gt; de compartir.</div>
+<div class="info">🎙️ <strong>Multimedia:</strong> aquí van SOLO audio (podcasts) y video. Para videos de YouTube usa el campo "HTML incrustado" con el código <iframe> de compartir.</div>
 <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
 <button onclick="setMedType('podcast',this)" class="tab-btn active">🎙️ Podcast</button>
 <button onclick="setMedType('video',this)" class="tab-btn">🎥 Video</button>
@@ -646,7 +646,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 </select>
 <label>Título del programa en vivo</label>
 <input type="text" id="liveTitle" placeholder="Ej: Previa Magallanes vs Leones EN VIVO">
-<label>🔗 Enlace del directo, Stream MP3 o código &lt;iframe&gt;</label>
+<label>🔗 Enlace del directo, Stream MP3 o código <iframe></label>
 <textarea id="liveSource" rows="2" placeholder="https://www.youtube.com/watch?v=... o https://stream.zeno.fm/... o <iframe>...</iframe>"></textarea>
 <button onclick="saveLiveConfig()" class="btn-black" style="width:100%;">💾 Guardar Transmisión En Vivo</button>
 <div id="liveStatus" style="margin-top:0.75rem;"></div>
@@ -689,7 +689,8 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <label>🔗 Enlace del Grupo VIP</label>
 <input type="text" id="vipGroupLink" placeholder="https://chat.whatsapp.com/XXXXX">
 <label>💰 Instrucciones de Pago</label>
-<textarea id="vipPayInst" rows="4" placeholder="Pago Móvil: 0414-1234567&#10;Banco: Provincial"></textarea>
+<textarea id="vipPayInst" rows="4" placeholder="Pago Móvil: 0414-1234567
+Banco: Provincial"></textarea>
 <label>📊 Contador VIP</label>
 <input type="number" id="vipCountInput" placeholder="0">
 <button onclick="saveVIPConfig()" class="btn-black" style="width:100%;">💾 Guardar Todo</button>
@@ -757,7 +758,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-box full">
 <div class="modal-head" style="position:sticky;top:0;background:#fff;z-index:10;">
 <div class="modal-title" id="fullArtTitle">Artículo</div>
-<button onclick="closeModal('articleFullModal')" class="close-x">&times;</button>
+<button onclick="closeModal('articleFullModal')" class="close-x">×</button>
 </div>
 <div class="modal-body" id="fullArtBody" style="max-width:800px;margin:0 auto;"></div>
 </div>
@@ -766,7 +767,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-box" style="max-width:600px;">
 <div class="modal-head">
 <div class="modal-title">⭐ Círculo VIP</div>
-<button onclick="closeModal('vipModal')" class="close-x">&times;</button>
+<button onclick="closeModal('vipModal')" class="close-x">×</button>
 </div>
 <div class="modal-body">
 <form onsubmit="submitVIP(event)">
@@ -839,7 +840,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-box">
 <div class="modal-head">
 <div class="modal-title">Acerca del Medio</div>
-<button onclick="closeModal('aboutModal')" class="close-x">&times;</button>
+<button onclick="closeModal('aboutModal')" class="close-x">×</button>
 </div>
 <div class="modal-body">
 <p><strong>Fundación:</strong> 2026 por Lic. Luis Aponte</p>
@@ -855,7 +856,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-box">
 <div class="modal-head">
 <div class="modal-title">🔒 Política de Privacidad y Cookies</div>
-<button onclick="closeModal('privacyModal')" class="close-x">&times;</button>
+<button onclick="closeModal('privacyModal')" class="close-x">×</button>
 </div>
 <div class="modal-body" id="privacyBody" style="font-size:0.9rem;line-height:1.7;color:#404040;">
 <p>Cargando política de privacidad...</p>
@@ -868,7 +869,7 @@ body.has-radio-bar .sb-status{bottom:144px;}
 <div class="modal-box" style="max-width:600px;">
 <div class="modal-head">
 <div class="modal-title">📻 Radio La Taberna</div>
-<button onclick="closeModal('radioModal')" class="close-x">&times;</button>
+<button onclick="closeModal('radioModal')" class="close-x">×</button>
 </div>
 <div class="modal-body">
 <div id="radNowPlaying" class="rad-now-playing" style="display:none;">
@@ -889,10 +890,11 @@ body.has-radio-bar .sb-status{bottom:144px;}
 </div>
 <script>
 // ============================================================
-// CONFIGURACIÓN SUPABASE
+// CONFIGURACIÓN SUPABASE Y DOMINIO OFICIAL
 // ============================================================
 const SUPABASE_URL = 'https://jwizuyoipoymqzvuirnb.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3aXp1eW9pcG95bXF6dnVpcm5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIxMTU5ODMsImV4cCI6MjEwNzY5MTk4M30.zJCH7t3FkmyNAwxnt6pMGFB-leiANwgdt0QA6wwVMtU';
+const SITE_URL = 'https://la-taberna-del-magallanes-news-ve.netlify.app';
 const DEFAULT_PAGE_TITLE = 'La Taberna del Magallanes News · Periodismo Deportivo Sabermétrico';
 let WA_CHANNEL = 'https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R';
 let sb = null;
@@ -907,13 +909,17 @@ let siteTexts = {
 async function initSupabase() {
 try {
 sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-auth: { persistSession: false }
+auth: { persistSession: true }
 });
 var { error } = await sb.from('articles').select('id').limit(1);
 if (error) {
 updateSbStatus('❌ Error: ' + error.message, 'err');
 sb = null;
 return false;
+}
+var { data: sessionData } = await sb.auth.getSession();
+if (sessionData && sessionData.session && sessionData.session.user) {
+curUser = sessionData.session.user.email;
 }
 updateSbStatus('✅ Supabase conectado', 'ok');
 return true;
@@ -1516,12 +1522,27 @@ function handleDeepLink() {
   var targetId = artParam ? parseInt(artParam, 10) : (hashMatch ? parseInt(hashMatch[1], 10) : null);
   if (targetId && articles.some(function(a) { return a.id === targetId; })) {
     openFullArticle(targetId);
+    return;
+  }
+
+  var medParam = params.get('media');
+  var medHashMatch = window.location.hash.match(/^#media-(\d+)$/);
+  var targetMedId = medParam ? parseInt(medParam, 10) : (medHashMatch ? parseInt(medHashMatch[1], 10) : null);
+  if (targetMedId) {
+    var medEl = document.getElementById('media-' + targetMedId);
+    if (medEl) {
+      setTimeout(function() {
+        medEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        medEl.style.border = '2px solid #fbbf24';
+        medEl.style.boxShadow = '0 0 16px rgba(251,191,36,0.45)';
+      }, 300);
+    }
   }
 }
 function shareArt(net, aid) {
   var a = articles.find(function(x) { return x.id === aid; });
   if (!a) return;
-  var url = encodeURIComponent(location.origin + location.pathname + '?article=' + aid);
+  var url = encodeURIComponent(SITE_URL + '/?article=' + aid);
   var txt = encodeURIComponent(a.title + ' - La Taberna del Magallanes');
   var target = net === 'wa'
     ? 'https://wa.me/?text=' + txt + '%20' + url
@@ -1529,6 +1550,23 @@ function shareArt(net, aid) {
     ? 'https://www.facebook.com/sharer/sharer.php?u=' + url
     : 'https://twitter.com/intent/tweet?text=' + txt + '&url=' + url;
   window.open(target, '_blank');
+}
+function shareMedia(net, mid) {
+  var m = medias.find(function(x) { return x.id === mid; });
+  if (!m) return;
+  var url = encodeURIComponent(SITE_URL + '/?media=' + mid);
+  var prefix = m.type === 'podcast' ? '🎙️ ' : '🎥 ';
+  var txt = encodeURIComponent(prefix + m.title + ' - La Taberna del Magallanes News');
+  var target = net === 'wa'
+    ? 'https://wa.me/?text=' + txt + '%20' + url
+    : net === 'fb'
+    ? 'https://www.facebook.com/sharer/sharer.php?u=' + url
+    : 'https://twitter.com/intent/tweet?text=' + txt + '&url=' + url;
+  window.open(target, '_blank');
+}
+function copyMediaLink(mid) {
+  var url = SITE_URL + '/?media=' + mid;
+  navigator.clipboard.writeText(url).then(function() { alert('📋 Enlace copiado: ' + url); }).catch(function() { prompt('Copia:', url); });
 }
 function renderComments(a) {
 var comments = a.comments || [];
@@ -1587,7 +1625,7 @@ try { await sb.from('articles').update({ comments: a.comments }).eq('id', aid); 
 openFullArticle(aid);
 }
 function copyLink(aid) {
-var url = location.origin + location.pathname + '?article=' + aid;
+var url = SITE_URL + '/?article=' + aid;
 navigator.clipboard.writeText(url).then(function() { alert('📋 Copiado'); }).catch(function() { prompt('Copia:', url); });
 }
 function renderCMSArticles() {
@@ -1919,7 +1957,14 @@ else if (m.url) {
 if (m.media_type === 'audio') player = '<audio controls style="width:100%;margin-top:0.5rem;"><source src="' + m.url + '"></audio>';
 else player = '<video controls style="width:100%;margin-top:0.5rem;"><source src="' + m.url + '"></video>';
 } else player = '<p style="font-size:0.8rem;color:#737373;font-style:italic;margin-top:0.5rem;">Sin archivo</p>';
-return '<div style="border:1px solid #e5e5e5;padding:1rem;margin-bottom:0.75rem;"><p style="font-weight:700;">' + icon + ' ' + esc(m.title) + '</p>' + player + '</div>';
+var shareBar = '<div class="share-bar" style="margin:0.75rem 0 0 0;padding:0.75rem;">' +
+'<span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#404040;margin-right:0.5rem;">📲 Compartir:</span>' +
+'<button class="share-btn wa" onclick="shareMedia(\'wa\',' + m.id + ')">📱 WhatsApp</button>' +
+'<button class="share-btn fb" onclick="shareMedia(\'fb\',' + m.id + ')">📘 Facebook</button>' +
+'<button class="share-btn tw" onclick="shareMedia(\'tw\',' + m.id + ')">🐦 Twitter</button>' +
+'<button class="share-btn" onclick="copyMediaLink(' + m.id + ')">📋 Copiar</button>' +
+'</div>';
+return '<div id="media-' + m.id + '" style="border:1px solid #e5e5e5;padding:1rem;margin-bottom:0.75rem;transition:all 0.3s;"><p style="font-weight:700;font-size:1.1rem;">' + icon + ' ' + esc(m.title) + '</p>' + player + shareBar + '</div>';
 }).join('');
 }
 function renderCMSMedia() {
@@ -2538,7 +2583,7 @@ updateRadioBar();
 document.getElementById('vipCount').textContent = vipCfg.count;
 document.getElementById('totalReads').textContent = getTotalReads().toLocaleString();
 }
-function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, function(m) { return {'&':'&','<':'<','>':'>','"':'"',"'":'''}[m]; }); }
 function cleanHTML(html, allowIframe) {
   if (!html) return '';
   if (typeof DOMPurify === 'undefined') return html;
