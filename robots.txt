@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://la-taberna-del-magallanes-news-ve.netlify.app/sitemap.xml
