@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -130,7 +130,7 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .slide-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 60%);color:#fff;}
 .slide-content h4{font-size:1.5rem;font-weight:700;text-shadow:0 2px 4px rgba(0,0,0,0.5);}
 .slide-content p{font-size:0.9rem;text-shadow:0 1px 2px rgba(0,0,0,0.5);}
-.jingle-btn{position:absolute;bottom:1rem;right:1rem;z-index:15;background:#fbbf24;color:#000;border:2px solid #000;padding:0.35rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;}
+.jingle-btn{position:absolute;bottom:1rem;right:1rem;z-index:30;pointer-events:auto;background:#fbbf24;color:#000;border:2px solid #000;padding:0.35rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;}
 .jingle-btn:hover{background:#000;color:#fbbf24;}
 .badge{position:absolute;top:1rem;left:1rem;z-index:10;padding:0.4rem 0.8rem;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;}
 .badge.prem{background:#fbbf24;color:#000;border:2px solid #000;}
@@ -223,7 +223,7 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .rad-upload-progress{background:#f7f7f5;border:1px solid #e5e5e5;padding:0.75rem;margin-top:0.75rem;border-radius:4px;font-size:0.85rem;}
 .rad-upload-progress .bar{height:6px;background:#e5e5e5;border-radius:3px;overflow:hidden;margin-top:0.5rem;}
 .rad-upload-progress .bar-fill{height:100%;background:#fbbf24;transition:width 0.3s;}
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:#000;color:#fff;padding:1.25rem 180px 1.25rem 1.5rem;border-top:4px solid #fbbf24;box-shadow:0 -4px 20px rgba(0,0,0,0.3);transform:translateY(100%);transition:transform 0.4s ease;}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:#000;color:#fff;padding:1.25rem 230px 1.25rem 1.5rem;border-top:4px solid #fbbf24;box-shadow:0 -4px 20px rgba(0,0,0,0.3);transform:translateY(100%);transition:transform 0.4s ease;}
 .cookie-banner.show{transform:translateY(0);}
 .cookie-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
 .cookie-text{flex:1;min-width:260px;font-size:0.85rem;line-height:1.5;}
@@ -247,7 +247,7 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 body.has-radio-bar{padding-bottom:60px;}
 body.has-radio-bar .wa-float{bottom:136px;}
 body.has-radio-bar .sb-status{bottom:206px;}
-@media(max-width:768px){.cookie-banner{padding:1.25rem 1.25rem 4rem 1.25rem;}}
+@media(max-width:768px){.cookie-banner{padding:1.25rem 1.25rem 4.5rem 1.25rem;}}
 @media(max-width:600px){.radio-bar{padding:0.5rem 4.5rem 0.5rem 0.75rem;gap:0.4rem;}.radio-bar-btn{padding:0.3rem 0.5rem;font-size:0.7rem;}.wa-float{width:50px;height:50px;font-size:1.5rem;bottom:72px;right:15px;}.rad-track-item{padding:0.5rem;gap:0.5rem;}.rad-track-num{width:28px;height:28px;font-size:0.8rem;}.rad-track-play{width:32px;height:32px;}.cookie-inner{flex-direction:column;align-items:stretch;text-align:center;}.cookie-actions{justify-content:center;}}
 </style>
 </head>
@@ -1020,6 +1020,21 @@ function closeDropdown() {
 
 document.addEventListener('click', function() {
   closeDropdown();
+});
+
+document.querySelectorAll('.dropdown-content a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    closeDropdown();
+    var targetId = this.getAttribute('href');
+    var target = document.querySelector(targetId);
+    if (!target) return;
+    var header = document.querySelector('.masthead');
+    var offset = (header ? header.offsetHeight : 80) + 16;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    try { history.replaceState(null, '', targetId); } catch (err) {}
+  });
 });
 
 let curUser = null;
@@ -1909,10 +1924,14 @@ function resumeCar(type) {
   resetCar(type);
 }
 
-function playBannerJingle(e, url, btn) {
-  e.stopPropagation();
+function playBannerJingle(e, btn) {
+  if (e) { e.stopPropagation(); e.preventDefault(); }
+  var url = btn ? btn.getAttribute('data-jingle') : '';
   var audio = document.getElementById('jingleAudio');
-  if (!audio || !url) return;
+  if (!audio || !url) {
+    if (btn) { btn.textContent = '⚠️ Sin audio'; setTimeout(resetJingleButtons, 2000); }
+    return;
+  }
   if (currentJingleUrl === url && !audio.paused) {
     audio.pause();
     resetJingleButtons();
@@ -1923,23 +1942,31 @@ function playBannerJingle(e, url, btn) {
   if (radioP && !radioP.paused) radioP.pause();
   resetJingleButtons();
   currentJingleUrl = url;
-  audio.src = url;
   pauseCar('prem');
   if (btn) { btn.classList.add('playing'); btn.textContent = '⏳ Cargando...'; }
+  audio.pause();
+  audio.src = url;
+  audio.load();
   audio.onended = function() { resetJingleButtons(); resumeCar('prem'); };
   audio.onerror = function() {
     if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Audio no disponible'; }
+    updateSbStatus('⚠️ Jingle no pudo cargarse (revisa bucket audio)', 'err');
     setTimeout(resetJingleButtons, 2500);
     resumeCar('prem');
   };
-  audio.play().then(function() {
+  var playPromise = audio.play();
+  if (playPromise && typeof playPromise.then === 'function') {
+    playPromise.then(function() {
+      if (btn) { btn.classList.add('playing'); btn.textContent = '⏸ Pausar'; }
+    }).catch(function(err) {
+      console.warn('Error jingle:', err);
+      if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Toca de nuevo'; }
+      setTimeout(resetJingleButtons, 2500);
+      resumeCar('prem');
+    });
+  } else {
     if (btn) { btn.classList.add('playing'); btn.textContent = '⏸ Pausar'; }
-  }).catch(function(err) {
-    console.warn('Error jingle:', err);
-    if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Toca de nuevo'; }
-    setTimeout(resetJingleButtons, 2500);
-    resumeCar('prem');
-  });
+  }
 }
 
 function renderCars() { renderCar('prem'); renderCar('std'); startCars(); }
@@ -1958,7 +1985,7 @@ function renderCar(type) {
   }
   track.innerHTML = list.map(function(b) {
     var jingleBtn = (type === 'prem' && b.jingle_url)
-      ? '<button type="button" class="jingle-btn" onclick="playBannerJingle(event,\'' + esc(b.jingle_url) + '\',this)">🔊 Jingle</button>'
+      ? '<button type="button" class="jingle-btn" data-jingle="' + esc(b.jingle_url) + '" onclick="playBannerJingle(event,this)">🔊 Jingle</button>'
       : '';
     return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(b.link || '') + '"><img src="' + esc(b.image_url) + '"><div class="slide-content"><h4>' + esc(b.title) + '</h4>' + (b.text ? '<p>' + esc(b.text) + '</p>' : '') + '</div>' + jingleBtn + '</div>';
   }).join('');
