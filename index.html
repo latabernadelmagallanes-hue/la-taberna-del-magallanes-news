@@ -120,29 +120,49 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .dropdown.open .dropdown-content{display:block;}
 .dropdown-content a{display:block;padding:0.6rem 1rem;color:#000;text-decoration:none;font-size:0.8rem;}
 .dropdown-content a:hover{background:#000;color:#fbbf24;}
-.car-wrap{position:relative;overflow:hidden;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
-.car-wrap.prem{height:300px;border:3px solid #fbbf24;background:linear-gradient(135deg,#fbbf24,#f59e0b);}
-.car-wrap.std{height:240px;max-width:960px;margin:0 auto;border:2px solid #000;background:#f7f7f5;}
-.jingle-btn.playing{background:#000;color:#fbbf24;border-color:#fbbf24;}
-@media(max-width:600px){.car-wrap.prem{height:220px;}.car-wrap.std{height:190px;}}
-.car-track{display:flex;height:100%;transition:transform 0.6s;}
-.car-slide{min-width:100%;height:100%;position:relative;cursor:pointer;}
-.car-slide img{width:100%;height:100%;object-fit:cover;}
-.slide-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,transparent 60%);color:#fff;}
-.slide-content h4{font-size:1.5rem;font-weight:700;text-shadow:0 2px 4px rgba(0,0,0,0.5);}
-.slide-content p{font-size:0.9rem;text-shadow:0 1px 2px rgba(0,0,0,0.5);}
-.jingle-btn{position:absolute;bottom:1rem;right:1rem;z-index:30;pointer-events:auto;background:#fbbf24;color:#000;border:2px solid #000;padding:0.35rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:700;cursor:pointer;}
-.jingle-btn:hover{background:#000;color:#fbbf24;}
-.badge{position:absolute;top:1rem;left:1rem;z-index:10;padding:0.4rem 0.8rem;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;}
-.badge.prem{background:#fbbf24;color:#000;border:2px solid #000;}
-.badge.std{background:#000;color:#fbbf24;border:2px solid #fbbf24;}
-.counter{position:absolute;top:1rem;right:1rem;z-index:10;background:rgba(0,0,0,0.7);color:#fff;padding:0.3rem 0.6rem;font-size:0.75rem;border-radius:0.25rem;}
-.car-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;width:40px;height:40px;font-size:1.5rem;cursor:pointer;z-index:10;}
-.car-nav.prev{left:0.5rem;}
-.car-nav.next{right:0.5rem;}
-.dots{position:absolute;bottom:0.75rem;left:50%;transform:translateX(-50%);display:flex;gap:0.4rem;z-index:10;}
-.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;}
-.dot.active{background:#fbbf24;transform:scale(1.3);}
+
+/* === CARRUSEL DE BANNERS (SIN TEXTO SUPERPUESTO EN PC NI MÓVIL) === */
+.car-wrap{position:relative;overflow:hidden;border-radius:0.5rem;box-shadow:0 6px 20px rgba(0,0,0,0.14);background:#0a0a0a;}
+.car-wrap.prem{border:3px solid #fbbf24;}
+.car-wrap.std{max-width:960px;margin:0 auto;border:2px solid #000;}
+.car-header{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.9rem;background:#000;border-bottom:1px solid rgba(251,191,36,0.35);}
+.badge{padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-radius:3px;}
+.badge.prem{background:#fbbf24;color:#000;}
+.badge.std{background:#262626;color:#fbbf24;border:1px solid #fbbf24;}
+.counter{background:rgba(255,255,255,0.12);color:#fff;padding:0.2rem 0.55rem;font-size:0.72rem;font-weight:700;border-radius:3px;}
+.car-stage{position:relative;overflow:hidden;background:#0a0a0a;}
+.car-track{display:flex;transition:transform 0.55s ease;touch-action:pan-y;}
+.car-slide{min-width:100%;display:flex;flex-direction:column;cursor:pointer;background:#111;}
+.car-img-box{width:100%;aspect-ratio:3/1;max-height:340px;background:#0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.car-wrap.std .car-img-box{aspect-ratio:16/5;max-height:260px;}
+.car-img-box img{width:100%;height:100%;object-fit:contain;object-position:center;}
+.slide-content{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.85rem 1.25rem;background:#111;color:#fff;border-top:2px solid #fbbf24;min-height:68px;}
+.slide-text{flex:1;min-width:0;}
+.slide-content h4{font-size:1.15rem;font-weight:700;color:#fbbf24;line-height:1.25;margin:0;}
+.slide-content p{font-size:0.88rem;color:#e5e5e5;margin:0.2rem 0 0;line-height:1.35;}
+.jingle-btn{flex-shrink:0;background:#fbbf24;color:#000;border:2px solid #000;padding:0.45rem 0.9rem;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.jingle-btn:hover,.jingle-btn.playing{background:#000;color:#fbbf24;border-color:#fbbf24;}
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.68);color:#fff;border:1px solid rgba(251,191,36,0.5);width:38px;height:38px;border-radius:50%;font-size:1.35rem;line-height:1;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.car-nav:hover{background:#fbbf24;color:#000;}
+.car-nav.prev{left:0.65rem;}
+.car-nav.next{right:0.65rem;}
+.car-dots-bar{background:#000;padding:0.55rem 0.75rem;display:flex;justify-content:center;align-items:center;border-top:1px solid #262626;}
+.dots{display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer;transition:transform 0.2s,background 0.2s;}
+.dot.active{background:#fbbf24;transform:scale(1.25);}
+.car-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;width:100%;color:#a3a3a3;text-align:center;padding:2rem;background:#141414;}
+@media(max-width:640px){
+  #patrocinador-premium,#patrocinador-standard{padding:1.25rem 0.75rem!important;}
+  .car-img-box,.car-wrap.std .car-img-box{aspect-ratio:16/9;max-height:230px;}
+  .slide-content{flex-direction:column;align-items:flex-start;padding:0.75rem 0.9rem;gap:0.6rem;min-height:auto;}
+  .slide-content h4{font-size:1rem;}
+  .slide-content p{font-size:0.82rem;}
+  .jingle-btn{width:100%;text-align:center;padding:0.5rem 0.85rem;}
+  .car-nav{display:none;}
+  .badge{font-size:0.62rem;padding:0.2rem 0.5rem;}
+  .counter{font-size:0.68rem;}
+}
+
 .ban-item{display:flex;gap:0.75rem;padding:0.75rem;border:1px solid #e5e5e5;align-items:center;margin-bottom:0.5rem;background:#fff;flex-wrap:wrap;}
 .ban-item img{width:120px;height:60px;object-fit:cover;border-radius:0.25rem;}
 .upload-area{border:2px dashed #d4d4d4;padding:1.5rem;text-align:center;margin-bottom:1rem;background:#f7f7f5;cursor:pointer;}
@@ -300,12 +320,18 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <section id="patrocinador-premium" class="section" style="padding:1.75rem 1.5rem;">
 <div class="section-label" style="margin-bottom:0.75rem;">Aliado Principal</div>
 <div class="car-wrap prem" onmouseenter="pauseCar('prem')" onmouseleave="resumeCar('prem')">
+<div class="car-header">
 <div class="badge prem">★ PREMIUM</div>
 <div class="counter" id="premCounter">0/15</div>
-<button class="car-nav prev" onclick="carPrev('prem')">‹</button>
-<button class="car-nav next" onclick="carNext('prem')">›</button>
+</div>
+<div class="car-stage">
+<button class="car-nav prev" onclick="carPrev('prem')" aria-label="Banner anterior">‹</button>
+<button class="car-nav next" onclick="carNext('prem')" aria-label="Siguiente banner">›</button>
 <div class="car-track" id="premTrack"></div>
+</div>
+<div class="car-dots-bar">
 <div class="dots" id="premDots"></div>
+</div>
 </div>
 </section>
 <section id="envivo" class="section" style="display:none;">
@@ -334,12 +360,18 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <section id="patrocinador-standard" class="section" style="padding:1.75rem 1.5rem;">
 <div class="section-label" style="margin-bottom:0.75rem;">Patrocinadores</div>
 <div class="car-wrap std" onmouseenter="pauseCar('std')" onmouseleave="resumeCar('std')">
+<div class="car-header">
 <div class="badge std">📢 STANDARD</div>
 <div class="counter" id="stdCounter">0/15</div>
-<button class="car-nav prev" onclick="carPrev('std')">‹</button>
-<button class="car-nav next" onclick="carNext('std')">›</button>
+</div>
+<div class="car-stage">
+<button class="car-nav prev" onclick="carPrev('std')" aria-label="Banner anterior">‹</button>
+<button class="car-nav next" onclick="carNext('std')" aria-label="Siguiente banner">›</button>
 <div class="car-track" id="stdTrack"></div>
+</div>
+<div class="car-dots-bar">
 <div class="dots" id="stdDots"></div>
+</div>
 </div>
 </section>
 <section id="boxscore" class="section">
@@ -415,7 +447,7 @@ body.has-radio-bar .sb-status{bottom:206px;}
 </div>
 </footer>
 <a href="https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R" class="wa-float wa-channel-link" target="_blank" rel="noopener" title="Canal de WhatsApp">📱</a>
-<audio id="jingleAudio" style="display:none;"></audio>
+<audio id="jingleAudio" playsinline preload="none" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none;"></audio>
 <div id="radioBar" class="radio-bar" style="display:none;">
 <span style="font-size:1.1rem;">📻</span>
 <div class="radio-bar-title" id="radBarTitle">Radio La Taberna</div>
@@ -918,7 +950,7 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <div class="title" id="curTrack">Sin pistas</div>
 </div>
 <div id="radEmbedPlayer" style="display:none;margin-bottom:1rem;"></div>
-<audio id="radioPlayer" controls style="width:100%;margin-bottom:1rem;"></audio>
+<audio id="radioPlayer" controls playsinline preload="metadata" style="width:100%;margin-bottom:1rem;"></audio>
 <div style="display:flex;gap:0.5rem;justify-content:center;margin-bottom:1.5rem;">
 <button onclick="radPrev()" class="btn-gold" style="width:auto;padding:0.6rem 1.2rem;">⏮ Anterior</button>
 <button onclick="radPlay()" class="btn-black" style="width:auto;padding:0.6rem 1.5rem;">▶ Play</button>
@@ -1234,7 +1266,7 @@ async function handleFile(input, areaId, prevId) {
   try {
     const fileName = Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
     const bucket = file.type.startsWith('image/') ? 'images' : file.type.startsWith('audio/') ? 'audio' : 'video';
-    const res = await sb.storage.from(bucket).upload(fileName, file, { upsert: true });
+    const res = await sb.storage.from(bucket).upload(fileName, file, { upsert: true, contentType: file.type || undefined });
     if (res.error) throw res.error;
     const pub = sb.storage.from(bucket).getPublicUrl(fileName);
     const url = pub.data.publicUrl;
@@ -1243,8 +1275,8 @@ async function handleFile(input, areaId, prevId) {
     area.querySelector('div:last-child').innerHTML = '<strong>✅ ' + esc(file.name) + '</strong><br><small>Subido a Supabase Storage</small>';
     prev.style.display = 'block';
     if (file.type.startsWith('image/')) prev.innerHTML = '<img src="' + url + '">';
-    else if (file.type.startsWith('audio/')) prev.innerHTML = '<audio controls src="' + url + '"></audio>';
-    else if (file.type.startsWith('video/')) prev.innerHTML = '<video controls src="' + url + '" style="max-height:200px;"></video>';
+    else if (file.type.startsWith('audio/')) prev.innerHTML = '<audio controls playsinline src="' + url + '"></audio>';
+    else if (file.type.startsWith('video/')) prev.innerHTML = '<video controls playsinline src="' + url + '" style="max-height:200px;"></video>';
   } catch (e) {
     console.error('Error subiendo:', e);
     area.querySelector('div:last-child').innerHTML = '<strong>❌ Error: ' + esc(e.message) + '</strong>';
@@ -1945,13 +1977,12 @@ function playBannerJingle(e, btn) {
   currentJingleUrl = url;
   pauseCar('prem');
   if (btn) { btn.classList.add('playing'); btn.textContent = '⏳ Cargando...'; }
-  audio.pause();
-  audio.src = url;
-  audio.load();
+  if (!audio.paused) audio.pause();
+  if (audio.src !== url) audio.src = url;
   audio.onended = function() { resetJingleButtons(); resumeCar('prem'); };
   audio.onerror = function() {
     if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Audio no disponible'; }
-    updateSbStatus('⚠️ Jingle no pudo cargarse (revisa bucket audio)', 'err');
+    updateSbStatus('⚠️ Jingle no pudo cargarse (revisa formato MP3 o bucket)', 'err');
     setTimeout(resetJingleButtons, 2500);
     resumeCar('prem');
   };
@@ -1961,7 +1992,10 @@ function playBannerJingle(e, btn) {
       if (btn) { btn.classList.add('playing'); btn.textContent = '⏸ Pausar'; }
     }).catch(function(err) {
       console.warn('Error jingle:', err);
-      if (btn) { btn.classList.remove('playing'); btn.textContent = '⚠️ Toca de nuevo'; }
+      if (btn) {
+        btn.classList.remove('playing');
+        btn.textContent = (err && err.name === 'NotAllowedError') ? '⚠️ Toca de nuevo' : '⚠️ No compatible';
+      }
       setTimeout(resetJingleButtons, 2500);
       resumeCar('prem');
     });
@@ -1980,7 +2014,7 @@ function renderCar(type) {
   counter.textContent = list.length + '/15';
   if (list.length === 0) {
     var icon = type === 'prem' ? '★' : '📢';
-    track.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#737373;text-align:center;padding:2rem;"><div style="font-size:3rem;margin-bottom:1rem;opacity:0.5;">' + icon + '</div><div>Espacio ' + (type === 'prem' ? 'Premium' : 'Standard') + '<br><small>Disponible para patrocinio</small></div></div>';
+    track.innerHTML = '<div class="car-empty"><div style="font-size:2.5rem;margin-bottom:0.75rem;opacity:0.5;">' + icon + '</div><div>Espacio ' + (type === 'prem' ? 'Premium' : 'Standard') + '<br><small>Disponible para patrocinio</small></div></div>';
     dots.innerHTML = '';
     return;
   }
@@ -1988,7 +2022,12 @@ function renderCar(type) {
     var jingleBtn = (type === 'prem' && b.jingle_url)
       ? '<button type="button" class="jingle-btn" data-jingle="' + esc(b.jingle_url) + '" onclick="playBannerJingle(event,this)">🔊 Jingle</button>'
       : '';
-    return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(b.link || '') + '"><img src="' + esc(b.image_url) + '"><div class="slide-content"><h4>' + esc(b.title) + '</h4>' + (b.text ? '<p>' + esc(b.text) + '</p>' : '') + '</div>' + jingleBtn + '</div>';
+    return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(b.link || '') + '">' +
+      '<div class="car-img-box"><img src="' + esc(b.image_url) + '" alt="' + esc(b.title) + '"></div>' +
+      '<div class="slide-content">' +
+      '<div class="slide-text"><h4>' + esc(b.title) + '</h4>' + (b.text ? '<p>' + esc(b.text) + '</p>' : '') + '</div>' +
+      jingleBtn +
+      '</div></div>';
   }).join('');
   dots.innerHTML = list.map(function(_, i) {
     return '<div class="dot' + (i === 0 ? ' active' : '') + '" onclick="goTo(\'' + type + '\',' + i + ')"></div>';
@@ -2040,7 +2079,7 @@ function startCars() {
       carInt[type] = setInterval(function() {
         carIdx[type] = (carIdx[type] + 1) % list.length;
         updateCar(type);
-      }, 4000);
+      }, 4500);
     }
   });
 }
@@ -2052,8 +2091,26 @@ function resetCar(type) {
     carInt[type] = setInterval(function() {
       carIdx[type] = (carIdx[type] + 1) % list.length;
       updateCar(type);
-    }, 4000);
+    }, 4500);
   }
+}
+
+function setupCarSwipe() {
+  ['prem', 'std'].forEach(function(type) {
+    var track = document.getElementById(type + 'Track');
+    if (!track) return;
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) carNext(type);
+        else carPrev(type);
+      }
+    }, { passive: true });
+  });
 }
 
 function renderBoxScore() {
@@ -2281,7 +2338,7 @@ function renderMedia() {
     var player = '';
     if (m.embed_html) player = '<div style="margin-top:0.5rem;">' + cleanHTML(m.embed_html, true) + '</div>';
     else if (m.url) {
-      if (m.media_type === 'audio') player = '<audio controls style="width:100%;margin-top:0.5rem;"><source src="' + esc(m.url) + '"></audio>';
+      if (m.media_type === 'audio') player = '<audio controls playsinline preload="metadata" style="width:100%;margin-top:0.5rem;"><source src="' + esc(m.url) + '"></audio>';
       else player = '<video controls playsinline preload="metadata"><source src="' + esc(m.url) + '"></video>';
     } else player = '<p style="font-size:0.8rem;color:#737373;font-style:italic;margin-top:0.5rem;">Sin archivo</p>';
     var shareBar = '<div class="share-bar" style="margin:0.75rem 0 0 0;padding:0.75rem;">' +
@@ -2521,7 +2578,7 @@ async function uploadRadioPlaylist(input) {
     }
     try {
       var fileName = Date.now() + '_' + i + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      var upRes = await sb.storage.from('audio').upload(fileName, file, { upsert: true });
+      var upRes = await sb.storage.from('audio').upload(fileName, file, { upsert: true, contentType: file.type || undefined });
       if (upRes.error) throw upRes.error;
       var pub = sb.storage.from('audio').getPublicUrl(fileName);
       var url = pub.data.publicUrl;
@@ -2585,7 +2642,7 @@ function renderLiveStream() {
   }
   sec.style.display = 'block';
   var player = liveCfg.mode === 'audio'
-    ? '<audio controls src="' + esc(liveCfg.source_url) + '" style="width:100%;margin-top:0.5rem;"></audio>'
+    ? '<audio controls playsinline src="' + esc(liveCfg.source_url) + '" style="width:100%;margin-top:0.5rem;"></audio>'
     : '<div class="live-frame">' + toEmbedHTML(liveCfg.source_url) + '</div>';
   box.innerHTML = '<div class="live-box"><div class="live-badge">🔴 EN VIVO · ' + (liveCfg.mode === 'audio' ? 'RADIO' : 'TV') + '</div>' +
     (liveCfg.title ? '<h3 style="font-size:1.25rem;font-weight:700;color:#fbbf24;margin-bottom:0.75rem;">' + esc(liveCfg.title) + '</h3>' : '') +
@@ -2739,6 +2796,11 @@ function playRad(i) {
   if (i < 0 || i >= radioTracks.length) return;
   var p = document.getElementById('radioPlayer');
   var embBox = document.getElementById('radEmbedPlayer');
+  var jingle = document.getElementById('jingleAudio');
+  if (jingle && !jingle.paused) {
+    jingle.pause();
+    resetJingleButtons();
+  }
   var track = radioTracks[i];
   if (isEmbedSource(track.url)) {
     p.pause();
@@ -2771,8 +2833,16 @@ function playRad(i) {
     return;
   }
   radIdx = i;
-  p.src = track.url;
-  p.play().catch(function(e) { console.error('Error reproduciendo:', e); });
+  if (p.src !== track.url) {
+    p.src = track.url;
+  }
+  var playP = p.play();
+  if (playP && typeof playP.catch === 'function') {
+    playP.catch(function(e) {
+      console.error('Error reproduciendo:', e);
+      updateSbStatus('⚠️ Toca ▶ en el reproductor para iniciar el audio', 'err');
+    });
+  }
   renderRadList();
   renderRadPlaylist();
   updateRadioBar();
@@ -2818,7 +2888,10 @@ function radPlay() {
   if (!p.src || p.src === location.href || p.src === '') {
     playRad(0);
   } else if (p.paused) {
-    p.play();
+    var playP = p.play();
+    if (playP && typeof playP.catch === 'function') {
+      playP.catch(function() { openRadio(); });
+    }
   } else {
     p.pause();
   }
@@ -2992,6 +3065,7 @@ function cleanHTML(html, allowIframe) {
 document.addEventListener('DOMContentLoaded', async function() {
   updateWaChannelLinks();
   setupRadioAutoNext();
+  setupCarSwipe();
   if (await initSupabase()) {
     await loadAllFromSupabase();
     handleDeepLink();
