@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -76,7 +76,7 @@ section[id]{scroll-margin-top:90px;}
 .btn-edit{background:#fbbf24;color:#000;padding:0.4rem 0.8rem;font-size:0.7rem;font-weight:700;text-transform:uppercase;border:none;cursor:pointer;margin-right:0.25rem;}
 .btn-delete{background:#b91c1c;color:#fff;padding:0.4rem 0.8rem;font-size:0.7rem;font-weight:700;text-transform:uppercase;border:none;cursor:pointer;}
 input,textarea,select{width:100%;padding:0.75rem;border:1px solid #e5e5e5;font-size:0.9rem;margin-bottom:1rem;font-family:inherit;}
-input:focus,textarea:focus{outline:none;border-color:#000;border-bottom:2px solid #fbbf24;}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#000;border-bottom:2px solid #fbbf24;}
 label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#404040;display:block;margin-bottom:0.5rem;}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;padding:1rem;}
 .modal.active{display:flex!important;}
@@ -121,14 +121,16 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .dropdown-content a{display:block;padding:0.6rem 1rem;color:#000;text-decoration:none;font-size:0.8rem;}
 .dropdown-content a:hover{background:#000;color:#fbbf24;}
 
-/* === CARRUSEL DE BANNERS (SIN TEXTO SUPERPUESTO EN PC NI MÓVIL) === */
+/* === CARRUSEL DE BANNERS (PC Y MÓVIL SIN TEXTO SUPERPUESTO) === */
 .car-wrap{position:relative;overflow:hidden;border-radius:0.5rem;box-shadow:0 6px 20px rgba(0,0,0,0.14);background:#0a0a0a;}
 .car-wrap.prem{border:3px solid #fbbf24;}
 .car-wrap.std{max-width:960px;margin:0 auto;border:2px solid #000;}
+.car-wrap.cron{border:2px solid #fbbf24;border-left:6px solid #fbbf24;box-shadow:0 10px 28px rgba(0,0,0,0.18);}
 .car-header{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0.9rem;background:#000;border-bottom:1px solid rgba(251,191,36,0.35);}
 .badge{padding:0.25rem 0.65rem;font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-radius:3px;}
 .badge.prem{background:#fbbf24;color:#000;}
 .badge.std{background:#262626;color:#fbbf24;border:1px solid #fbbf24;}
+.badge.cron{background:linear-gradient(90deg,#fbbf24,#f59e0b);color:#000;}
 .counter{background:rgba(255,255,255,0.12);color:#fff;padding:0.2rem 0.55rem;font-size:0.72rem;font-weight:700;border-radius:3px;}
 .car-stage{position:relative;overflow:hidden;background:#0a0a0a;}
 .car-track{display:flex;transition:transform 0.55s ease;touch-action:pan-y;}
@@ -136,12 +138,18 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .car-img-box{width:100%;aspect-ratio:3/1;max-height:340px;background:#0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .car-wrap.std .car-img-box{aspect-ratio:16/5;max-height:260px;}
 .car-img-box img{width:100%;height:100%;object-fit:contain;object-position:center;}
-.slide-content{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.85rem 1.25rem;background:#111;color:#fff;border-top:2px solid #fbbf24;min-height:68px;}
+.slide-content{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.9rem 1.25rem;background:#111;color:#fff;border-top:2px solid #fbbf24;min-height:72px;}
 .slide-text{flex:1;min-width:0;}
 .slide-content h4{font-size:1.15rem;font-weight:700;color:#fbbf24;line-height:1.25;margin:0;}
 .slide-content p{font-size:0.88rem;color:#e5e5e5;margin:0.2rem 0 0;line-height:1.35;}
-.jingle-btn{flex-shrink:0;background:#fbbf24;color:#000;border:2px solid #000;padding:0.45rem 0.9rem;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.slide-actions{display:flex;align-items:center;gap:0.5rem;flex-shrink:0;flex-wrap:wrap;}
+.jingle-btn{flex-shrink:0;background:#fbbf24;color:#000;border:2px solid #000;padding:0.48rem 0.9rem;border-radius:20px;font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
 .jingle-btn:hover,.jingle-btn.playing{background:#000;color:#fbbf24;border-color:#fbbf24;}
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;padding:0.52rem 1rem;border-radius:20px;font-size:0.78rem;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap;border:none;transition:transform 0.15s ease,filter 0.15s ease;}
+.cta-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.cta-btn.wa{background:#25d366;color:#fff;box-shadow:0 3px 10px rgba(37,211,101,0.28);}
+.cta-btn.tg{background:#0088cc;color:#fff;box-shadow:0 3px 10px rgba(0,136,204,0.28);}
+.cta-btn.web{background:#fbbf24;color:#000;}
 .car-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.68);color:#fff;border:1px solid rgba(251,191,36,0.5);width:38px;height:38px;border-radius:50%;font-size:1.35rem;line-height:1;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
 .car-nav:hover{background:#fbbf24;color:#000;}
 .car-nav.prev{left:0.65rem;}
@@ -151,13 +159,36 @@ label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppe
 .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer;transition:transform 0.2s,background 0.2s;}
 .dot.active{background:#fbbf24;transform:scale(1.25);}
 .car-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;width:100%;color:#a3a3a3;text-align:center;padding:2rem;background:#141414;}
+
+/* === BANNER PATROCINADOR EN CRÓNICA (EDITORIAL PC + MÓVIL) === */
+.cronica-promo-slot{margin:2rem 0;}
+.cronica-slide-grid{display:grid;grid-template-columns:1.15fr 1fr;min-height:240px;background:linear-gradient(135deg,#0a0a0a 0%,#171717 100%);color:#fff;}
+.cronica-img-box{background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:220px;}
+.cronica-img-box img{width:100%;height:100%;max-height:300px;object-fit:cover;object-position:center;}
+.cronica-body{padding:1.5rem;display:flex;flex-direction:column;justify-content:center;gap:0.75rem;}
+.cronica-kicker{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:#fbbf24;font-weight:700;}
+.cronica-body h4{font-size:1.35rem;font-weight:900;line-height:1.2;color:#fff;margin:0;}
+.cronica-body p{font-size:0.95rem;color:#d4d4d4;line-height:1.5;margin:0;}
+.cronica-cta-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.25rem;}
+.cronica-cta-row .cta-btn{padding:0.72rem 1.25rem;border-radius:6px;font-size:0.84rem;text-transform:uppercase;letter-spacing:0.04em;}
+
+@media(max-width:768px){
+  .cronica-slide-grid{grid-template-columns:1fr;}
+  .cronica-img-box{min-height:180px;}
+  .cronica-img-box img{max-height:240px;}
+  .cronica-body{padding:1.1rem;}
+  .cronica-body h4{font-size:1.15rem;}
+  .cronica-cta-row .cta-btn{width:100%;padding:0.78rem 1rem;}
+}
+
 @media(max-width:640px){
   #patrocinador-premium,#patrocinador-standard{padding:1.25rem 0.75rem!important;}
   .car-img-box,.car-wrap.std .car-img-box{aspect-ratio:16/9;max-height:230px;}
-  .slide-content{flex-direction:column;align-items:flex-start;padding:0.75rem 0.9rem;gap:0.6rem;min-height:auto;}
+  .slide-content{flex-direction:column;align-items:stretch;padding:0.8rem 0.9rem;gap:0.7rem;min-height:auto;}
   .slide-content h4{font-size:1rem;}
   .slide-content p{font-size:0.82rem;}
-  .jingle-btn{width:100%;text-align:center;padding:0.5rem 0.85rem;}
+  .slide-actions{width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.5rem;}
+  .jingle-btn,.cta-btn{width:100%;text-align:center;padding:0.58rem 0.75rem;font-size:0.78rem;}
   .car-nav{display:none;}
   .badge{font-size:0.62rem;padding:0.2rem 0.5rem;}
   .counter{font-size:0.68rem;}
@@ -294,6 +325,7 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <button onclick="toggleDropdown(event)" class="nav-btn">Más ▾</button>
 <div class="dropdown-content" onclick="closeDropdown()">
 <a href="#director" onclick="closeDropdown()">✒️ Director</a>
+<a href="#hemeroteca" onclick="closeDropdown()">📰 Hemeroteca</a>
 <a href="#boxscore" onclick="closeDropdown()">⚾ Box Score</a>
 <a href="#media" onclick="closeDropdown()">🎙️ Multimedia</a>
 <a href="#visual" onclick="closeDropdown()">📸 Fotorreportajes</a>
@@ -317,6 +349,8 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <p>Recibe noticias, análisis sabermétricos y contenido exclusivo</p>
 <a href="https://whatsapp.com/channel/0029VbEUnoR8Pgs8zcNAmv0R" class="btn-wa-lg wa-channel-link" target="_blank" rel="noopener">📲 UNIRME AL CANAL</a>
 </div>
+
+<!-- ZONA 1: PATROCINADOR PREMIUM (ARRIBA) -->
 <section id="patrocinador-premium" class="section" style="padding:1.75rem 1.5rem;">
 <div class="section-label" style="margin-bottom:0.75rem;">Aliado Principal</div>
 <div class="car-wrap prem" onmouseenter="pauseCar('prem')" onmouseleave="resumeCar('prem')">
@@ -334,6 +368,7 @@ body.has-radio-bar .sb-status{bottom:206px;}
 </div>
 </div>
 </section>
+
 <section id="envivo" class="section" style="display:none;">
 <h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:0.5rem;">📡 En Vivo <span class="live-dot"></span></h2>
 <div id="liveContainer"></div>
@@ -347,6 +382,7 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <div id="directorColumn" style="margin-top:1rem;"></div>
 </section>
 
+<!-- ZONA 2: HEMEROTECA (INCLUYE BANNER CRÓNICA INTERCALADO) -->
 <section id="hemeroteca" class="section">
 <h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">📰 Hemeroteca · <span id="hemerotecaCount">0</span></h2>
 <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:1px solid #e5e5e5;">
@@ -357,23 +393,7 @@ body.has-radio-bar .sb-status{bottom:206px;}
 </div>
 <div id="articlesList"></div>
 </section>
-<section id="patrocinador-standard" class="section" style="padding:1.75rem 1.5rem;">
-<div class="section-label" style="margin-bottom:0.75rem;">Patrocinadores</div>
-<div class="car-wrap std" onmouseenter="pauseCar('std')" onmouseleave="resumeCar('std')">
-<div class="car-header">
-<div class="badge std">📢 STANDARD</div>
-<div class="counter" id="stdCounter">0/15</div>
-</div>
-<div class="car-stage">
-<button class="car-nav prev" onclick="carPrev('std')" aria-label="Banner anterior">‹</button>
-<button class="car-nav next" onclick="carNext('std')" aria-label="Siguiente banner">›</button>
-<div class="car-track" id="stdTrack"></div>
-</div>
-<div class="car-dots-bar">
-<div class="dots" id="stdDots"></div>
-</div>
-</div>
-</section>
+
 <section id="boxscore" class="section">
 <h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">📊 Pizarra en Vivo <span class="live-dot"></span></h2>
 <div style="overflow-x:auto;margin-top:1rem;">
@@ -414,6 +434,26 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">📸 Fotorreportajes</h2>
 <div id="visualsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.75rem;margin-top:1rem;"></div>
 </section>
+
+<!-- ZONA 3: PATROCINADOR STANDARD (SEPARADO EN ZONA MEDIA-BAJA) -->
+<section id="patrocinador-standard" class="section" style="padding:1.75rem 1.5rem;">
+<div class="section-label" style="margin-bottom:0.75rem;">Patrocinadores</div>
+<div class="car-wrap std" onmouseenter="pauseCar('std')" onmouseleave="resumeCar('std')">
+<div class="car-header">
+<div class="badge std">📢 STANDARD</div>
+<div class="counter" id="stdCounter">0/15</div>
+</div>
+<div class="car-stage">
+<button class="car-nav prev" onclick="carPrev('std')" aria-label="Banner anterior">‹</button>
+<button class="car-nav next" onclick="carNext('std')" aria-label="Siguiente banner">›</button>
+<div class="car-track" id="stdTrack"></div>
+</div>
+<div class="car-dots-bar">
+<div class="dots" id="stdDots"></div>
+</div>
+</div>
+</section>
+
 <section id="media" class="section">
 <h2 class="section-title" style="border-bottom:3px solid #fbbf24;padding-bottom:0.5rem;display:inline-block;margin-bottom:1rem;">🎙️ Podcast & Video</h2>
 <div id="mediaList"></div>
@@ -583,17 +623,32 @@ body.has-radio-bar .sb-status{bottom:206px;}
 <div id="cmsArtList"></div>
 </div>
 <div id="tabBanners" class="tab-content">
-<div class="info">🎯 Banners Carrusel · Hasta 15 Premium + 15 Standard</div>
-<div style="display:flex;gap:0.5rem;margin-bottom:1rem;border-bottom:2px solid #e5e5e5;">
+<div class="info">🎯 Banners Publicitarios · Hasta 15 Premium, 15 Crónica y 15 Standard (separados y con botón directo a WhatsApp / Telegram)</div>
+<div style="display:flex;gap:0.5rem;margin-bottom:1rem;border-bottom:2px solid #e5e5e5;flex-wrap:wrap;">
 <button onclick="switchBan('prem',this)" class="tab-btn active" id="btnPrem">★ Premium</button>
+<button onclick="switchBan('cron',this)" class="tab-btn" id="btnCron">🏆 Crónica</button>
 <button onclick="switchBan('std',this)" class="tab-btn" id="btnStd">📢 Standard</button>
 </div>
 <label>Título *</label>
 <input type="text" id="banTitle" placeholder="Ej: Restaurante El Magallanes">
 <label>Texto descriptivo</label>
-<input type="text" id="banText" placeholder="Ej: La mejor comida">
-<label>Enlace</label>
-<input type="text" id="banLink" placeholder="https://...">
+<input type="text" id="banText" placeholder="Ej: La mejor comida · Envíos a domicilio">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;">
+<div>
+<label>📲 Canal de destino (Botón CTA)</label>
+<select id="banCtaType">
+<option value="wa">📱 WhatsApp (Número o Canal)</option>
+<option value="tg">✈️ Telegram (Usuario @ o Canal)</option>
+<option value="web">🔗 Enlace Web / Otro</option>
+</select>
+</div>
+<div>
+<label>🏷️ Texto del botón (opcional)</label>
+<input type="text" id="banCtaLabel" placeholder="Ej: Pedir por WhatsApp / Ir al Canal">
+</div>
+</div>
+<label>🔗 Número WhatsApp, @usuario Telegram o URL</label>
+<input type="text" id="banLink" placeholder="Ej: 584141234567, @mitienda o https://t.me/micanal">
 <label>🖼️ IMAGEN</label>
 <div class="upload-area" id="banImgArea" onclick="document.getElementById('banImg').click()">
 <input type="file" id="banImg" accept="image/*" onchange="handleFile(this,'banImgArea','banImgPrev')">
@@ -1088,12 +1143,13 @@ let chatMsgs = [];
 let chatOn = false;
 let paredon = [];
 let premBans = [];
+let cronBans = [];
 let stdBans = [];
 let radioTracks = [];
 let liveCfg = { active: false, mode: 'video', title: '', source_url: '' };
 let radIdx = -1;
-let carInt = { prem: null, std: null };
-let carIdx = { prem: 0, std: 0 };
+let carInt = { prem: null, cron: null, std: null };
+let carIdx = { prem: 0, cron: 0, std: 0 };
 let reads = {};
 let tmpFiles = {};
 let currentJingleUrl = '';
@@ -1130,6 +1186,7 @@ async function loadAllFromSupabase() {
     }
     if (bRes.data) {
       premBans = bRes.data.filter(function(b) { return b.type === 'premium'; });
+      cronBans = bRes.data.filter(function(b) { return b.type === 'cronica'; });
       stdBans = bRes.data.filter(function(b) { return b.type === 'standard'; });
     }
     if (vRes.data) visuals = vRes.data;
@@ -1337,9 +1394,10 @@ async function loadDemoData() {
     });
     await sb.from('article_reads').insert(demoReads);
     var demoBanners = [
-      { type: 'premium', title: 'Cerveza Polar', text: 'La cerveza de Venezuela', link: '#', image_url: demoImg('Cerveza Polar', '#fbbf24', '#b91c1c'), order_index: 0 },
-      { type: 'premium', title: 'Banco Provincial', text: 'Tu banco de confianza', link: '#', image_url: demoImg('Provincial', '#003366', '#fbbf24'), order_index: 1 },
-      { type: 'standard', title: 'Restaurante La Taberna', text: 'La mejor comida', link: '#', image_url: demoImg('La Taberna', '#1e3a8a', '#fbbf24'), order_index: 0 }
+      { type: 'premium', title: 'Cerveza Polar', text: 'La cerveza de Venezuela', link: 'https://wa.me/584141234567#cta=' + encodeURIComponent('Pedir por WhatsApp'), image_url: demoImg('Cerveza Polar', '#fbbf24', '#b91c1c'), order_index: 0 },
+      { type: 'premium', title: 'Banco Provincial', text: 'Tu banco de confianza', link: 'https://t.me/provincial_ve#cta=' + encodeURIComponent('Ir al Telegram'), image_url: demoImg('Provincial', '#003366', '#fbbf24'), order_index: 1 },
+      { type: 'cronica', title: 'Tienda Oficial Navegantes', text: 'Camisetas, gorras y artículos originales con envío nacional.', link: 'https://wa.me/584141234567#cta=' + encodeURIComponent('Comprar por WhatsApp'), image_url: demoImg('Tienda Magallanes', '#000000', '#fbbf24'), order_index: 0 },
+      { type: 'standard', title: 'Restaurante La Taberna', text: 'La mejor comida', link: 'https://wa.me/584141234567', image_url: demoImg('La Taberna', '#1e3a8a', '#fbbf24'), order_index: 0 }
     ];
     await sb.from('banners').insert(demoBanners);
     await sb.from('director_column').upsert({ id: 1, title: 'El Magallanes y su identidad', content: 'Más que un equipo, el Naranja es una institución que representa la pasión de toda una ciudad.' });
@@ -1378,7 +1436,7 @@ async function clearAllData() {
     articles = []; visuals = []; medias = []; stories = [];
     director = null; boxScore = null;
     chatMsgs = []; chatOn = false;
-    paredon = []; premBans = []; stdBans = [];
+    paredon = []; premBans = []; cronBans = []; stdBans = [];
     radioTracks = []; reads = {}; radIdx = -1;
     await loadAllFromSupabase();
     alert('✅ Todo borrado de Supabase');
@@ -1593,11 +1651,17 @@ function renderArticles() {
   if (btnEditorial) btnEditorial.style.display = counts.editorial > 0 ? 'inline-block' : 'none';
   if (btnNoticia) btnNoticia.style.display = counts.noticia > 0 ? 'inline-block' : 'none';
   document.getElementById('totalReads').textContent = getTotalReads().toLocaleString();
+
+  var cronSlotHtml = cronBans.length > 0 ? buildCronicaBannerShell('hemeroteca') : '';
+
   if (articles.length === 0) {
-    document.getElementById('articlesList').innerHTML = '<p style="color:#737373;text-align:center;padding:2rem;">No hay artículos</p>';
+    document.getElementById('articlesList').innerHTML = cronSlotHtml + '<p style="color:#737373;text-align:center;padding:2rem;">No hay artículos</p>';
+    if (cronBans.length > 0) renderCronCar('hemeroteca');
     return;
   }
-  document.getElementById('articlesList').innerHTML = articles.map(function(a) {
+
+  var html = '';
+  articles.forEach(function(a, idx) {
     var typeLbl = a.type === 'cronica' ? 'Crónica' : a.type === 'editorial' ? 'Editorial' : 'Noticia';
     var r = getRead(a.id);
     var img = a.image_url || a.img;
@@ -1612,14 +1676,19 @@ function renderArticles() {
     }
     var created = a.created_at || a.created;
     var metaHtml = '<div style="display:flex;gap:1rem;font-size:0.75rem;color:#737373;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem;flex-wrap:wrap;"><span>✍️ ' + esc(a.author || 'Redacción') + '</span><span>📅 ' + new Date(created).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }) + '</span><span class="read-counter">👁️ ' + r.toLocaleString() + ' lecturas</span></div>';
-    return '<div id="article-' + a.id + '" style="border-bottom:2px solid #e5e5e5;padding:2rem 0;" data-type="' + esc(a.type) + '">' +
+    html += '<div id="article-' + a.id + '" style="border-bottom:2px solid #e5e5e5;padding:2rem 0;" data-type="' + esc(a.type) + '">' +
       '<div style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#d4a017;font-weight:700;margin-bottom:0.5rem;">' + typeLbl + '</div>' +
       '<h3 style="font-size:clamp(1.5rem,4vw,2rem);font-weight:900;line-height:1.15;margin-bottom:0.75rem;">' + esc(a.title) + '</h3>' +
       metaHtml + tagsHtml + imgHtml + leadHtml +
       '<p style="font-size:1rem;color:#404040;line-height:1.6;margin-bottom:1rem;">' + esc(excerpt) + '</p>' +
       '<button class="btn-read" onclick="openFullArticle(' + a.id + ')">LEER MÁS →</button>' +
       '</div>';
-  }).join('');
+    if (idx === 0 && cronSlotHtml) {
+      html += cronSlotHtml;
+    }
+  });
+  document.getElementById('articlesList').innerHTML = html;
+  if (cronBans.length > 0) renderCronCar('hemeroteca');
 }
 
 function openFullArticle(id) {
@@ -1656,6 +1725,7 @@ function openFullArticle(id) {
     if (a.saber.la !== null) saberHtml += '<div class="saber-stat"><div class="saber-label">Launch Ang.</div><div class="saber-value">' + a.saber.la + '°</div></div>';
     saberHtml += '</div></div>';
   }
+  var cronInlineHtml = cronBans.length > 0 ? buildCronicaBannerShell('modal') : '';
   var shareHtml = '<div class="share-bar"><span style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#404040;margin-right:0.5rem;">📲 Compartir:</span>' +
     '<button class="share-btn wa" onclick="shareArt(\'wa\',' + a.id + ')">📱 WhatsApp</button>' +
     '<button class="share-btn fb" onclick="shareArt(\'fb\',' + a.id + ')">📘 Facebook</button>' +
@@ -1667,8 +1737,9 @@ function openFullArticle(id) {
     '<div style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#d4a017;font-weight:700;margin-bottom:0.5rem;">' + typeLbl + '</div>' +
     tagsHtml + imgHtml + leadHtml +
     '<div style="font-size:1.1rem;line-height:1.8;color:#404040;">' + cleanHTML(a.content) + '</div>' +
-    saberHtml + waBanner + shareHtml + commentsHtml;
+    saberHtml + cronInlineHtml + waBanner + shareHtml + commentsHtml;
   openModal('articleFullModal');
+  if (cronBans.length > 0) renderCronCar('modal');
   document.getElementById('totalReads').textContent = getTotalReads().toLocaleString();
 }
 
@@ -1857,7 +1928,7 @@ async function delArticle(id) {
 function filterArticles(type, btn) {
   document.querySelectorAll('[data-filter]').forEach(function(b) { b.classList.remove('active'); });
   if (btn) btn.classList.add('active');
-  document.querySelectorAll('#articlesList > div').forEach(function(item) {
+  document.querySelectorAll('#articlesList > div[data-type]').forEach(function(item) {
     item.style.display = (type === 'all' || item.dataset.type === type) ? 'block' : 'none';
   });
 }
@@ -1865,12 +1936,74 @@ function filterArticles(type, btn) {
 function getRead(id) { return reads[id] || 0; }
 function getTotalReads() { return Object.values(reads).reduce(function(s, n) { return s + n; }, 0); }
 
+/* === HELPERS DE ENLACES WHATSAPP / TELEGRAM / WEB PARA BANNERS === */
+function buildBannerLink(ctaType, rawInput, customLabel) {
+  var val = (rawInput || '').trim();
+  if (!val) return '';
+  var finalUrl = val;
+  if (ctaType === 'wa') {
+    if (!/^https?:\/\//i.test(val)) {
+      var digits = val.replace(/\D/g, '');
+      if (digits.length === 11 && digits.charAt(0) === '0') digits = '58' + digits.slice(1);
+      if (digits.length >= 7) {
+        finalUrl = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Hola, vi su anuncio en La Taberna del Magallanes News');
+      }
+    }
+  } else if (ctaType === 'tg') {
+    if (!/^https?:\/\//i.test(val)) {
+      var uname = val.replace(/^@/, '').replace(/[^a-zA-Z0-9_]/g, '');
+      if (uname) finalUrl = 'https://t.me/' + uname;
+    }
+  } else {
+    if (!/^https?:\/\//i.test(val) && val !== '#') {
+      finalUrl = 'https://' + val;
+    }
+  }
+  var lbl = (customLabel || '').trim();
+  if (lbl && finalUrl && finalUrl !== '#') {
+    finalUrl = finalUrl.split('#cta=')[0] + '#cta=' + encodeURIComponent(lbl);
+  }
+  return finalUrl;
+}
+
+function parseBannerLink(rawLink) {
+  var s = (rawLink || '').trim();
+  if (!s || s === '#') return { url: '', ctaType: 'web', ctaLabel: '' };
+  var customLabel = '';
+  var idx = s.indexOf('#cta=');
+  if (idx !== -1) {
+    try { customLabel = decodeURIComponent(s.slice(idx + 5)); } catch (e) {}
+    s = s.slice(0, idx);
+  }
+  var ctaType = 'web';
+  if (/wa\.me|whatsapp\.com/i.test(s)) ctaType = 'wa';
+  else if (/t\.me|telegram\.me/i.test(s)) ctaType = 'tg';
+  var defaultLabels = {
+    wa: '💬 WhatsApp',
+    tg: '✈️ Telegram',
+    web: '🔗 Ver más'
+  };
+  return {
+    url: s,
+    ctaType: ctaType,
+    ctaLabel: customLabel || defaultLabels[ctaType]
+  };
+}
+
+function buildBannerCtaHTML(rawLink, title) {
+  var parsed = parseBannerLink(rawLink);
+  if (!parsed.url) return '';
+  return '<a href="' + esc(parsed.url) + '" target="_blank" rel="noopener" class="cta-btn ' + parsed.ctaType + '" onclick="event.stopPropagation();" aria-label="' + esc(parsed.ctaLabel + ' - ' + (title || '')) + '">' + esc(parsed.ctaLabel) + '</a>';
+}
+
 function switchBan(type, btn) {
   curBanType = type;
   document.getElementById('btnPrem').classList.remove('active');
+  document.getElementById('btnCron').classList.remove('active');
   document.getElementById('btnStd').classList.remove('active');
-  btn.classList.add('active');
-  document.getElementById('curBanType').textContent = type === 'prem' ? 'Premium' : 'Standard';
+  if (btn) btn.classList.add('active');
+  var names = { prem: 'Premium', cron: 'Crónica', std: 'Standard' };
+  document.getElementById('curBanType').textContent = names[type] || 'Premium';
   document.getElementById('jingleSection').style.display = type === 'prem' ? 'block' : 'none';
   renderBanList();
 }
@@ -1880,10 +2013,13 @@ async function uploadBanner() {
   if (pendingUploads > 0) { alert('⏳ Espera a que termine de subir el archivo a Supabase antes de guardar.'); return; }
   var title = document.getElementById('banTitle').value.trim();
   var text = document.getElementById('banText').value.trim();
-  var link = document.getElementById('banLink').value.trim();
+  var ctaType = document.getElementById('banCtaType').value;
+  var ctaLabel = document.getElementById('banCtaLabel').value.trim();
+  var rawLink = document.getElementById('banLink').value.trim();
+  var link = buildBannerLink(ctaType, rawLink, ctaLabel);
   var imgUrl = document.getElementById('banImgUrl').value.trim();
   if (!title) { document.getElementById('banStatus').innerHTML = '<div class="err">Título obligatorio</div>'; return; }
-  var list = curBanType === 'prem' ? premBans : stdBans;
+  var list = curBanType === 'prem' ? premBans : (curBanType === 'cron' ? cronBans : stdBans);
   if (list.length >= 15) { document.getElementById('banStatus').innerHTML = '<div class="err">Límite de 15</div>'; return; }
   var finalImg = null;
   if (tmpFiles.banImg) finalImg = tmpFiles.banImg.url;
@@ -1896,10 +2032,11 @@ async function uploadBanner() {
   var jingle = null;
   var jingleUrlIn = document.getElementById('banJingleUrl') ? document.getElementById('banJingleUrl').value.trim() : '';
   if (curBanType === 'prem') jingle = tmpFiles.banJingle ? tmpFiles.banJingle.url : (jingleUrlIn || null);
+  var dbType = curBanType === 'prem' ? 'premium' : (curBanType === 'cron' ? 'cronica' : 'standard');
   document.getElementById('banStatus').innerHTML = '<div class="info">⏳ Subiendo a Supabase...</div>';
   try {
     var res = await sb.from('banners').insert({
-      type: curBanType === 'prem' ? 'premium' : 'standard',
+      type: dbType,
       title: title, text: text, link: link,
       image_url: finalImg, jingle_url: jingle,
       order_index: list.length
@@ -1909,6 +2046,7 @@ async function uploadBanner() {
     document.getElementById('banTitle').value = '';
     document.getElementById('banText').value = '';
     document.getElementById('banLink').value = '';
+    document.getElementById('banCtaLabel').value = '';
     document.getElementById('banImgUrl').value = '';
     if (document.getElementById('banJingleUrl')) document.getElementById('banJingleUrl').value = '';
     clearFile('banImgArea', 'banImgPrev', 'banImg');
@@ -1921,14 +2059,16 @@ async function uploadBanner() {
 }
 
 function renderBanList() {
-  var list = curBanType === 'prem' ? premBans : stdBans;
+  var list = curBanType === 'prem' ? premBans : (curBanType === 'cron' ? cronBans : stdBans);
   var el = document.getElementById('banList');
   if (!el) return;
   document.getElementById('banCount').textContent = list.length;
   if (list.length === 0) { el.innerHTML = '<p style="color:#737373;text-align:center;padding:1rem;">No hay banners</p>'; return; }
   el.innerHTML = list.map(function(b, i) {
-    return '<div class="ban-item"><img src="' + esc(b.image_url) + '"><div style="flex:1;"><p style="font-weight:700;">' + (i + 1) + '. ' + esc(b.title) + '</p>' +
-      (b.jingle_url ? '<p style="font-size:0.75rem;color:#d4a017;">🎵 Con jingle</p>' : '') +
+    var parsed = parseBannerLink(b.link);
+    var ctaBadge = parsed.url ? '<span style="font-size:0.72rem;color:#166534;background:#dcfce7;padding:0.15rem 0.45rem;border-radius:3px;margin-right:0.35rem;">' + esc(parsed.ctaLabel) + '</span>' : '';
+    return '<div class="ban-item"><img src="' + esc(b.image_url) + '"><div style="flex:1;min-width:160px;"><p style="font-weight:700;">' + (i + 1) + '. ' + esc(b.title) + '</p>' +
+      '<div style="margin-top:0.25rem;">' + ctaBadge + (b.jingle_url ? '<span style="font-size:0.75rem;color:#d4a017;">🎵 Con jingle</span>' : '') + '</div>' +
       '</div><button onclick="delBan(' + b.id + ')" class="btn-delete">🗑️</button></div>';
   }).join('');
 }
@@ -2004,13 +2144,62 @@ function playBannerJingle(e, btn) {
   }
 }
 
+function buildCronicaBannerShell(scope) {
+  return '<div class="cronica-promo-slot" data-cron-scope="' + scope + '">' +
+    '<div class="car-wrap cron" onmouseenter="pauseCar(\'cron\')" onmouseleave="resumeCar(\'cron\')">' +
+    '<div class="car-header">' +
+    '<div class="badge cron">🏆 PATROCINADO EN CRÓNICA</div>' +
+    '<div class="counter" id="cronCounter_' + scope + '">0/15</div>' +
+    '</div>' +
+    '<div class="car-stage">' +
+    '<button class="car-nav prev" onclick="carPrev(\'cron\')" aria-label="Anuncio anterior">‹</button>' +
+    '<button class="car-nav next" onclick="carNext(\'cron\')" aria-label="Siguiente anuncio">›</button>' +
+    '<div class="car-track" id="cronTrack_' + scope + '"></div>' +
+    '</div>' +
+    '<div class="car-dots-bar"><div class="dots" id="cronDots_' + scope + '"></div></div>' +
+    '</div></div>';
+}
+
+function renderCronCar(scope) {
+  var track = document.getElementById('cronTrack_' + scope);
+  var dots = document.getElementById('cronDots_' + scope);
+  var counter = document.getElementById('cronCounter_' + scope);
+  if (!track || !dots || !counter) return;
+  counter.textContent = cronBans.length + '/15';
+  if (cronBans.length === 0) return;
+  track.innerHTML = cronBans.map(function(b) {
+    var parsed = parseBannerLink(b.link);
+    var ctaHtml = buildBannerCtaHTML(b.link, b.title);
+    return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(parsed.url) + '">' +
+      '<div class="cronica-slide-grid">' +
+      '<div class="cronica-img-box"><img src="' + esc(b.image_url) + '" alt="' + esc(b.title) + '"></div>' +
+      '<div class="cronica-body">' +
+      '<div class="cronica-kicker">⚾ Recomendado de La Taberna</div>' +
+      '<h4>' + esc(b.title) + '</h4>' +
+      (b.text ? '<p>' + esc(b.text) + '</p>' : '') +
+      (ctaHtml ? '<div class="cronica-cta-row">' + ctaHtml + '</div>' : '') +
+      '</div></div></div>';
+  }).join('');
+  dots.innerHTML = cronBans.map(function(_, i) {
+    return '<div class="dot' + (i === 0 ? ' active' : '') + '" onclick="goTo(\'cron\',' + i + ')"></div>';
+  }).join('');
+  if (carIdx.cron >= cronBans.length) carIdx.cron = 0;
+  updateCar('cron');
+  setupSwipeOnTrack(track, 'cron');
+}
+
 function renderCars() { renderCar('prem'); renderCar('std'); startCars(); }
 
 function renderCar(type) {
+  if (type === 'cron') {
+    ['hemeroteca', 'modal'].forEach(function(sc) { renderCronCar(sc); });
+    return;
+  }
   var list = type === 'prem' ? premBans : stdBans;
   var track = document.getElementById(type + 'Track');
   var dots = document.getElementById(type + 'Dots');
   var counter = document.getElementById(type + 'Counter');
+  if (!track || !dots || !counter) return;
   counter.textContent = list.length + '/15';
   if (list.length === 0) {
     var icon = type === 'prem' ? '★' : '📢';
@@ -2019,14 +2208,19 @@ function renderCar(type) {
     return;
   }
   track.innerHTML = list.map(function(b) {
+    var parsed = parseBannerLink(b.link);
     var jingleBtn = (type === 'prem' && b.jingle_url)
       ? '<button type="button" class="jingle-btn" data-jingle="' + esc(b.jingle_url) + '" onclick="playBannerJingle(event,this)">🔊 Jingle</button>'
       : '';
-    return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(b.link || '') + '">' +
+    var ctaBtn = buildBannerCtaHTML(b.link, b.title);
+    var actionsHtml = (jingleBtn || ctaBtn)
+      ? '<div class="slide-actions">' + jingleBtn + ctaBtn + '</div>'
+      : '';
+    return '<div class="car-slide" onclick="clickBan(this)" data-link="' + esc(parsed.url) + '">' +
       '<div class="car-img-box"><img src="' + esc(b.image_url) + '" alt="' + esc(b.title) + '"></div>' +
       '<div class="slide-content">' +
       '<div class="slide-text"><h4>' + esc(b.title) + '</h4>' + (b.text ? '<p>' + esc(b.text) + '</p>' : '') + '</div>' +
-      jingleBtn +
+      actionsHtml +
       '</div></div>';
   }).join('');
   dots.innerHTML = list.map(function(_, i) {
@@ -2037,8 +2231,19 @@ function renderCar(type) {
 }
 
 function updateCar(type) {
+  if (type === 'cron') {
+    ['hemeroteca', 'modal'].forEach(function(sc) {
+      var tr = document.getElementById('cronTrack_' + sc);
+      var dt = document.getElementById('cronDots_' + sc);
+      if (!tr || !dt) return;
+      tr.style.transform = 'translateX(-' + (carIdx.cron * 100) + '%)';
+      dt.querySelectorAll('.dot').forEach(function(d, i) { d.classList.toggle('active', i === carIdx.cron); });
+    });
+    return;
+  }
   var track = document.getElementById(type + 'Track');
   var dots = document.getElementById(type + 'Dots');
+  if (!track || !dots) return;
   var idx = carIdx[type];
   track.style.transform = 'translateX(-' + (idx * 100) + '%)';
   dots.querySelectorAll('.dot').forEach(function(d, i) { d.classList.toggle('active', i === idx); });
@@ -2046,11 +2251,15 @@ function updateCar(type) {
 
 function clickBan(el) {
   var link = el.dataset.link;
-  if (link && link !== '#') window.open(link, '_blank');
+  if (link && link !== '#') window.open(link, '_blank', 'noopener');
+}
+
+function getCarList(type) {
+  return type === 'prem' ? premBans : (type === 'cron' ? cronBans : stdBans);
 }
 
 function carNext(type) {
-  var list = type === 'prem' ? premBans : stdBans;
+  var list = getCarList(type);
   if (list.length === 0) return;
   carIdx[type] = (carIdx[type] + 1) % list.length;
   updateCar(type);
@@ -2058,7 +2267,7 @@ function carNext(type) {
 }
 
 function carPrev(type) {
-  var list = type === 'prem' ? premBans : stdBans;
+  var list = getCarList(type);
   if (list.length === 0) return;
   carIdx[type] = (carIdx[type] - 1 + list.length) % list.length;
   updateCar(type);
@@ -2072,9 +2281,9 @@ function goTo(type, idx) {
 }
 
 function startCars() {
-  ['prem', 'std'].forEach(function(type) {
+  ['prem', 'cron', 'std'].forEach(function(type) {
     if (carInt[type]) clearInterval(carInt[type]);
-    var list = type === 'prem' ? premBans : stdBans;
+    var list = getCarList(type);
     if (list.length > 1) {
       carInt[type] = setInterval(function() {
         carIdx[type] = (carIdx[type] + 1) % list.length;
@@ -2086,7 +2295,7 @@ function startCars() {
 
 function resetCar(type) {
   if (carInt[type]) clearInterval(carInt[type]);
-  var list = type === 'prem' ? premBans : stdBans;
+  var list = getCarList(type);
   if (list.length > 1) {
     carInt[type] = setInterval(function() {
       carIdx[type] = (carIdx[type] + 1) % list.length;
@@ -2095,21 +2304,25 @@ function resetCar(type) {
   }
 }
 
+function setupSwipeOnTrack(track, type) {
+  if (!track || track.dataset.swipeReady === '1') return;
+  track.dataset.swipeReady = '1';
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) carNext(type);
+      else carPrev(type);
+    }
+  }, { passive: true });
+}
+
 function setupCarSwipe() {
   ['prem', 'std'].forEach(function(type) {
-    var track = document.getElementById(type + 'Track');
-    if (!track) return;
-    var startX = 0;
-    track.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-    track.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0) carNext(type);
-        else carPrev(type);
-      }
-    }, { passive: true });
+    setupSwipeOnTrack(document.getElementById(type + 'Track'), type);
   });
 }
 
