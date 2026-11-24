@@ -1,0 +1,8 @@
+{
+  "name": "la-taberna-del-magallanes-news",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-seo.js"
+  }
+}
