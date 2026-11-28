@@ -3,15 +3,18 @@ import path from 'path';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://jwizuyoipoymqzvuirnb.supabase.co';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3aXp1eW9pcG95bXF6dnVpcm5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIxMTU5ODMsImV4cCI6MjEwNzY5MTk4M30.zJCH7t3FkmyNAwxnt6pMGFB-leiANwgdt0QA6wwVMtU';
-const SITE_URL = 'https://la-taberna-del-magallanes-news-ve.netlify.app';
+const RAW_SITE_URL = (process.env.SITE_URL || '').trim();
+const SITE_URL = /^https?:\/\//i.test(RAW_SITE_URL)
+  ? RAW_SITE_URL.replace(/\/+$/, '')
+  : 'https://la-taberna-del-magallanes-news-ve.netlify.app';
 const TABLE_NAME = 'articles';
 
 function escaparHtml(texto = '') {
   return String(texto)
-    .replace(/&/g, '&')
-    .replace(/"/g, '"')
-    .replace(/</g, '<')
-    .replace(/>/g, '>');
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 function crearSlug(texto = '', id) {
